@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<conversionRule conversionWord="logger" converterClass="com.joinway.web.logging.LoggingConverter" />
+	
+	<property scope="context" name="log.name" value="chains_admin" />
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date [%X{com.joinway.audit.flow}] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${user.home}/logs/${log.name}.%d{yyyy-MM}.log</fileNamePattern>
+			<maxHistory>6</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date [%X{com.joinway.audit.flow}] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="SQL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${user.home}/logs/${log.name}_sql.%d{yyyy-MM}.log</fileNamePattern>
+			<maxHistory>6</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date %-4relative [%X{com.joinway.audit.flow}] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${user.home}/logs/${log.name}_error.%d{yyyy-MM}.log</fileNamePattern>
+			<maxHistory>6</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date %-4relative [%X{com.joinway.audit.flow}] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.joinway" level="debug" />
+	<logger name="cn.jpush" level="debug" />
+
+	<if condition='isDefined("spring.profiles.active")'>
+		<then>
+	<logger name="com.joinway.admin.mapper" level="debug" additivity="true">
+		<appender-ref ref="SQL"/>
+	</logger>
+	<logger name="com.joinway.appx.mapper" level="debug" additivity="false">
+		<appender-ref ref="SQL"/>
+	</logger>
+		</then>
+	</if>
+
+	<root level="info">
+	<if condition='!isDefined("spring.profiles.active")'>
+		<then>
+				<appender-ref ref="STDOUT" />
+		</then>
+		<else>
+				<appender-ref ref="FILE" />
+				<appender-ref ref="ERROR" />
+				<appender-ref ref="SQL" />
+		</else>
+	</if>
+	</root>
+
+</configuration>

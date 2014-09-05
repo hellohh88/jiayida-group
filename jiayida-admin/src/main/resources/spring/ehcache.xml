@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" updateCheck="false">
+	<diskStore path="java.io.tmpdir"/>
+	
+	<defaultCache 
+		maxElementsInMemory="50" 
+		eternal="false" 
+		overflowToDisk="true" 
+		memoryStoreEvictionPolicy="LFU" />
+	
+	<cache 
+		name="TABLE" 
+		maxElementsInMemory="50" 
+		eternal="false" 
+		timeToLiveSeconds="600" 
+		overflowToDisk="true"/> 
+
+</ehcache>

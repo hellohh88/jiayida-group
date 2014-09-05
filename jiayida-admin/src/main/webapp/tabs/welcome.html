@@ -1,0 +1,18 @@
+<script type="text/javascript">
+$(function() {
+	//$.get(appName + 'login/context.json?token=' + UC.token, function(data) {
+	$.get(appName + 'login/context.json', function(data) {
+		console.log(data);
+		if(data && data.code == 0){
+			var text = '欢迎' + data.loginName + ', 您是第' + data.loginCount + '次登录, 上次登录时间  ' + data.lastLoginTime;
+			$('#welcome_content').text(text);
+			
+			UC.userId = data.userId;
+		}
+	}).fail(function(data) {
+		// error occured
+		handleError(data.code);
+	});
+});
+</script>
+<div id="welcome_content"></div>

@@ -1,0 +1,33 @@
+@charset "utf-8";
+body{font-family:"微软雅黑";}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+a {color:#8ca8d8;text-decoration:none;}
+a:hover {color:#8ca8d8;text-decoration:none;}
+.c{ clear:both;}
+
+
+/* 登陆页面
+----------------------------------------------------------------------------------------------------*/
+body{background:url(../images/bg.jpg) repeat-x #fff;}
+.main{ width:100%; height:760px;}
+.mainBg{ width:100%; height:700px; background:url(../images/bg1.png) no-repeat center 228px;}
+.logo{ width:406px; height:136px;margin:0 auto; padding-top:78px; }
+.login{ width:418px; height:409px; background:url(../images/bg2.png) no-repeat; margin:0 auto;}
+.login .formT{  width:350px; height:189px; padding-top:93px;  margin:0 auto}
+.login .form1{ width:350px; height:90px; position:relative}
+.login .form1 h3{ font-size:16px; color:#b3b3b3; height:26px; line-height:26px; }
+.login .form1 .rightBtn{width: 31px; height: 25px; position: absolute; top: 33px; left: 308px
+}
+.login .form1 .input1{ width:344px; height:40px; background:url(../images/biaodan1.png) no-repeat; border:0; font-size:20px; }
+
+.login .btn{ width:346px; height:85px; background:url(../images/btn.png) no-repeat; margin:0 auto}
+
+
+
+

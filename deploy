@@ -1,0 +1,52 @@
+#!/bin/sh
+
+TOMCAT_HOME=/home/appuser/tomcat
+CODE_BASE=$HOME/code/spring-driving/trunk
+APPS="spring-mobile spring-admin"
+APP_JAR=spring-common-1.0.jar
+
+$TOMCAT_HOME/bin/shutdown.sh
+
+echo "restore tomcat libs ..."
+rm -rf $TOMCAT_HOME/lib
+cp -r $TOMCAT_HOME/lib.bak $TOMCAT_HOME/lib
+
+#if [ "$1" == "solo" ]
+#then
+  for VAR in $APPS
+  do
+  echo "remove old packages ${VAR} ..."
+    rm -rf $TOMCAT_HOME/webapps/$VAR
+    rm -rf $TOMCAT_HOME/webapps/${VAR}.war
+    
+    echo "copy wars ${VAR} ..."
+    cp $CODE_BASE/$VAR/target/${VAR}.war $TOMCAT_HOME/webapps
+  done
+  
+#else
+#  
+#  for VAR in $APPS
+#  do
+#    echo "remove old packages $VAR ..."
+#    rm -rf $TOMCAT_HOME/webapps/$VAR
+#    rm -rf $TOMCAT_HOME/webapps/${VAR}.war
+#    
+#    echo "copy files $VAR ..."
+#    cp -r $CODE_BASE/${VAR}/target/$VAR $TOMCAT_HOME/webapps
+#    
+#    echo "prepare libs $VAR ..."
+#    rm -rf $TOMCAT_HOME/webapps/${VAR}/WEB-INF/lib/*.jar
+#    cp $CODE_BASE/${VAR}/target/$VAR/WEB-INF/lib/$APP_JAR $TOMCAT_HOME/webapps/${VAR}/WEB-INF/lib
+#    
+#    echo "override jars $VAR ..."
+#    cp -r $CODE_BASE/${VAR}/target/$VAR/WEB-INF/lib/*.jar $TOMCAT_HOME/lib
+#  done
+#  
+#  rm -rf $TOMCAT_HOME/lib/$APP_JAR
+#fi
+
+echo "copy done!"
+
+$TOMCAT_HOME/bin/startup.sh
+
+tail -f $TOMCAT_HOME/logs/catalina.out

@@ -1,0 +1,12 @@
+1. 查看是否已安装federated引擎
+mysql> show engines
+
+2. 安装federated引擎
+mysql> install plugin federated soname 'ha_federated.so';
+
+3. 修改my.cnf文件
+[mysqld]
+federated
+
+4. 重启mysql
+service mysqld restart

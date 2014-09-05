@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+  	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:mappers/**/*.xml" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="annotationClass" value="org.springframework.stereotype.Repository" />
+		<property name="basePackage" value="com.joinway.admin.mapper,com.joinway.mobile.mapper,com.joinway.db.mapper,com.joinway.appx.mapper" />
+	</bean>
+
+	<!-- app环境配置，通过JVM参数传入，默认为web.xml中spring.profiles.default参数值 -->
+	<beans profile="local">
+		<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		    <property name="url" value="jdbc:mysql://115.28.198.131:3306/spring?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
+		    <property name="username" value="spring" />
+		    <property name="password" value="drive123" />
+		</bean>
+	</beans>
+
+	<beans profile="dev">
+		<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		    <property name="url" value="jdbc:mysql://localhost:3306/spring?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
+		    <property name="username" value="spring" />
+		    <property name="password" value="drive123" />
+		</bean>
+	</beans>
+	
+	<beans profile="prod">
+		<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		    <property name="url" value="jdbc:mysql://10.144.27.13:3306/spring?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
+		    <property name="username" value="spring" />
+		    <property name="password" value="drive123" />
+		</bean>
+	</beans>
+	<!--  -->
+</beans>

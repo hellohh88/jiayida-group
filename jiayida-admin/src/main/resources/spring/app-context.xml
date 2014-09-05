@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.joinway"/>
+
+	<!-- 缓存配置 -->
+	<cache:annotation-driven/>
+	<import resource="cache-context.xml"/>
+	<!--  -->
+	
+	<!-- javax和hibernate validation 验证支持类-->
+	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor" />
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="2" />
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="UTF-8"/>
+	
+	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	
+	<!-- -->
+	<mvc:interceptors>
+		<bean class="com.joinway.web.audit.FlowInterceptor"/>
+	</mvc:interceptors>
+	<!--  -->
+	
+	<!-- 拦截器配置 -->
+	<!--
+		按照配置的倒序执行
+	 -->
+	<aop:config>
+		<aop:aspect ref="logAspect">
+			<aop:pointcut expression="execution(* com.joinway.admin.*..*(..))" id="adminLogger"/>
+			<aop:around pointcut-ref="adminLogger" method="doAround"/>
+		</aop:aspect>
+
+		<aop:aspect ref="logAspect">
+			<aop:pointcut expression="execution(* com.joinway.appx.*..*(..))" id="appxLogger"/>
+			<aop:around pointcut-ref="appxLogger" method="doAround"/>
+		</aop:aspect>
+
+		<aop:aspect ref="securityAspect">
+			<aop:pointcut expression="execution(* com.joinway.*.controller.*.*(..))" id="security"/>
+			<aop:around pointcut-ref="security" method="doAround"/>
+		</aop:aspect>
+
+		<aop:aspect ref="auditAspect">
+			<aop:pointcut expression="execution(* com.joinway.*.controller.*.*(..))" id="audit"/>
+			<aop:around pointcut-ref="audit" method="doAround"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="logAspect" class="com.joinway.web.logging.LoggingInterceptor"/>
+	<bean id="auditAspect" class="com.joinway.web.audit.AuditInterceptor">
+		<property name="processors">
+			<list>
+				<!-- 在这里添加所有audit的处理 -->
+				<!-- <bean class="com.joinway.web.audit.processor.AuditFileLogProcessor"/> -->
+				<bean class="com.joinway.appx.service.AuditService"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="securityAspect" class="com.joinway.web.security.SecurityInterceptor">
+		<property name="validators">
+			<list>
+				<bean class="com.joinway.web.security.validator.SessionValidator"/>
+			</list>
+		</property>
+	</bean>
+	<!--  -->
+	
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper">
+			  		<bean class="com.joinway.web.utils.JsonFormMapper"/>
+				</property>
+			</bean>
+			<bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+  
+	<import resource="db-context.xml"/>
+	<import resource="plugins-context.xml"/>
+</beans>
+

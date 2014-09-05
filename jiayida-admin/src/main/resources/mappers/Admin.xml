@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joinway.admin.mapper.AdminMapper">
+
+	<resultMap id="AdminUser" type="com.joinway.admin.bean.domain.AdminUser">
+		<id column="ID" property="id"/>
+		<result column="LOGIN_NAME" property="loginName"/>
+		<result column="PASSWORD" property="password"/>
+		<result column="LOGIN_COUNT" property="loginCount"/>
+		<result column="STATUS" property="status"/>
+		<result column="LAST_LOGIN_TIME" property="lastLoginTime"/>
+		<result column="CREATE_TIME" property="createTime"/>
+	</resultMap>
+
+	<resultMap id="TreeMenu" type="com.joinway.admin.bean.domain.TreeMenu">
+		<id column="ID" property="id"/>
+		<result column="TEXT" property="text"/>
+		<result column="PARENT_ID" property="parentId"/>
+		<result column="STATUS" property="status"/>
+		<result column="URL" property="url"/>
+	</resultMap>
+	
+	<select id="selectAdminUser" resultMap="AdminUser">
+		SELECT * FROM ADMIN_USER 
+			WHERE UPPER(LOGIN_NAME) = UPPER(#{name})
+		<if test="password != null">
+			AND PASSWORD = #{password}
+		</if>
+			AND STATUS = 'Y'
+	</select>
+	
+	<select id="selectUserTreeMenus" resultMap="TreeMenu">
+		SELECT T.* FROM TREE_MENU T
+			RIGHT JOIN ROLE_MENU_MAP RMM ON RMM.MENU_ID = T.ID
+			RIGHT JOIN USER_ROLE UR ON UR.ROLE_ID = RMM.ROLE_ID
+			RIGHT JOIN ROLE R ON R.ID = UR.ROLE_ID
+			RIGHT JOIN ADMIN_USER AU ON AU.ID = UR.USER_ID
+		WHERE T.STATUS = 'Y' AND AU.ID = #{userId}
+	</select>
+	
+	<select id="selectLoginNameCount" resultType="int" parameterType="java.lang.String">
+		SELECT COUNT(1) num FROM LOGIN_USER T
+		WHERE T.LOGIN_NAME = #{loginName}
+		<if test="userId != null and userId !=''">
+			AND T.ID != #{userId}
+		</if>
+	</select>
+<!-- 	<select id="selectUserNoticeHistory" resultType="com.joinway.admin.bean.domain.UserNoticeHistory">
+		SELECT UNL.USER_ID userId
+			, UNL.STATUS
+			, UNL.ACCEPT_TIME acceptTime
+			, DT.NAME
+		FROM USER_NOTICE_LOG UNL
+			LEFT JOIN DRIVE_TRAINEE DT ON UNL.USER_ID = DT.USER_ID
+		WHERE PAGE = #{page}			
+	</select> -->
+</mapper>
