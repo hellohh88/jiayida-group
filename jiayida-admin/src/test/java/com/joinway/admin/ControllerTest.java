@@ -1,4 +1,4 @@
-package com.joinway.mobile;
+package com.joinway.admin;
 
 import static java.lang.System.out;
 import static org.springframework.test.web.server.request.MockMvcRequestBuilders.get;

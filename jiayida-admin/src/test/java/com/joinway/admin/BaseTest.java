@@ -1,4 +1,4 @@
-package com.joinway.mobile;
+package com.joinway.admin;
 
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;

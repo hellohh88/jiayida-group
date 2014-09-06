@@ -2,7 +2,7 @@
 <configuration>
 	<conversionRule conversionWord="logger" converterClass="com.joinway.web.logging.LoggingConverter" />
 	
-	<property scope="context" name="log.name" value="chains_admin" />
+	<property scope="context" name="log.name" value="jyd_admin" />
 	
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
@@ -49,7 +49,7 @@
 
 	<if condition='isDefined("spring.profiles.active")'>
 		<then>
-	<logger name="com.joinway.admin.mapper" level="debug" additivity="true">
+	<logger name="com.joinway.admin.mapper" level="debug" additivity="false">
 		<appender-ref ref="SQL"/>
 	</logger>
 	<logger name="com.joinway.appx.mapper" level="debug" additivity="false">

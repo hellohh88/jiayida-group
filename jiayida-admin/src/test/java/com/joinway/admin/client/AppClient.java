@@ -1,4 +1,4 @@
-package com.joinway.mobile.client;
+package com.joinway.admin.client;
 
 import com.joinway.admin.bean.form.LoginForm;
 import com.joinway.admin.bean.form.RegisterForm;

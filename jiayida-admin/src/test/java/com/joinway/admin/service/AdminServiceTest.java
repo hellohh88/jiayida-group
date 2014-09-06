@@ -1,11 +1,11 @@
-package com.joinway.mobile.service;
+package com.joinway.admin.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.joinway.admin.BaseTest;
 import com.joinway.admin.bean.form.LoginForm;
-import com.joinway.admin.service.AdminService;
-import com.joinway.mobile.BaseTest;
+import com.joinway.admin.service.AdminPortalService;
 import com.joinway.utils.CipherUtils;
 
 /**
@@ -16,19 +16,13 @@ import com.joinway.utils.CipherUtils;
  */
 public class AdminServiceTest extends BaseTest {
 
-	@Autowired AdminService service;
+	@Autowired AdminPortalService service;
 	
 	@Test public void testLogin() throws Exception {
 		LoginForm form = new LoginForm();
 		form.setName("lee");
 		form.setPassword("123");
 		service.login(form);
-	}
-	
-	@Test public void testLogout(){
-//		LogoutForm form = new LogoutForm();
-//		form.setName("a");
-		service.logout();
 	}
 	
 	@Test public void test(){
