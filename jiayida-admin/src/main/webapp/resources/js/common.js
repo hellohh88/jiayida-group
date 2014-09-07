@@ -359,6 +359,8 @@ function resetSelect(jselectId, data, valueName, textName, selectedValue, format
 		var displayText = text;
 		if(formatter && typeof(formatter) === "function"){
 			displayText = formatter(value, text);
+		}else{
+			displayText = text;
 		}
 		
 		$(jselectId).append('<option value="'+ value + '">' + displayText + '</option>');

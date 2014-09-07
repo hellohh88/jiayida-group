@@ -106,8 +106,6 @@ function editAdminRoleItem(){
 	var flag = showEditDialog('#adminRole_grid', '#adminRole_form', '#adminRole_dlg');
  
 	if(flag){
-		//console.log('role id is ' + $('#adminRole_id_input').val());
-		
 	 	$('#adminRole_menu_select').combotree({
 	 		url: 'role/menu.json?roleIds=' + $('#adminRole_id_input').val(),
 	 		method: 'get',

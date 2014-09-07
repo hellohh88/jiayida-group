@@ -20,7 +20,7 @@
     <servlet-mapping>
         <servlet-name>jiayida-admin</servlet-name>
         <url-pattern>*.json</url-pattern>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>*.jspx</url-pattern>
     </servlet-mapping>
     
 	<filter>

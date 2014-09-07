@@ -84,6 +84,8 @@ function addTreeMenuItem(){
 		actionContext.idValue = $('#treeMenu_id_input').val();
 		*/
 		saveItem('#treeMenu_grid', '#treeMenu_form', '#treeMenu_dlg', treeMenuTable, actionContext);
+		
+		//$('#nav_menu').tree('reload');
 	});
 }
 
@@ -129,8 +131,27 @@ function editTreeMenuItem(){
 		$('#treeMenu_save').click(function(){
 			saveItem('#treeMenu_grid', '#treeMenu_form', '#treeMenu_dlg', treeMenuTable);
 		});
+		
+		reloadTreeMenu();
 	}
 }
+
+/*
+function reloadTreeMenu(){
+	$('#nav_menu').tree({
+		url: 'navigator.json',
+		animate : true,
+		loadFilter: function(data){
+			if(data.code == 0){
+				return data.menus;
+			}else{
+				handleError(data.code);
+				return "";
+			}
+		}
+	});
+}
+*/
 </script>
 <table id="treeMenu_grid" style="width:700px;height:250px" data-options="toolbar:'#treeMenu_toolbar'">
     <thead>
