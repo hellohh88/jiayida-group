@@ -190,7 +190,7 @@ function deleteItem(jgridId, tableName, idName){
 		        //console.log(ids);
 		        
 	            $.post(appName + 'delete/' + tableName + '.json', {id:ids}, function(data){
-	            console.log(data.code);
+	            	//console.log(data.code);
 	                if (data.code != 0){
 	                	showErrorMessage('删除失败');
 	                	handleError(data.code);

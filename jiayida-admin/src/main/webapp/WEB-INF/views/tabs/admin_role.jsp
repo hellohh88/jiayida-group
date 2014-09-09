@@ -106,26 +106,60 @@ function editAdminRoleItem(){
 	var flag = showEditDialog('#adminRole_grid', '#adminRole_form', '#adminRole_dlg');
  
 	if(flag){
-	 	$('#adminRole_menu_select').combotree({
-	 		url: 'role/menu.json?roleIds=' + $('#adminRole_id_input').val(),
-	 		method: 'get',
-	 		loadFilter: function(data){
-				if(data.code == 0){
-					return data.menus;
-				}else{
-					handleError(data.code);
-					return "";
-				}
-	 		}
-	 	});
-
+		if($('#adminRole_roleName_input').val() == 'SUPER'){
+			$('#adminRole_roleName_input').attr('readonly', 'readonly');
+			$('#adminRole_except').hide();
+			
+		}else{
+			$('#adminRole_roleName_input').removeAttr('readonly');
+			$('#adminRole_except').show();
+			
+		 	$('#adminRole_menu_select').combotree({
+		 		url: 'role/menu.json?roleIds=' + $('#adminRole_id_input').val(),
+		 		method: 'get',
+		 		loadFilter: function(data){
+					if(data.code == 0){
+						return data.menus;
+					}else{
+						handleError(data.code);
+						return "";
+					}
+		 		}
+		 	});
+		}	
+		
 		$('#adminRole_save').unbind('click');
 		$('#adminRole_save').click(function(){
 			saveItem('#adminRole_grid', '#adminRole_form', '#adminRole_dlg', adminRoleTable);
 		});
+		
 	}
 }
 
+/**
+ * 删除
+ */
+ /*
+function deleteAdminRoleItem(){
+	var rows = $('#adminRole_grid').datagrid('getSelections');
+	
+	var delSuper = false;
+	//debugger;
+	if(rows && rows.length > 0){
+		for(var i = 0; i < rows.length; i++){
+			if(rows[i].roleName == 'SUPER'){
+				delSuper = true;
+			}
+		}
+	}
+	
+	if(delSuper){
+		showInformationMessage('不能删除SUPER权限');
+	}else{
+		deleteItem('#adminRole_grid', adminRoleTable, 'id');
+	}
+}
+*/
 /**
  * 导出查询结果
 function exportAdminRoleQuery(){
@@ -158,6 +192,7 @@ function exportAdminRoleQuery(){
         <th data-options="field:'ck'" checkbox="true"></th>
 		<th data-options="field:'id'">权限ID</th>
 		<th data-options="field:'roleName'">权限名称</th>
+		<th data-options="field:'status'">状态</th>
 		<th data-options="field:'description'">描述</th>
     </thead>
 </table>
@@ -179,7 +214,7 @@ function exportAdminRoleQuery(){
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#adminRole_toolbar')">清除</a>
   		<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="addAdminRoleItem()">添加</a> 
         <a href="#" class="easyui-linkbutton" iconCls="icon-edit "onclick="editAdminRoleItem()">编辑</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="deleteItem('#adminRole_grid', adminRoleTable, 'id')">删除</a>
+        <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="deleteAdminRoleItem()">删除</a> -->
 <!--         <a href="#" class="easyui-linkbutton" iconCls="icon-excel" onclick="exportAdminRoleQuery()">导出</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-excel" onclick="selectFile('#adminRole_file')">导入</a> -->
 </div>
@@ -195,9 +230,16 @@ function exportAdminRoleQuery(){
 			<label>描述</label>
 			<input id="adminRole_description_input" name="description">
 		</div>
+		<div id="adminRole_except">
+		<div class="adminRole_item">
+			<label>状态</label>
+            <input id="adminRole_status_input" name="status" type="radio" value="Y" checked>启用
+            <input name="status" type="radio" value="N">禁用
+		</div>
 		<div class="adminRole_item">
 			<label>权限菜单</label>
 			<select id="adminRole_menu_select" name="menuIds" multiple style="width:200px;"></select>
+		</div>
 		</div>
      </form>
  </div>
