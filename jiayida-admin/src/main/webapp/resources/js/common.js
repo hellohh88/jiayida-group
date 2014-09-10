@@ -371,28 +371,36 @@ function resetSelect(jselectId, data, valueName, textName, selectedValue, format
 		$(jselectId).val(selectedValue);
 	}
 }
-/*
-function resetSelect2(jselectId, data, valueName, textName, selectedValue){
-	$(jselectId).empty();
-	
-	var count = data.record.total;
-	
-	for(var i = 0; i < count; i++){
-		var e = data.record.rows[i];
-		var value = eval('e.' + valueName);
-		var text = eval('e.' + textName);
-		
-		$(jselectId).append('<option value="'+ value + '">' + value + ' - ' + text + '</option>');
-	}	
-	
-	console.log('selected value ' + selectedValue);
-	if(selectedValue){
-		$(jselectId).val(selectedValue);
-	}
-}
-*/
+
 function handleError(code){
 	if(code == 1003){
 		window.location.href = 'login.html';
 	}
+}
+
+function checkExistence(table, column, value, msg){
+	var valid = false;
+	
+	$.ajax({
+		type : "post",
+		url : 'exists/' + table + '.json?column=' + column + '&value=' + value,
+		//data : form,
+		async: false,
+		success : function(data) {
+			if(data.code == 0){
+				if(data.rows && data.rows.length > 0){
+					showErrorMessage(msg);
+				}else{
+					valid = true;
+				}
+			}else{
+				showErrorMessage('校验错误');
+			}
+		},
+		error: function(){
+			showErrorMessage('网络连接错误');
+		}
+	});
+	
+	return valid;
 }

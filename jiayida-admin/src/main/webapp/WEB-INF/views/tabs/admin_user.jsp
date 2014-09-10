@@ -17,7 +17,7 @@ width: 80px;
 
 <script type="text/javascript" src="resources/js/common.js"></script>
 <script type="text/javascript">
-var adminUserTable = 'ADMIN_USER';
+var adminUserTable = 'ADMIN_USER_VT';
 var adminUserQuery;
 
 $(function() {
@@ -73,27 +73,44 @@ function addAdminUserItem(){
 	
 	$('#adminUser_password_input').val(defPwd);
  	$('#adminUser_password_input').attr('placeholder', defPwd);
-
- 	//$('#adminUser_password_input').attr('readonly', false);
- 	//$('#adminUser_password_block').hide();
+	$('#adminUser_loginName_input').attr('readonly', false);
+	
+ 	$('#adminUser_status_input').prop('checked', true);
  	
+ 	$('#adminUser_role_select').combotree({
+ 		url: 'role/list.json',
+ 		method: 'get',
+ 		loadFilter: function(data){
+			if(data.code == 0){
+				return data.menus;
+			}else{
+				handleError(data.code);
+				return "";
+			}
+ 		}
+ 	});
+
 	$('#adminUser_save').unbind('click');
 	$('#adminUser_save').click(function(){
 		if($('#adminUser_password_input').val() == ''){
 			$('#adminUser_password_input').val(defPwd);
 		}
 		
-		var actionContext;
+		var valid = checkExistence('ADMIN_USER', 'loginName', $('#adminUser_loginName_input').val(), '用户已存在');
 		
-		// 对于非自增主键，需要用户手工输入，解开以下注释来验证主键在数据库中是否已经存在
-	 	/*
-	 	actionContext = new Object();
-	 	actionContext.table = adminUserTable;
-	 	actionContext.action = 'add';
-	 	actionContext.idName = 'id';
-	 	actionContext.idValue = $('#adminUser_id_input').val();
-	 	*/
-	 	saveItem('#adminUser_grid', '#adminUser_form', '#adminUser_dlg', adminUserTable, actionContext);
+		if(valid){
+			var actionContext;
+			
+			// 对于非自增主键，需要用户手工输入，解开以下注释来验证主键在数据库中是否已经存在
+		 	/*
+		 	actionContext = new Object();
+		 	actionContext.table = adminUserTable;
+		 	actionContext.action = 'add';
+		 	actionContext.idName = 'id';
+		 	actionContext.idValue = $('#adminUser_id_input').val();
+		 	*/
+		 	saveItem('#adminUser_grid', '#adminUser_form', '#adminUser_dlg', adminUserTable, actionContext);
+	 	}
  	});
 }
 
@@ -103,9 +120,22 @@ function addAdminUserItem(){
 function editAdminUserItem(){
 	var flag = showEditDialog('#adminUser_grid', '#adminUser_form', '#adminUser_dlg');
 	$('#adminUser_password_input').val('');
- 	$('#adminUser_password_input').attr('placeholder', '输入新密码，留空表示保持现有密码不变');
- 	//$('#adminUser_password_block').show();
+ 	$('#adminUser_password_input').attr('placeholder', '留空保持现有密码不变');
+ 	$('#adminUser_loginName_input').attr('readonly', true);
  	
+ 	$('#adminUser_role_select').combotree({
+ 		url: 'role/list.json?userId=' + $('#adminUser_id_input').val(),
+ 		method: 'get',
+ 		loadFilter: function(data){
+			if(data.code == 0){
+				return data.menus;
+			}else{
+				handleError(data.code);
+				return "";
+			}
+ 		}
+ 	});
+
 	if(flag){
 		$('#adminUser_save').unbind('click');
 		$('#adminUser_save').click(function(){
@@ -150,7 +180,8 @@ function exportAdminUserQuery(){
 		<th data-options="field:'lastLoginTime'">上次登录时间</th>
 		<th data-options="field:'password',hidden:true">密码</th>
 		<th data-options="field:'createTime'">创建时间</th>
-    </thead>
+		<!-- <th data-options="field:'roleIds',hidden:true">权限ID</th> -->
+		<th data-options="field:'roleNames'">权限</th>
 </table>
 
 <div style="display:none">
@@ -177,10 +208,11 @@ function exportAdminUserQuery(){
 
 <div id="adminUser_dlg" class="easyui-dialog" style="width:500px;height:280px;padding:10px 20px" closed="true" buttons="#adminUser_dlg_buttons">
      <form id="adminUser_form" method="post" novalidate>
-		<input id="adminUser_id_input" name="id" type="hidden">		
+		<input id="adminUser_id_input" name="id" type="hidden">
+		<!-- <input id="adminUser_roleIds_input" name="roleIds" type="hidden"> -->
 		<div class="adminUser_item">
 			<label>用户名</label>
-			<input id="adminUser_loginName_input" name="loginName">
+			<input id="adminUser_loginName_input" name="loginName" class="easyui-validatebox" data-options="required:true">
 		</div>
 		<div class="adminUser_item">
 			<label>状态</label>
@@ -192,7 +224,11 @@ function exportAdminUserQuery(){
 				修改密码<input id="adminUser_password_update" type="checkbox" onclick="$('#adminUser_password_input').attr('readonly', !$('#adminUser_password_update').prop('checked'));">
 			</label> -->
 			<label>密码</label>
-			<input id="adminUser_password_input" name="password" size="30">
+			<input id="adminUser_password_input" name="password">
+		</div>
+		<div class="adminUser_item">
+			<label>权限分配</label>
+			<select id="adminUser_role_select" name="roleIds" multiple style="width:150px;"></select>
 		</div>
      </form>
  </div>

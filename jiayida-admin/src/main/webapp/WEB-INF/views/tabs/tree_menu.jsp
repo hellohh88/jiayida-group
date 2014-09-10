@@ -69,6 +69,8 @@ function refreshTreeMenu() {
 function addTreeMenuItem(){
 	showAddDialog('#treeMenu_form', '#treeMenu_dlg');
 	
+	$('#treeMenu_status_input').prop('checked', true);
+	
 	fillParentIdSelect('add');
 	
 	$('#treeMenu_save').unbind('click');
@@ -132,7 +134,7 @@ function editTreeMenuItem(){
 			saveItem('#treeMenu_grid', '#treeMenu_form', '#treeMenu_dlg', treeMenuTable);
 		});
 		
-		reloadTreeMenu();
+		//reloadTreeMenu();
 	}
 }
 
