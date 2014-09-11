@@ -30,7 +30,7 @@ function doBroadcast(jcntId){
 	var form = new Object();
 	form.title = $('#broadcast_title').val();
 	form.text = $('#broadcast_content').val();
-	form.userId = UC.userId;	
+	form.senderId = UC.userId;	
 	
 	checkAndPush(form, 'push/broadcast.json');
 }

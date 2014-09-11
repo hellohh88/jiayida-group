@@ -3,7 +3,7 @@
     <!-- 默认为本地环境 -->
     <context-param>
     	<param-name>spring.profiles.default</param-name>
-    	<param-value>local</param-value>
+    	<param-value>dev</param-value>
     </context-param>
     
     <!-- Processes application requests -->

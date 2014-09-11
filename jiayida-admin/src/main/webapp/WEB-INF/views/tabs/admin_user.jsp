@@ -175,6 +175,7 @@ function exportAdminUserQuery(){
         <th data-options="field:'ck'" checkbox="true"></th>
 		<th data-options="field:'id'">用户编号</th>
 		<th data-options="field:'loginName'">用户名</th>
+		<th data-options="field:'email'">电子邮箱</th>
 		<th data-options="field:'loginCount'">登录次数</th>
 		<th data-options="field:'status'">状态</th>
 		<th data-options="field:'lastLoginTime'">上次登录时间</th>
@@ -213,6 +214,10 @@ function exportAdminUserQuery(){
 		<div class="adminUser_item">
 			<label>用户名</label>
 			<input id="adminUser_loginName_input" name="loginName" class="easyui-validatebox" data-options="required:true">
+		</div>
+		<div class="adminUser_item">
+			<label>电子邮箱</label>
+            <input id="adminUser_email_input" name="email">
 		</div>
 		<div class="adminUser_item">
 			<label>状态</label>

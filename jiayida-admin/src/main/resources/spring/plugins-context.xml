@@ -5,7 +5,7 @@
 
 	<!-- <bean class="com.joinway.admin.plugin.AdminRoleTableService"/> -->
 	
-	<bean class="com.joinway.admin.bean.LoginUserConfig">
+	<bean class="com.joinway.admin.plugin.bean.LoginUserMap">
 		<property name="idColumn" value="USER_ID"/>
 	</bean>
 </beans>
