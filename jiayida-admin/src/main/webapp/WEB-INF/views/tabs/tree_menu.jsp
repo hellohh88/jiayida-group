@@ -159,7 +159,7 @@ function reloadTreeMenu(){
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-        <th data-options="field:'id'">菜单ID</th>
+        <th data-options="field:'id'">菜单编号</th>
         <th data-options="field:'text'">名称</th>
         <th data-options="field:'url'">链接</th>
         <th data-options="field:'parentId'">上级菜单ID</th>

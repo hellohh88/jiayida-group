@@ -173,7 +173,7 @@ function exportAdminUserQuery(){
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-		<th data-options="field:'id'">用户ID</th>
+		<th data-options="field:'id'">用户编号</th>
 		<th data-options="field:'loginName'">用户名</th>
 		<th data-options="field:'loginCount'">登录次数</th>
 		<th data-options="field:'status'">状态</th>

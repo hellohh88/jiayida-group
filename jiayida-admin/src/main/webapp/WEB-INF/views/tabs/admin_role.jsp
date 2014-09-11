@@ -197,7 +197,7 @@ function exportAdminRoleQuery(){
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-		<th data-options="field:'id'">权限ID</th>
+		<th data-options="field:'id'">权限编号</th>
 		<th data-options="field:'roleName'">权限名称</th>
 		<th data-options="field:'status'">状态</th>
 		<th data-options="field:'description'">描述</th>
