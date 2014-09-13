@@ -75,17 +75,7 @@ function addTreeMenuItem(){
 	
 	$('#treeMenu_save').unbind('click');
 	$('#treeMenu_save').click(function(){
-		var actionContext;
-		
-		// 对于非自增主键，需要用户手工输入，解开以下注释来验证主键在数据库中是否已经存在
-		/*
-		actionContext = new Object();
-		actionContext.table = treeMenuTable;
-		actionContext.action = 'add';
-		actionContext.idName = 'id';
-		actionContext.idValue = $('#treeMenu_id_input').val();
-		*/
-		saveItem('#treeMenu_grid', '#treeMenu_form', '#treeMenu_dlg', treeMenuTable, actionContext);
+		saveItem('#treeMenu_grid', '#treeMenu_form', '#treeMenu_dlg', treeMenuTable);
 		
 		//$('#nav_menu').tree('reload');
 	});

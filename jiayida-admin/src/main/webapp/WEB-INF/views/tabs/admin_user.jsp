@@ -99,17 +99,7 @@ function addAdminUserItem(){
 		var valid = checkExistence('ADMIN_USER', 'loginName', $('#adminUser_loginName_input').val(), '用户已存在');
 		
 		if(valid){
-			var actionContext;
-			
-			// 对于非自增主键，需要用户手工输入，解开以下注释来验证主键在数据库中是否已经存在
-		 	/*
-		 	actionContext = new Object();
-		 	actionContext.table = adminUserTable;
-		 	actionContext.action = 'add';
-		 	actionContext.idName = 'id';
-		 	actionContext.idValue = $('#adminUser_id_input').val();
-		 	*/
-		 	saveItem('#adminUser_grid', '#adminUser_form', '#adminUser_dlg', adminUserTable, actionContext);
+		 	saveItem('#adminUser_grid', '#adminUser_form', '#adminUser_dlg', adminUserTable);
 	 	}
  	});
 }

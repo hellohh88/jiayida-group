@@ -134,11 +134,12 @@ function closeDialog(jdlgId) {
  * idValue - the target id value
  * table - the target table name
  */
-function saveItem(jgridId, jformId, jdlgId, tableName, actionContext) {
+function saveItem(jgridId, jformId, jdlgId, tableName) {
 	$(jformId).form('submit', {
 		url : 'save/' + tableName + '.json',
 		onSubmit : function() {
 			var flag = $(this).form('validate');
+			/*
 			if(flag && actionContext){
 				var action = actionContext.action;
 				 
@@ -155,7 +156,7 @@ function saveItem(jgridId, jformId, jdlgId, tableName, actionContext) {
 					});
 				}
 			}
-				 
+			*/
 			return flag;
 		},
 		success : function(data) {

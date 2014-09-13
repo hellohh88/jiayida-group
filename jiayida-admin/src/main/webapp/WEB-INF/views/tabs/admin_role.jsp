@@ -91,17 +91,7 @@ function addAdminRoleItem(){
 		var valid = checkExistence(adminRoleTable, 'roleName', $('#adminRole_roleName_input').val(), '权限已存在');
 		
 		if(valid){
-			var actionContext;
-			
-			// 对于非自增主键，需要用户手工输入，解开以下注释来验证主键在数据库中是否已经存在
-		 	/*
-		 	actionContext = new Object();
-		 	actionContext.table = adminRoleTable;
-		 	actionContext.action = 'add';
-		 	actionContext.idName = 'id';
-		 	actionContext.idValue = $('#adminRole_id_input').val();
-		 	*/
-		 	saveItem('#adminRole_grid', '#adminRole_form', '#adminRole_dlg', adminRoleVtTable, actionContext);
+		 	saveItem('#adminRole_grid', '#adminRole_form', '#adminRole_dlg', adminRoleVtTable);
 	 	}
  	});
 }

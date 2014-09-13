@@ -1,5 +1,6 @@
 package com.joinway.common.bean.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.joinway.bean.domain.DomainEntity;
@@ -23,23 +24,23 @@ public class LoginUser extends DomainEntity {
 	
 	protected String answer;
 	
-	protected int sex;
+	protected boolean sex;
 	
 	protected Date birthday;
 	
-	protected double userMoney;
+	protected BigDecimal userMoney;
 	
-	protected double frozenMoney;
+	protected BigDecimal frozenMoney;
 	
-	protected int payPoints;
+	protected long payPoints;
 	
-	protected int rankPoints;
+	protected long rankPoints;
 	
 	protected int addressId;
 	
-	protected int regTime;
+	protected long regTime;
 	
-	protected int lastLogin;
+	protected long lastLogin;
 	
 	protected Date lastTime;
 	
@@ -73,7 +74,7 @@ public class LoginUser extends DomainEntity {
 	
 	protected int isValidated;
 	
-	protected double creditLine;
+	protected BigDecimal creditLine;
 	
 	protected String passwdQuestion;
 	
@@ -136,11 +137,11 @@ public class LoginUser extends DomainEntity {
 		this.answer = answer;
 	}
 	
-	public int getSex(){
+	public boolean getSex(){
 		return sex;
 	}
 	
-	public void setSex(int sex){
+	public void setSex(boolean sex){
 		this.sex = sex;
 	}
 	
@@ -152,35 +153,19 @@ public class LoginUser extends DomainEntity {
 		this.birthday = birthday;
 	}
 	
-	public double getUserMoney(){
-		return userMoney;
-	}
-	
-	public void setUserMoney(double userMoney){
-		this.userMoney = userMoney;
-	}
-	
-	public double getFrozenMoney(){
-		return frozenMoney;
-	}
-	
-	public void setFrozenMoney(double frozenMoney){
-		this.frozenMoney = frozenMoney;
-	}
-	
-	public int getPayPoints(){
+	public long getPayPoints(){
 		return payPoints;
 	}
 	
-	public void setPayPoints(int payPoints){
+	public void setPayPoints(long payPoints){
 		this.payPoints = payPoints;
 	}
 	
-	public int getRankPoints(){
+	public long getRankPoints(){
 		return rankPoints;
 	}
 	
-	public void setRankPoints(int rankPoints){
+	public void setRankPoints(long rankPoints){
 		this.rankPoints = rankPoints;
 	}
 	
@@ -192,7 +177,7 @@ public class LoginUser extends DomainEntity {
 		this.addressId = addressId;
 	}
 	
-	public int getRegTime(){
+	public long getRegTime(){
 		return regTime;
 	}
 	
@@ -200,11 +185,11 @@ public class LoginUser extends DomainEntity {
 		this.regTime = regTime;
 	}
 	
-	public int getLastLogin(){
+	public long getLastLogin(){
 		return lastLogin;
 	}
 	
-	public void setLastLogin(int lastLogin){
+	public void setLastLogin(long lastLogin){
 		this.lastLogin = lastLogin;
 	}
 	
@@ -336,14 +321,6 @@ public class LoginUser extends DomainEntity {
 		this.isValidated = isValidated;
 	}
 	
-	public double getCreditLine(){
-		return creditLine;
-	}
-	
-	public void setCreditLine(double creditLine){
-		this.creditLine = creditLine;
-	}
-	
 	public String getPasswdQuestion(){
 		return passwdQuestion;
 	}
@@ -374,6 +351,30 @@ public class LoginUser extends DomainEntity {
 	
 	public void setCellPhoneType(String cellPhoneType){
 		this.cellPhoneType = cellPhoneType;
+	}
+
+	public BigDecimal getUserMoney() {
+		return userMoney;
+	}
+
+	public void setUserMoney(BigDecimal userMoney) {
+		this.userMoney = userMoney;
+	}
+
+	public BigDecimal getFrozenMoney() {
+		return frozenMoney;
+	}
+
+	public void setFrozenMoney(BigDecimal frozenMoney) {
+		this.frozenMoney = frozenMoney;
+	}
+
+	public BigDecimal getCreditLine() {
+		return creditLine;
+	}
+
+	public void setCreditLine(BigDecimal creditLine) {
+		this.creditLine = creditLine;
 	}
 	
 }

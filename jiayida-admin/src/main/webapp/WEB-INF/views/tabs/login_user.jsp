@@ -50,7 +50,7 @@ function getQueryJson(){
 	registerDateQuery.to = $('#loginUser_fieldName_to').datebox("getValue");
 	*/
 	var json = {
-		userId : $('#loginUser_userId').val()
+		userName : $('#loginUser_userName').val()
 	};
 	
 	return json;
@@ -71,17 +71,7 @@ function addLoginUserItem(){
  
 	$('#loginUser_save').unbind('click');
 	$('#loginUser_save').click(function(){
-		var actionContext;
-		
-		// 对于非自增主键，需要用户手工输入，解开以下注释来验证主键在数据库中是否已经存在
-	 	/*
-	 	actionContext = new Object();
-	 	actionContext.table = loginUserTable;
-	 	actionContext.action = 'add';
-	 	actionContext.idName = 'userId';
-	 	actionContext.idValue = $('#loginUser_userId_input').val();
-	 	*/
-	 	saveItem('#loginUser_grid', '#loginUser_form', '#loginUser_dlg', loginUserTable, actionContext);
+	 	saveItem('#loginUser_grid', '#loginUser_form', '#loginUser_dlg', loginUserTable);
  	});
 }
 
@@ -128,7 +118,7 @@ function exportLoginUserQuery(){
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-		<th data-options="field:'userId'">用户序号</th>
+		<th data-options="field:'userId'">用户 编号</th>
 		<th data-options="field:'userName'">用户名</th>
 		<th data-options="field:'sex'">性别</th>
 		<th data-options="field:'birthday'">生日</th>
@@ -185,33 +175,38 @@ function exportLoginUserQuery(){
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#loginUser_grid', loginUserTable)">删除</a>
     </div> -->
   <!-- 添加查询条件  -->      
-        userId<input id="loginUser_userId" type="text"/>
+        用户名<input id="loginUser_userName" type="text"/>
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="searchLoginUser()">查询</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#loginUser_toolbar')">清除</a>
   		<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="addLoginUserItem()">添加</a> 
         <a href="#" class="easyui-linkbutton" iconCls="icon-edit "onclick="editLoginUserItem()">编辑</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="deleteItem('#loginUser_grid', loginUserTable, 'userId')">删除</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-excel" onclick="exportLoginUserQuery()">导出</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-excel" onclick="selectFile('#loginUser_file')">导入</a>
+<!--         <a href="#" class="easyui-linkbutton" iconCls="icon-excel" onclick="exportLoginUserQuery()">导出</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-excel" onclick="selectFile('#loginUser_file')">导入</a> -->
 </div>
 
 <div id="loginUser_dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px" closed="true" buttons="#loginUser_dlg_buttons">
      <form id="loginUser_form" method="post" novalidate>
+     	<input id="loginUser_userId_input" name="userId" type="hidden">
 		<div class="loginUser_item">
-			<label>question</label>
-			<input id="loginUser_question_input" name="question">
+			<label>userName</label>
+			<input id="loginUser_userName_input" name="userName">
 		</div>
+		<div class="loginUser_item">
+			<label>password</label>
+			<input id="loginUser_password_input" name="password">
+		</div>
+		<div class="loginUser_item">
+			<label>alias</label>
+			<input id="loginUser_alias_input" name="alias">
+		</div> 
 		<div class="loginUser_item">
 			<label>creditLine</label>
 			<input id="loginUser_creditLine_input" name="creditLine">
 		</div>
-		<div class="loginUser_item">
-			<label>visitCount</label>
-			<input id="loginUser_visitCount_input" name="visitCount">
-		</div>
-		<div class="loginUser_item">
-			<label>userName</label>
-			<input id="loginUser_userName_input" name="userName">
+<!--	<div class="loginUser_item">
+			<label>question</label>
+			<input id="loginUser_question_input" name="question">
 		</div>
 		<div class="loginUser_item">
 			<label>qq</label>
@@ -222,28 +217,12 @@ function exportLoginUserQuery(){
 			<input id="loginUser_userRank_input" name="userRank">
 		</div>
 		<div class="loginUser_item">
-			<label>cellPhoneType</label>
-			<input id="loginUser_cellPhoneType_input" name="cellPhoneType">
-		</div>
-		<div class="loginUser_item">
-			<label>imId</label>
-			<input id="loginUser_imId_input" name="imId">
-		</div>
-		<div class="loginUser_item">
 			<label>parentId</label>
 			<input id="loginUser_parentId_input" name="parentId">
 		</div>
 		<div class="loginUser_item">
-			<label>userId</label>
-			<input id="loginUser_userId_input" name="userId">
-		</div>
-		<div class="loginUser_item">
 			<label>addressId</label>
 			<input id="loginUser_addressId_input" name="addressId">
-		</div>
-		<div class="loginUser_item">
-			<label>password</label>
-			<input id="loginUser_password_input" name="password">
 		</div>
 		<div class="loginUser_item">
 			<label>homePhone</label>
@@ -262,20 +241,8 @@ function exportLoginUserQuery(){
 			<input id="loginUser_isValidated_input" name="isValidated">
 		</div>
 		<div class="loginUser_item">
-			<label>ecSalt</label>
-			<input id="loginUser_ecSalt_input" name="ecSalt">
-		</div>
-		<div class="loginUser_item">
-			<label>salt</label>
-			<input id="loginUser_salt_input" name="salt">
-		</div>
-		<div class="loginUser_item">
 			<label>frozenMoney</label>
 			<input id="loginUser_frozenMoney_input" name="frozenMoney">
-		</div>
-		<div class="loginUser_item">
-			<label>lastLogin</label>
-			<input id="loginUser_lastLogin_input" name="lastLogin">
 		</div>
 		<div class="loginUser_item">
 			<label>flag</label>
@@ -284,10 +251,6 @@ function exportLoginUserQuery(){
 		<div class="loginUser_item">
 			<label>rankPoints</label>
 			<input id="loginUser_rankPoints_input" name="rankPoints">
-		</div>
-		<div class="loginUser_item">
-			<label>lastIp</label>
-			<input id="loginUser_lastIp_input" name="lastIp">
 		</div>
 		<div class="loginUser_item">
 			<label>mobilePhone</label>
@@ -304,10 +267,6 @@ function exportLoginUserQuery(){
 		<div class="loginUser_item">
 			<label>answer</label>
 			<input id="loginUser_answer_input" name="answer">
-		</div>
-		<div class="loginUser_item">
-			<label>lastTime</label>
-			<input id="loginUser_lastTime_input" name="lastTime">
 		</div>
 		<div class="loginUser_item">
 			<label>passwdQuestion</label>
@@ -333,14 +292,7 @@ function exportLoginUserQuery(){
 			<label>msn</label>
 			<input id="loginUser_msn_input" name="msn">
 		</div>
-		<div class="loginUser_item">
-			<label>regTime</label>
-			<input id="loginUser_regTime_input" name="regTime">
-		</div>
-		<div class="loginUser_item">
-			<label>alias</label>
-			<input id="loginUser_alias_input" name="alias">
-		</div>
+		-->
      </form>
  </div>
  <div id="loginUser_dlg_buttons">
