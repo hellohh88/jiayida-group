@@ -50,7 +50,7 @@ function getQueryJson(){
 	registerDateQuery.to = $('#massPush_fieldName_to').datebox("getValue");
 	*/
 	var json = {
-		userId : $('#massPush_userId').val()
+		userName : $('#massPush_userName').val()
 	};
 	
 	return json;
@@ -140,15 +140,15 @@ function doPushUserMessage(jcntId){
 
 <div id="massPush_toolbar" style="padding:5px;height:auto">
   <!-- 添加查询条件  -->      
-        userId<input id="massPush_userId" type="text"/>
+        用户名<input id="massPush_userName" type="text"/>
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="searchMassPush()">查询</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#massPush_toolbar')">清除</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" onclick="showPushUserMessageDialog()">发送</a></td>
 </div>
 
-<div id="mass_push_dlg" class="easyui-dialog" style="width:700px;height:300px;padding:10px 20px" closed="true">
+<div id="mass_push_dlg" class="easyui-dialog" style="width:800px;height:300px;padding:10px 20px" closed="true">
 	<input id="mass_push_title" type="text" placeholder="标题" size="92"/><br/>
-	<textarea id="mass_push_content" rows=10 cols=71></textarea><br/>
+	<textarea id="mass_push_content" rows=10 cols=93></textarea><br/>
 	<input type="button" value="发送" onclick="doPushUserMessage()">
 	<input type="button" value="清空" onclick="clearInput('#mass_push_content')">
 </div>

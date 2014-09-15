@@ -75,8 +75,10 @@ function addTreeMenuItem(){
 	
 	$('#treeMenu_save').unbind('click');
 	$('#treeMenu_save').click(function(){
-		saveItem('#treeMenu_grid', '#treeMenu_form', '#treeMenu_dlg', treeMenuTable);
-		
+		var valid = checkExistence(treeMenuTable, 'text', $('#treeMenu_text_input').val(), '菜单项已存在');
+		if(valid){		
+			saveItem('#treeMenu_grid', '#treeMenu_form', '#treeMenu_dlg', treeMenuTable);
+		}
 		//$('#nav_menu').tree('reload');
 	});
 }
