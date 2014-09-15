@@ -157,7 +157,7 @@ function showPushDetail(){
 		}else{
 			tab.tabs('add', {
 				title: title,
-				href: 'tabs/notice/history/mass.do?noticeId=' + rows[0].id,
+				href: 'tabs/push_log/push_log_detail.jspx?noticeId=' + rows[0].id,
 				closable: true
 			});
 		}
