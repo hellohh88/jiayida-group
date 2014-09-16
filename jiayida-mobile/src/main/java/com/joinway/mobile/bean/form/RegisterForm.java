@@ -21,10 +21,10 @@ public class RegisterForm extends AuthForm {
 	@LogMask
 	String cellPhone;
 	
-	@ApiObjectField(description = "真实姓名")
-	@NotBlank
-	@LogMask
-	String userName;
+//	@ApiObjectField(description = "真实姓名")
+//	@NotBlank
+//	@LogMask
+//	String userName;
 	
 	public String getName() {
 		return name;
@@ -50,12 +50,12 @@ public class RegisterForm extends AuthForm {
 		this.cellPhone = cellPhone;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+//	public String getUserName() {
+//		return userName;
+//	}
+//
+//	public void setUserName(String userName) {
+//		this.userName = userName;
+//	}
 
 }

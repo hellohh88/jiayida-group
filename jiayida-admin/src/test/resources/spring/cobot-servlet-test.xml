@@ -19,7 +19,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
 	<!-- <mvc:annotation-driven /> -->
-	<bean class="com.joinway.cobot.ui.service.DataGridCobot"/>
+	<bean class="com.joinway.cobot.Cobot"/>
 	
 	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
 		<property name="velocityProperties">

@@ -85,7 +85,7 @@ public class LoginUser extends DomainEntity {
 	protected String cellPhoneType;
 	
 	@Override
-	public String getIdName() {
+	public String getIdColumnName() {
 		return "USER_ID";
 	}
 

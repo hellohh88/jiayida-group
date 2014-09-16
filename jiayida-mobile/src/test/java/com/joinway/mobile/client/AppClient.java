@@ -32,7 +32,7 @@ public class AppClient {
 		form.setName("lee1232");
 		form.setPassword("123456");
 //		form.setPassword("654321");
-		form.setUserName("lee1234");
+//		form.setUserName("lee1234");
 		
 		client.post(form, BASE_URL + "/register");
 //		client.post(BASE_URL + "/register", new PostParameterBuilder().add("name", "lee").add("password", "123").list());
