@@ -1,6 +1,5 @@
 package com.joinway.mobile.bean.form;
 
-import org.hibernate.validator.constraints.Length;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
@@ -22,7 +21,7 @@ public abstract class AuthForm extends Form {
 	@LogMask
 	String name;
 	
-	@ApiObjectField(description = "用户密码,6到20个字符")
+	@ApiObjectField(description = "用户密码,3到20个字符")
 	@Password
 	@LogIgnore
 	String password;

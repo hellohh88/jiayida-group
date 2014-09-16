@@ -47,12 +47,12 @@ public class MobileController extends ExceptionController {
 	
 	@Autowired MobileService service;
 	
-//	@ApiMethod(path="register", verb=ApiVerb.POST, description="用户注册", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-//	@ApiResponseObject
-//	@ApiErrors(apierrors={
-//			@ApiError(code=ErrorCodeConstants.DUPLICATE_DATA, description="用户已注册")
-//		}
-//	)
+	@ApiMethod(path="register", verb=ApiVerb.POST, description="用户注册", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiResponseObject
+	@ApiErrors(apierrors={
+			@ApiError(code=ErrorCodeConstants.DUPLICATE_DATA, description="用户已注册")
+		}
+	)
 	@RequestMapping(value="register", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Audit

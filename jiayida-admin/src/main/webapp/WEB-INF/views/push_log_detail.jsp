@@ -60,16 +60,17 @@ function doResend(){
 	}else{
         var userIds = '';
         for(var i = 0; i < rows.length; i++){
-        	userIds += rows[i].userId + ',';
+        	userIds += rows[i].id + ',';
         }
         
         userIds = userIds.substring(0, userIds.length - 1);
-        console.log(userIds);
-		
+        
         var form = new Object();
-        form.userId = UC.userId;
-        form.targetUserIds = userIds;
+        form.senderId = UC.userId;
+        form.toUserIds = userIds;
         form.pageName = UC.resendPage;
+        
+        console.log(form);
         
         push(form, appName + 'push/resend.json');
 	} 
@@ -79,10 +80,9 @@ function doResend(){
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-        	<th data-options="field:'id',hidden:'true'"></th>
+        	<th data-options="field:'id'">用户编号</th>
         	<th data-options="field:'noticeId'">通知编号</th>
-        	<th data-options="field:'userId'">用户编号</th>
-            <th data-options="field:'name'">姓名</th>
+            <th data-options="field:'userName'">姓名</th>
             <th data-options="field:'cellPhone'">手机号码</th>
             <th data-options="field:'status',formatter:formatReceiveType">接收状态</th>
             <th data-options="field:'acceptTime'">接收时间</th>

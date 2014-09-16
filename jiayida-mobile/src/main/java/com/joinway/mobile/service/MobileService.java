@@ -34,7 +34,6 @@ public class MobileService {
 	
 	@Autowired SystemRepository systemRepository;
 	
-	@Deprecated
 	@Transactional(rollbackFor=Throwable.class)
 	public LoginView register(RegisterForm form) throws Exception {
 		LoginUser loginUser = mobileRepository.findLoginUser(form.getName().toLowerCase());
