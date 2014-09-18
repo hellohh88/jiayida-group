@@ -7,10 +7,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.joinway.admin.bean.MassPush;
+import com.joinway.appx.bean.domain.AuditLog;
+import com.joinway.bean.domain.DomainEntity;
 import com.joinway.cobot.Cobot;
 import com.joinway.cobot.bean.CobotConfig;
 import com.joinway.cobot.bean.DataGridConfig;
+import com.joinway.cobot.bean.MyBatisConfig;
 import com.joinway.common.bean.domain.LoginUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,24 +22,32 @@ public class CobotClient extends AbstractJUnit4SpringContextTests {
 	@Autowired Cobot cobot;
 	
 	@Test public void test1() throws Exception {
-//		cobot.produceTableHtml(Weapon.class, "c:/weapon.html");
+		Class<? extends DomainEntity> type = AuditLog.class;
+		
 		CobotConfig config = new CobotConfig();
-		config.setOutputFile("c:/" + MassPush.class.newInstance().getTableName().toLowerCase());
+		
+		config.setOutputFile("c:/" + type.newInstance().getTableName().toLowerCase());
+		config.setOutputFileType("jsp");
 		
 		DataGridConfig dataGridConfig = new DataGridConfig();
 		dataGridConfig.setDataFileType("csv");
 		
-		cobot.produceTableHtml(MassPush.class, config, dataGridConfig);
+		cobot.produceTableHtml(type, config, dataGridConfig);
 		
 		System.out.println("produce table done!");
 	}
 	
 	@Test public void test2() throws Exception {
+		Class<? extends DomainEntity> type = LoginUser.class;
+		
 		CobotConfig config = new CobotConfig();
-		config.setOutputFile("c:/" + LoginUser.class.getSimpleName());
+		config.setOutputFile("c:/" + type.getSimpleName());
 		config.setOutputFileType("xml");
 		
-		cobot.produceMyBatisMapper(LoginUser.class, config);
+		MyBatisConfig myBatisConfig = new MyBatisConfig();
+		myBatisConfig.setMapperPackage("com.joinway.admin.mapper");
+		
+		cobot.produceMyBatisMapper(type, config, myBatisConfig);
 		
 		System.out.println("produce mapper done!");
 	}

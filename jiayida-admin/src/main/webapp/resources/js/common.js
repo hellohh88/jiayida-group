@@ -324,7 +324,7 @@ function uploadFile(fileId, table, callback){
             	if(fileName){
             		$.post('import/' + fileName + '/' + table + '.json', function(data){
             			if(data.code == 0){
-					(callback && typeof(callback) === "function") && callback(data);
+            				(callback && typeof(callback) === "function") && callback(data);
             				//showInformationMessage('导入成功');
             			}else{
             				showErrorMessage('导入失败');

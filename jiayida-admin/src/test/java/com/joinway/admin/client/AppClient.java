@@ -14,13 +14,13 @@ public class AppClient {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		login();
+//		login();
 //		register();
 //		menu();
 //		logout();
-//		Object o = null;
-//		Object oo = (Object)o;
-//		out.println(oo);
+		Object o = null;
+		Object oo = (Object)o;
+		System.out.println(oo);
 	}
 
 	static void register() throws Exception {

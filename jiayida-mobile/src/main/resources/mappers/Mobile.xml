@@ -13,8 +13,6 @@
 		<result column="CELL_PHONE_TYPE" property="cellPhoneType"/>
 		<result column="PARENT_ID" property="parentId"/>
 		<result column="IM_ID" property="imId"/>
-		<result column="USER_ID" property="userId"/>
-		<result column="ID" property="id"/>
 		<result column="ADDRESS_ID" property="addressId"/>
 		<result column="PASSWORD" property="password"/>
 		<result column="HOME_PHONE" property="homePhone"/>
