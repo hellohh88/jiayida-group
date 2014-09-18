@@ -7,7 +7,7 @@ set CLIENT_DIR=jiayida-admin
 echo Input maven settings.xml location[%SETTINGS%]
 set /p VARS=
 if "%VARS%" == "" goto patch
-SETTINGS=%VARS%
+set SETTINGS=%VARS%
 
 :patch
 cd %~dp0
@@ -17,6 +17,7 @@ del /Q *.patch
 del /Q *.patch.cp
 
 echo generate last commit patch ...
+echo "git format-patch -1"
 git format-patch -1
 echo generated patch file done
 
@@ -32,8 +33,6 @@ call mvn -s %SETTINGS% test -Dtest=PatchClient -Dpatch.type=encrypt -Dpatch.file
 echo encrypt done
 
 cd ..
-@rem for /f %%i in ('dir /b *.patch.cp') do set CP_FILE=%%i
-@rem echo generated cp file %CP_FILE%
 pause
 echo opening file %PATCH_FILE%.cp
 notepad %PATCH_FILE%.cp

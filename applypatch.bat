@@ -8,7 +8,7 @@ set CLIENT_DIR=jiayida-admin
 echo Input maven settings.xml location[%SETTINGS%]
 set /p VARS=
 if "%VARS%" == "" goto patch
-SETTINGS=%VARS%
+set SETTINGS=%VARS%
 
 :patch
 cd %~dp0
@@ -33,11 +33,12 @@ for /f %%i in ('dir /b *.patch') do set PATCH=%%i
 if "%PATCH%" == "" goto nopatch
 
 echo ****** check %PATCH% status ******
+echo "git apply --stat %PATCH%"
 git apply --stat %PATCH%
 pause
 
 echo test %PATCH% ...
-@rem for /f %%i in ('call git apply --check %PATCH%') do set RESULT=%%i
+echo "git apply --check %PATCH%"
 git apply --check %PATCH%
 if "%ERRORLEVEL%" == "1" goto fail
 
