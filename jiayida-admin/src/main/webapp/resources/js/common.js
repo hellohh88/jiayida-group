@@ -405,3 +405,29 @@ function checkExistence(table, column, value, msg){
 	
 	return valid;
 }
+
+function getMonthFirstDate(){
+	var today = new Date();
+	var year = today.getYear() + 1900;
+	var month = today.getMonth() + 1;
+
+	return year + '-' + (month < 10 ? '0' + month : month) + '-01';
+}
+
+function getDate(date){
+	var d = date;
+	//debugger;
+	if(!date){
+		var dd = new Date();
+		var year = dd.getYear() + 1900;
+		var month = dd.getMonth() + 1;
+		var date =  dd.getDate();
+		
+		month = month < 10 ? '0' + month : month;
+		date = date < 10 ? '0' + date : date;
+		
+		d = year + '-' + month + '-' + date;
+	}	
+	
+	return d;
+}

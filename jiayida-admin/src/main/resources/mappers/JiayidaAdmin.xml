@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joinway.admin.mapper.JiayidaAdminMapper">
+
+	<select id="selectRegisterCount" resultType="int">
+		SELECT COUNT(*) FROM LOGIN_USER
+			WHERE REG_TIME 
+				BETWEEN IFNULL(#{from}, DATE_FORMAT(CURRENT_TIMESTAMP, '%Y%m%d')) 
+				AND IFNULL(#{to}, DATE_FORMAT(CURRENT_TIMESTAMP, '%Y%m%d'))
+	</select>
+
+	<select id="selectLoginCount" resultType="int">
+		SELECT COUNT(*) FROM LOGIN_USER
+			WHERE LAST_LOGIN 
+				BETWEEN IFNULL(#{from}, DATE_FORMAT(CURRENT_TIMESTAMP, '%Y%m%d')) 
+				AND IFNULL(#{to}, DATE_FORMAT(CURRENT_TIMESTAMP, '%Y%m%d'))
+	</select>
+</mapper>
+
+
+

@@ -7,5 +7,5 @@
 		<property name="idColumn" value="USER_ID"/>
 	</bean>
 	
-	<bean class="com.joinway.admin.service.HighChartsService"/>
+	<!-- <bean class="com.joinway.admin.service.HighChartsService"/> -->
 </beans>
