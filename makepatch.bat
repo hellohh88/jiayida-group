@@ -10,6 +10,8 @@ if "%VARS%" == "" goto patch
 set SETTINGS=%VARS%
 
 :patch
+if exist %SETTINGS% (echo %SETTINGS% check passed) else (echo check %SETTINGS% failed && echo use default settings.xml ... && set SETTINGS=)
+
 cd %~dp0
 
 echo clean previous patch files...
@@ -29,7 +31,14 @@ set PATCH_FILE=%CD%\%PATCH%
 cd %CLIENT_DIR%
 
 echo encrypting %PATCH% ...
-call mvn -s %SETTINGS% test -Dtest=PatchClient -Dpatch.type=encrypt -Dpatch.file="%PATCH_FILE%"
+if "%SETTINGS%" == "" goto default
+call mvn -s %SETTINGS% test -Dtest=PatchClient -DargLine="patch.type=encrypt -Dpatch.file='%PATCH_FILE%'"
+goto done
+
+:default
+call mvn test -Dtest=PatchClient -DargLine="patch.type=encrypt -Dpatch.file='%PATCH_FILE%'"
+
+:done
 echo encrypt done
 
 cd ..
