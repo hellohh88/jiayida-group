@@ -11,6 +11,8 @@ if "%VARS%" == "" goto patch
 set SETTINGS=%VARS%
 
 :patch
+if exist %SETTINGS% (echo %SETTINGS% check passed) else (echo check %SETTINGS% failed && echo use default settings.xml ... && set SETTINGS=)
+
 cd %~dp0
 
 echo clean previous patch files...
@@ -24,7 +26,15 @@ set CP_FILE=%CD%/%CP_PATCH%
 
 cd %CLIENT_DIR%
 echo decrypt %CP_PATCH% ...
-call mvn -s %SETTINGS% exec:java -Dexec.mainClass="com.joinway.cobot.tools.CipherClient" -Dexec.args="decrypt '%CP_FILE%'"
+
+if "%SETTINGS%" == "" goto default
+call mvn -s %SETTINGS% test -Dtest=PatchClient -DargLine="-Dpatch.type=decrypt -Dpatch.file='%CP_FILE%'"
+goto done
+
+:default
+call mvn test -Dtest=PatchClient -DargLine="-Dpatch.type=decrypt -Dpatch.file='%CP_FILE%'"
+
+:done
 echo decrypt done
 
 cd ..
@@ -45,11 +55,14 @@ if "%ERRORLEVEL%" == "1" goto fail
 echo Continue to apply patch?[Y]
 set /p VARC=
 if "%VARC%" == "" goto apply
+if "%VARC%" == "y" goto apply
+if "%VARC%" == "Y" goto apply
 goto abort
 
 :apply
 echo applying patch ...
-git apply am %PATCH%
+echo git am %PATCH%
+git am %PATCH%
 
 echo apply patch done
 
