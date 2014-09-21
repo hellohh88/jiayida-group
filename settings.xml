@@ -33,7 +33,7 @@
       			<enabled>true</enabled>
       			<updatePolicy>always</updatePolicy>
       		</releases>
-      		<url>http://115.28.198.131:9000/repository/release</url>
+      		<url>http://115.28.198.131:9000/nexus/content/repositories/releases</url>
       	</repository>
       	<repository>
       		<id>joinway-thirdparty</id>
@@ -42,26 +42,17 @@
       			<enabled>true</enabled>
       			<updatePolicy>always</updatePolicy>
       		</releases>
-      		<url>http://115.28.198.131:9000/repository/ThirdParty</url>
+      		<url>http://115.28.198.131:9000/nexus/content/repositories/thirdparty</url>
       	</repository>
 		<repository>
-			<id>sonatype</id>
-			<name>Sonatype</name>
+			<id>central</id>
+			<name>central</name>
 			<releases>
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>
 			</releases>
-			<url>http://repository.sonatype.org/content/groups/public/</url>
+			<url>http://115.28.198.131:9000/nexus/content/repositories/central</url>
 		</repository>
-      	<repository>
-      		<id>joinway-repository</id>
-      		<name>joinway repository</name>
-      		<releases>
-      			<enabled>true</enabled>
-      			<updatePolicy>always</updatePolicy>
-      		</releases>
-      		<url>http://115.28.198.131:9000/repository/internal/</url>
-      	</repository>
       	<repository>
       		<id>joinway-framework-snapshots</id>
       		<name>joinway framework snapshots</name>
@@ -69,7 +60,7 @@
       			<enabled>true</enabled>
       			<updatePolicy>always</updatePolicy>
       		</snapshots>
-      		<url>http://115.28.198.131:9000/repository/snapshots</url>
+      		<url>http://115.28.198.131:9000/nexus/content/repositories/snapshots</url>
       	</repository>
       </repositories>
     </profile>

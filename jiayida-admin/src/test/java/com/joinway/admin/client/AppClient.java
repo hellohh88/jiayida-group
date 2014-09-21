@@ -1,5 +1,8 @@
 package com.joinway.admin.client;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.joinway.admin.bean.form.LoginForm;
 import com.joinway.admin.bean.form.RegisterForm;
 import com.joinway.net.http.HttpClientAdaptor;
@@ -8,7 +11,9 @@ public class AppClient {
 
 	static final HttpClientAdaptor client = new HttpClientAdaptor();
 	
-	static final String BASE_URL = "http://localhost:8080/spring-admin";
+//	static final String BASE_URL = "http://localhost:8080/jiayida-admin";
+//	static final String BASE_URL = "http://115.28.198.131:8000/qiyangs/servlet/PointServlet";
+	static final String BASE_URL = "http://localhost:9080/qiyangs/servlet/PointServlet";
 	
 	/**
 	 * @param args
@@ -16,11 +21,11 @@ public class AppClient {
 	public static void main(String[] args) throws Exception {
 //		login();
 //		register();
-//		menu();
+		test();
 //		logout();
-		Object o = null;
-		Object oo = (Object)o;
-		System.out.println(oo);
+//		Object o = null;
+//		Object oo = (Object)o;
+//		System.out.println(oo);
 	}
 
 	static void register() throws Exception {
@@ -49,8 +54,12 @@ public class AppClient {
 	}
 	
 	
-	static void logout() throws Exception {
-		client.get("app/logout.json");
+	static void test() throws Exception {
+//		client.get(BASE_URL + "actionType=schoolPointDetail&userId=3&schoolId=2");
+		Map<String, String> query = new HashMap<>();
+		query.put("actionType", "tearcherPointDetail");
+		query.put("teacherId", "8");
+		client.get(BASE_URL, query);
 	}
 	
 //	static String postRequest(String url, List<NameValuePair> nvps) throws Exception {
