@@ -23,11 +23,12 @@ public class LoginUserStatResolver implements ChartResolver {
 	public ChartView render(Map<String, String[]> params) {
 		String from = StringUtils.replace(RequestUtils.getParam(ChartConstants.Param.FROM, params), "-", "");
 		String to = StringUtils.replace(RequestUtils.getParam(ChartConstants.Param.TO, params), "-", "");
+		String contextRoot = RequestUtils.getParam(ChartConstants.Param.CONTEXT_ROOT, params);
 		
 		LoginUserCountView view = new LoginUserCountView();
 		
-		int loginCount = repository.findCount(CountType.Login, from, to);
-		int registerCount = repository.findCount(CountType.Regiser, from, to);
+		int loginCount = repository.findLoginCount(CountType.Login, from, to, contextRoot);
+		int registerCount = repository.findRegisterCount(CountType.Regiser, from, to);
 		
 		view.setLoginCount(loginCount);
 		view.setRegisterCount(registerCount);

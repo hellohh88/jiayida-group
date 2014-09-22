@@ -65,7 +65,8 @@ public class MobileService {
 	@Transactional(rollbackFor=Throwable.class)
 	public LoginView login(LoginForm form) throws Exception {
 		//TODO 修改密码加密方法，java里查询的sql不区分大小写，确认需要做修改
-		LoginUser loginUser = mobileRepository.findLoginUser(form.getName(), CipherUtils.encrypt(form.getPassword()));
+//		LoginUser loginUser = mobileRepository.findLoginUser(form.getName(), CipherUtils.encrypt(form.getPassword()));
+		LoginUser loginUser = mobileRepository.findLoginUser(form.getName(), form.getPassword());
 		if(loginUser == null){
 			throw new ValidationException("用户名或密码错误");
 		}
@@ -85,7 +86,7 @@ public class MobileService {
 		
 		LoginView view = new LoginView();
 		
-		view.setUserId(loginUser.getId());
+		view.setUserId(loginUser.getUserId());
 		
 		return view;
 	}

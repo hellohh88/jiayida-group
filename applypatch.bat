@@ -61,8 +61,8 @@ goto abort
 
 :apply
 echo applying patch ...
-echo git am %PATCH%
-git am %PATCH%
+echo git am < %PATCH%
+git am < %PATCH%
 
 echo apply patch done
 

@@ -15,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,7 +40,7 @@ public class UserController extends ExceptionController {
 			@ApiError(code=ErrorCodeConstants.INVALID, description="用户不存在")
 		}
 	)
-	@RequestMapping(value="", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Audit
 	@InputLog

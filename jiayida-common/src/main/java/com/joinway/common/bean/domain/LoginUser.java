@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import com.joinway.bean.domain.DomainEntity;
+import com.joinway.bean.domain.annotation.DomainField;
+import com.joinway.bean.domain.converter.TinyintConverter;
 
 public class LoginUser extends DomainEntity {
 
@@ -24,7 +26,8 @@ public class LoginUser extends DomainEntity {
 	
 	protected String answer;
 	
-	protected boolean sex;
+	@DomainField(converter=TinyintConverter.class)
+	protected boolean sex = true;
 	
 	protected Date birthday;
 	

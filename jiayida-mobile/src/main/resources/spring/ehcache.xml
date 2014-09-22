@@ -15,4 +15,11 @@
 		timeToLiveSeconds="600" 
 		overflowToDisk="true"/> 
 
+	<cache 
+		name="APP_TOKEN" 
+		maxElementsInMemory="50" 
+		eternal="false" 
+		timeToLiveSeconds="600" 
+		overflowToDisk="true"/> 
+
 </ehcache>

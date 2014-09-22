@@ -14,7 +14,9 @@ $(function() {
  * 查询
  */
 function renderAuditLog(flag) {
+	//debugger;
 	var form = getQueryJson(flag);
+	console.log(form);
 	
 	$.ajax({
 		type : "post",

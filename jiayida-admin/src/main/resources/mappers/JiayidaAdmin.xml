@@ -10,8 +10,10 @@
 	</select>
 
 	<select id="selectLoginCount" resultType="int">
-		SELECT COUNT(*) FROM LOGIN_USER
-			WHERE LAST_LOGIN 
+		SELECT COUNT(*) FROM AUDIT_LOG
+			WHERE ACTION = 'login' 
+				AND CONTEXT_ROOT = #{contextRoot}
+				AND DATE_FORMAT(START_TIME, '%Y%m%d')
 				BETWEEN IFNULL(#{from}, DATE_FORMAT(CURRENT_TIMESTAMP, '%Y%m%d')) 
 				AND IFNULL(#{to}, DATE_FORMAT(CURRENT_TIMESTAMP, '%Y%m%d'))
 	</select>

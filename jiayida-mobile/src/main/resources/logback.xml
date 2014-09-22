@@ -2,7 +2,7 @@
 <configuration>
 	<conversionRule conversionWord="logger" converterClass="com.joinway.web.logging.LoggingConverter" />
 	
-	<property scope="context" name="log.name" value="spring_mobile" />
+	<property scope="context" name="log.name" value="jiayida_mobile" />
 	
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
@@ -45,7 +45,7 @@
 	</appender>
 
 	<logger name="com.joinway" level="debug" />
-	<logger name="cn.jpush" level="debug" />
+	<!-- <logger name="cn.jpush" level="debug" /> -->
 
 	<if condition='isDefined("spring.profiles.active")'>
 		<then>

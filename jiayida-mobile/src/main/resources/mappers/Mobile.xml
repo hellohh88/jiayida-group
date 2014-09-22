@@ -43,11 +43,10 @@
 
 	<select id="selectLoginUser" resultMap="LoginUser">
 		SELECT * FROM LOGIN_USER 
-			WHERE LOGIN_NAME = #{name}
+			WHERE USER_NAME = #{name}
 		<if test="password != null">
 			AND PASSWORD = #{password}
 		</if>
-			AND ENABLE_STATUS = 'Y'
 	</select>
 	
 </mapper>

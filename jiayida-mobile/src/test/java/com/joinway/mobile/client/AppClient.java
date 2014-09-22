@@ -34,7 +34,7 @@ public class AppClient {
 //		form.setPassword("654321");
 //		form.setUserName("lee1234");
 		
-		client.post(form, BASE_URL + "/register");
+		client.post(BASE_URL + "/register", form);
 //		client.post(BASE_URL + "/register", new PostParameterBuilder().add("name", "lee").add("password", "123").list());
 	}
 
@@ -50,13 +50,13 @@ public class AppClient {
 		form.setMobileType("A");
 		form.setImId("123");
 
-		client.post(form, BASE_URL + "/login");
+		client.post(BASE_URL + "/login", form);
 	}
 
 	static void logout() throws Exception {
 		LogoutForm form = new LogoutForm();
 		form.setUserId(3);
-		client.post(form, BASE_URL + "/logout");
+		client.post(BASE_URL + "/logout", form);
 	}
 
 	static void changePassword() throws Exception {
@@ -64,7 +64,7 @@ public class AppClient {
 		form.setName("lee1232");
 		form.setOldPassword("654321");
 		form.setNewPassword("123456");
-		client.post(form, BASE_URL + "/password");
+		client.post(BASE_URL + "/password", form);
 	}
 
 }

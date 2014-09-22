@@ -8,6 +8,6 @@ public interface JiayidaAdminMapper {
 
 	int selectRegisterCount(@Param("from") String from, @Param("to") String to);
 	
-	int selectLoginCount(@Param("from") String from, @Param("to") String to);
+	int selectLoginCount(@Param("from") String from, @Param("to") String to, @Param("contextRoot") String contextRoot);
 	
 }

@@ -55,6 +55,7 @@ public class MobileController extends ExceptionController {
 	)
 	@RequestMapping(value="register", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
+	@Login
 	@Audit
 	@InputLog
 	@OutputLog

@@ -60,7 +60,7 @@ function renderLoginUser(flag) {
 			        },
 			        /*
 			        tooltip: {
-			            pointFormat: '<b>{point.y} æ¬?/b>'
+			            pointFormat: '<b>{point.y} ï¿?/b>'
 			        },
 			        */
 			        series: [{
@@ -88,15 +88,18 @@ function renderLoginUser(flag) {
  */
 function getQueryJson(flag){
 	var json;
+	var contextRoot = '/jiayida-admin';
 	
 	if(flag == 'init'){
 		json = {
 			from: getMonthFirstDate(),
+			contextRoot: contextRoot
 		};
 	}else{
 		json = {
 			from: $('#loginUserStat_from').datebox("getValue"),
 			to: $('#loginUserStat_to').datebox("getValue"),
+			contextRoot: contextRoot
 		};
 	}
 	

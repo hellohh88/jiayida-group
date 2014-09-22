@@ -44,8 +44,8 @@
 	 -->
 	<aop:config>
 		<aop:aspect ref="logAspect">
-			<aop:pointcut expression="execution(* com.joinway.admin.*..*(..))" id="adminLogger"/>
-			<aop:around pointcut-ref="adminLogger" method="doAround"/>
+<!-- 			<aop:pointcut expression="execution(* com.joinway.admin.*..*(..))" id="adminLogger"/>
+			<aop:around pointcut-ref="adminLogger" method="doAround"/> -->
 			
 			<aop:pointcut expression="execution(* com.joinway.mobile.*..*(..))" id="mobileLogger"/>
 			<aop:around pointcut-ref="mobileLogger" method="doAround"/>
@@ -76,6 +76,7 @@
 		<property name="validators">
 			<list>
 				<bean class="com.joinway.web.security.validator.SessionValidator"/>
+				<bean class="com.joinway.web.security.validator.SingleSignOnValidator"/>
 			</list>
 		</property>
 	</bean>

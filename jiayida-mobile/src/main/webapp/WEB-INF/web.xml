@@ -8,7 +8,7 @@
     
     <!-- Processes application requests -->
     <servlet>
-        <servlet-name>spring-mobile</servlet-name>
+        <servlet-name>jiayida-mobile</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -18,7 +18,7 @@
     </servlet>
  
     <servlet-mapping>
-        <servlet-name>spring-mobile</servlet-name>
+        <servlet-name>jiayida-mobile</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     

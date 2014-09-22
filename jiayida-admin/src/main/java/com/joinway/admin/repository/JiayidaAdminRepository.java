@@ -11,18 +11,17 @@ public class JiayidaAdminRepository {
 
 	@Autowired JiayidaAdminMapper mapper;
 	
-	public int findCount(CountType type, String from, String to){
-		int count = 0;
-		
+	public int findLoginCount(CountType type, String from, String to, String contextRoot){
 		String f = StringUtils.trimToNull(from);
 		String t = StringUtils.trimToNull(to);
 		
-		if(type == CountType.Login){
-			count = mapper.selectLoginCount(f, t);
-		}else{
-			count = mapper.selectRegisterCount(f, t);
-		}
+		return mapper.selectLoginCount(f, t, contextRoot);
+	}
+	
+	public int findRegisterCount(CountType type, String from, String to){
+		String f = StringUtils.trimToNull(from);
+		String t = StringUtils.trimToNull(to);
 		
-		return count;
+		return mapper.selectRegisterCount(f, t);
 	}
 }
