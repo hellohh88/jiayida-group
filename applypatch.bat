@@ -82,6 +82,7 @@ goto end
 
 :abort
 echo abort apply patch
+pause
 goto end
 
 :end

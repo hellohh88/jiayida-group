@@ -16,7 +16,7 @@ import com.joinway.common.bean.validator.PasswordValidator;
 @Documented
 @Constraint(validatedBy = PasswordValidator.class)
 public @interface Password {
-	String message() default "密码必须为3-20个字符";
+	String message() default "密码必须为6-20个字符";
 	
 	Class<?>[] groups() default { };
 
