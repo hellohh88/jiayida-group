@@ -146,11 +146,20 @@ function doPushUserMessage(jcntId){
         <a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" onclick="showPushUserMessageDialog()">发送</a></td>
 </div>
 
-<div id="mass_push_dlg" class="easyui-dialog" style="width:800px;height:300px;padding:10px 20px" closed="true">
+<div id="mass_push_dlg" class="easyui-dialog" style="width:900px;height:750px;padding:10px 20px" closed="true">
 	<input id="mass_push_title" type="text" placeholder="标题" size="92"/><br/>
-	<textarea id="mass_push_content" rows=10 cols=93></textarea><br/>
+	<!-- <textarea id="mass_push_content" rows=10 cols=93></textarea><br/> -->
+	<div id="mass_push_content"></div>
 	<input type="button" value="发送" onclick="doPushUserMessage()">
 	<input type="button" value="清空" onclick="clearInput('#mass_push_content')">
+	<input type="button" value="关闭" onclick="clearInput('#mass_push_content');$('#mass_push_dlg').dialog('close');">
 </div>
 
-
+<script type="text/javascript">
+	var massEditor = UE.getEditor('mass_push_content', {
+		UEDITOR_HOME_URL: 'resources/ueditor/', 		
+		serverUrl: 'ueditor.jspx',
+		initialFrameWidth: 800,
+		initialFrameHeight: 500
+	});
+</script>

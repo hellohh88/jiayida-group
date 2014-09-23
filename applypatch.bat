@@ -28,11 +28,11 @@ cd %CLIENT_DIR%
 echo decrypt %CP_PATCH% ...
 
 if "%SETTINGS%" == "" goto default
-call mvn -s %SETTINGS% test -Dtest=PatchClient -DargLine="-Dpatch.type=decrypt -Dpatch.file='%CP_FILE%'"
+call mvn -s %SETTINGS% -Dtest=PatchClient test -Dpatch.type="decrypt" -Dpatch.file="%CP_FILE%"
 goto done
 
 :default
-call mvn test -Dtest=PatchClient -DargLine="-Dpatch.type=decrypt -Dpatch.file='%CP_FILE%'"
+call mvn -Dtest=PatchClient test -Dpatch.type="decrypt" -Dpatch.file="%CP_FILE%"
 
 :done
 echo decrypt done
@@ -61,7 +61,7 @@ goto abort
 
 :apply
 echo applying patch ...
-echo git am < %PATCH%
+echo "git am < %PATCH%"
 git am < %PATCH%
 
 echo apply patch done

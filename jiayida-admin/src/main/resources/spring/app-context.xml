@@ -47,12 +47,12 @@
 	 -->
 	<aop:config>
 		<aop:aspect ref="logAspect">
-			<aop:pointcut expression="execution(* com.joinway.admin.*..*(..))" id="adminLogger"/>
+			<aop:pointcut expression="execution(* com.joinway.admin..*(..))" id="adminLogger"/>
 			<aop:around pointcut-ref="adminLogger" method="doAround"/>
 		</aop:aspect>
 
 		<aop:aspect ref="logAspect">
-			<aop:pointcut expression="execution(* com.joinway.appx.*..*(..))" id="appxLogger"/>
+			<aop:pointcut expression="execution(* com.joinway.appx..*(..))" id="appxLogger"/>
 			<aop:around pointcut-ref="appxLogger" method="doAround"/>
 		</aop:aspect>
 
@@ -94,6 +94,14 @@
 				</property>
 			</bean>
 			<bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+<!-- 			<bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean> -->
 		</mvc:message-converters>
 	</mvc:annotation-driven>
   
