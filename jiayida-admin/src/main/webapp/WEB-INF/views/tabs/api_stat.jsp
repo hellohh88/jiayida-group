@@ -16,7 +16,7 @@ $(function() {
 function renderAuditLog(flag) {
 	//debugger;
 	var form = getQueryJson(flag);
-	console.log(form);
+	//console.log(form);
 	
 	$.ajax({
 		type : "post",
@@ -37,7 +37,7 @@ function renderAuditLog(flag) {
 			            type: 'column'
 			        },
 			        title: {
-			            text: '手机接口性能�?��'
+			            text: $('#apiStatCat option:selected').text() + '性能�?��'
 			        },
 			        subtitle: {
 			            text: subtitle
@@ -95,18 +95,18 @@ function renderAuditLog(flag) {
  */
 function getQueryJson(flag){
 	var json;
-	var contextRoot = '/jiayida-admin';
+	//var contextRoot = '/jiayida-admin';
 	
 	if(flag == 'init'){
 		json = {
 			from: getMonthFirstDate(),
-			contextRoot: contextRoot,
+			contextRoot: $('#apiStatCat').val()
 		};
 	}else{
 		json = {
 			from: $('#audit_startTime_from').datebox("getValue"),
 			to: $('#audit_startTime_to').datebox("getValue"),
-			contextRoot: contextRoot,
+			contextRoot: $('#apiStatCat').val()
 		};
 	}
 	
@@ -117,6 +117,10 @@ function getQueryJson(flag){
 <div id="apiStat_toolbar" style="padding:5px;height:auto">
 	日期范围：从<input id="audit_startTime_from" class="easyui-datebox" style="width:100px">
 			<input id="audit_startTime_to" class="easyui-datebox" style="width:100px">
+	<select id="apiStatCat">
+		<option value="/jiayida-admin">管理后台</option>
+		<option value="/jiayida-mobile" selected="selected">手机后台</option>
+	</select>			
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="renderAuditLog()">查询</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#apiStat_toolbar')">清除</a>
 </div>

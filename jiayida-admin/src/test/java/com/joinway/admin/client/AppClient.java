@@ -33,7 +33,7 @@ public class AppClient {
 		form.setName("lee123");
 		form.setPassword("123456");
 		
-		client.post(form, BASE_URL + "/register.json");
+		client.post(BASE_URL + "/register.json", form);
 //		client.post(BASE_URL + "/register", new PostParameterBuilder().add("name", "lee").add("password", "123").list());
 	}
 
@@ -42,7 +42,7 @@ public class AppClient {
 		form.setName("lee123");
 		form.setPassword("123456");
 		
-		client.post(form, BASE_URL + "/login.json");
+		client.post(BASE_URL + "/login.json", form);
 	}
 
 	static void menu() throws Exception {

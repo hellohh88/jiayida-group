@@ -124,7 +124,7 @@ function showEditDialog(jgridId, jformId, jdlgId, title, callback){
 }
 
 function closeDialog(jdlgId) {
-	$(jdlgId).dialog('close')
+	$(jdlgId).dialog('close');
 }
 
 /**
@@ -207,7 +207,14 @@ function deleteItem(jgridId, tableName, idName){
 }
 
 function clearCriteria(jparentId){
-	var pattern = jparentId + ' :input';
+	clearSpecificCriteria(jparentId, 'text');
+	clearSpecificCriteria(jparentId, 'hidden');
+	clearSpecificCriteria(jparentId, 'password');
+	clearSpecificCriteria(jparentId, 'file');
+}
+
+function clearSpecificCriteria(jparentId, type){
+	var pattern = jparentId + ' :input[type=' + type + ']';
 	var inputs = $(pattern);
 
 	for(var i = 0; i < inputs.length; i++){
