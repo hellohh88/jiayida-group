@@ -32,11 +32,11 @@ cd %CLIENT_DIR%
 
 echo encrypting %PATCH% ...
 if "%SETTINGS%" == "" goto default
-call mvn -s %SETTINGS% test -Dtest=PatchClient -DargLine="patch.type=encrypt -Dpatch.file='%PATCH_FILE%'"
+call mvn -s %SETTINGS% -Dtest=PatchClient test -Dpatch.type="encrypt" -Dpatch.file="%PATCH_FILE%" 
 goto done
 
 :default
-call mvn test -Dtest=PatchClient -DargLine="patch.type=encrypt -Dpatch.file='%PATCH_FILE%'"
+call mvn -Dtest=PatchClient test -Dpatch.type="encrypt" -Dpatch.file="%PATCH_FILE%" 
 
 :done
 echo encrypt done
