@@ -6,7 +6,7 @@ extarea {
 }
 */
 </style>
-<script type="text/javascript" src="resources/js/common.js"></script>
+<script type="text/javascript" src="resources/js/admin.js"></script>
 <script>
 function doBroadcast(jcntId){
 	var form = new Object();
@@ -27,7 +27,7 @@ function doBroadcast(jcntId){
  -->
 <script id="broadcast2_content" name="content" type="text/plain">
 </script>
-<input type="button" value="发�?" onclick="doBroadcast('#broadcast2_content')">
+<input type="button" value="发�?" onclick="doBroadcast('#broadcast2_content')">
 <script type="text/javascript">
 	var bcEditor = UE.getEditor('broadcast2_content', {
 		UEDITOR_HOME_URL: 'resources/ueditor/', 

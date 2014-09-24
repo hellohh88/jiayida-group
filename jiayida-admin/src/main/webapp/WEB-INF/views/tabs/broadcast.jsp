@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script type="text/javascript" src="resources/js/common.js"></script>
+<script type="text/javascript" src="resources/js/admin.js"></script>
 <script>
 function doBroadcast(jcntId){
 	var form = new Object();

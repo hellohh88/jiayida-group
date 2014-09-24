@@ -1,8 +1,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script type="text/javascript" src="resources/js/common.js"></script>
+<script type="text/javascript" src="resources/js/admin.js"></script>
 <script type="text/javascript" src="resources/hightcharts/js/highcharts.js"></script>
 <!-- <script type="text/javascript" src="resources/hightcharts/js/modules/exporting.js"></script> -->
-<script type="text/javascript" src="resources/js/highcharts-zh.js"></script>
+<script type="text/javascript" src="resources/js/highcharts-options.js"></script>
 <script type="text/javascript">
 
 $(function() {
@@ -37,7 +37,7 @@ function renderAuditLog(flag) {
 			            type: 'column'
 			        },
 			        title: {
-			            text: $('#apiStatCat option:selected').text() + 'æ€§èƒ½ä¸?§ˆ'
+			            text: $('#apiStatCat option:selected').text() + 'æ€§èƒ½ï¿½?ï¿½ï¿½'
 			        },
 			        subtitle: {
 			            text: subtitle

@@ -15,7 +15,7 @@ width: 80px;
 }
 </style>
 
-<script type="text/javascript" src="resources/js/common.js"></script>
+<script type="text/javascript" src="resources/js/admin.js"></script>
 <script type="text/javascript">
 var usernoticeTable = 'push_log_detail_vt';
 
