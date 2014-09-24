@@ -65,7 +65,7 @@ echo "git am < %PATCH%"
 git am < %PATCH%
 
 echo apply patch done
-
+pause
 goto end
 
 :nocp
