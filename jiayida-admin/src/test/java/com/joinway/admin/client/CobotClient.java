@@ -12,6 +12,7 @@ import com.joinway.bean.domain.DomainEntity;
 import com.joinway.cobot.Cobot;
 import com.joinway.cobot.bean.CobotConfig;
 import com.joinway.cobot.bean.DataGridConfig;
+import com.joinway.cobot.bean.DomainConfig;
 import com.joinway.cobot.bean.MyBatisConfig;
 import com.joinway.common.bean.domain.LoginUser;
 
@@ -50,6 +51,21 @@ public class CobotClient extends AbstractJUnit4SpringContextTests {
 		cobot.produceMyBatisMapper(type, config, myBatisConfig);
 		
 		System.out.println("produce mapper done!");
+	}
+	
+	@Test public void test3() throws Exception {
+		CobotConfig config = new CobotConfig();
+		config.setOutputFile("c:");
+		config.setOutputFileType("java");
+		
+		DomainConfig dc = new DomainConfig();
+		String ddl = "LoginUser.ddl";
+		dc.setDdl("C:\\" + ddl);
+		dc.setAppName("app");
+		
+		cobot.productDomainBean(config, dc);
+		
+		System.out.println("produce domain done!");
 	}
 }
 
