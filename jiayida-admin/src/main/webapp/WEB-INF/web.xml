@@ -17,10 +17,20 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
  
+ 	<servlet>
+ 		<servlet-name>ueditor-servlet</servlet-name>
+ 		<servlet-class>com.joinway.admin.servlet.UEditorServlet</servlet-class>
+ 	</servlet>
+ 	
     <servlet-mapping>
         <servlet-name>jiayida-admin</servlet-name>
         <url-pattern>*.json</url-pattern>
         <url-pattern>*.jspx</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+    	<servlet-name>ueditor-servlet</servlet-name>
+    	<url-pattern>*.do</url-pattern>
     </servlet-mapping>
     
 	<filter>
