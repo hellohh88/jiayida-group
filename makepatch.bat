@@ -42,7 +42,8 @@ call mvn -Dtest=PatchClient test -Dpatch.type="encrypt" -Dpatch.file="%PATCH_FIL
 echo encrypt done
 
 cd ..
-pause
+
 echo opening file %PATCH_FILE%.cp
 notepad %PATCH_FILE%.cp
 
+pause
