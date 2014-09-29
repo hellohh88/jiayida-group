@@ -243,7 +243,7 @@ function checkAndPush(form, url){
 function push(form, url){
 	$.ajax({
 		type : "post",
-		url : appName + url,
+		url : url,
 		//async: false,
 		data : form,
 		success : function(data) {
