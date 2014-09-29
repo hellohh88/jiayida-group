@@ -72,7 +72,7 @@
 		<property name="processors">
 			<list>
 				<bean class="com.joinway.appx.service.AuditService">
-					<property name="loginNameColumn" value="USER_NAME"/>
+					<property name="userTable" value="ADMIN_USER"/>
 				</bean>
 			</list>
 		</property>

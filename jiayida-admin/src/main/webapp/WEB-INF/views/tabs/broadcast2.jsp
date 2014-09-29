@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
 </style>
-<script type="text/javascript" src="resources/js/admin.js"></script>
+<script type="text/javascript" src="/static/commons/admin.js"></script>
 <script>
 var bcEditor;
 $(function() {
@@ -21,7 +21,7 @@ $(function() {
 function doBroadcast(jcntId){
 	var form = new Object();
 	form.title = $('#broadcast2_title').val();
-	form.text = $('#broadcast2_content').val();
+	form.text = bcEditor.getContentTxt();
 	form.senderId = UC.userId;	
 	//form.senderId = ${userId};
 	checkAndPush(form, 'push/broadcast.json');

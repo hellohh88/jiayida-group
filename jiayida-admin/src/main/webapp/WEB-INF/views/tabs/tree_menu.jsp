@@ -15,7 +15,7 @@ width: 80px;
 }
 </style>
 
-<script type="text/javascript" src="resources/js/admin.js"></script>
+<script type="text/javascript" src="/static/commons/admin.js"></script>
 <script type="text/javascript">
 var treeMenuTable = 'TREE_MENU';
 var treeMenuQuery;

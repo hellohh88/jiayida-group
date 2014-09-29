@@ -1,8 +1,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script type="text/javascript" src="resources/js/admin.js"></script>
-<script type="text/javascript" src="resources/hightcharts/js/highcharts.js"></script>
-<!-- <script type="text/javascript" src="resources/hightcharts/js/modules/exporting.js"></script> -->
-<script type="text/javascript" src="resources/js/highcharts-options.js"></script>
+<script type="text/javascript" src="/static/commons/admin.js"></script>
+<script type="text/javascript" src="/static/hightcharts/js/highcharts.js"></script>
+<!-- <script type="text/javascript" src="/static/hightcharts/js/modules/exporting.js"></script> -->
+<script type="text/javascript" src="/static/commons/highcharts-options.js"></script>
 <script type="text/javascript">
 
 $(function() {

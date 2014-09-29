@@ -15,7 +15,7 @@ width: 80px;
 }
 </style>
 
-<script type="text/javascript" src="resources/js/admin.js"></script>
+<script type="text/javascript" src="/static/commons/admin.js"></script>
 <script type="text/javascript">
 var massPushTable = 'LOGIN_USER';
 var massPushQuery;
@@ -157,7 +157,6 @@ function doPushUserMessage(jcntId){
 
 <script type="text/javascript">
 	var massEditor = UE.getEditor('mass_push_content', {
-		UEDITOR_HOME_URL: 'resources/ueditor/', 		
 		serverUrl: 'ueditor.jspx',
 		initialFrameWidth: 800,
 		initialFrameHeight: 500
