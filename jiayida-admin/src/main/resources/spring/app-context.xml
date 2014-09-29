@@ -71,9 +71,9 @@
 	<bean id="auditAspect" class="com.joinway.web.audit.AuditInterceptor">
 		<property name="processors">
 			<list>
-				<!-- 在这里添加所有audit的处理 -->
-				<!-- <bean class="com.joinway.web.audit.processor.AuditFileLogProcessor"/> -->
-				<bean class="com.joinway.appx.service.AuditService"/>
+				<bean class="com.joinway.appx.service.AuditService">
+					<property name="loginNameColumn" value="USER_NAME"/>
+				</bean>
 			</list>
 		</property>
 	</bean>
@@ -94,14 +94,14 @@
 				</property>
 			</bean>
 			<bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
-			<bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+<!-- 			<bean class = "org.springframework.http.converter.StringHttpMessageConverter">
 				<property name="supportedMediaTypes">
 					<list>
 						<value>text/plain;charset=UTF-8</value>
 						<value>text/html;charset=UTF-8</value>
 					</list>
 				</property>
-			</bean>
+			</bean> -->
 		</mvc:message-converters>
 	</mvc:annotation-driven>
   

@@ -44,9 +44,6 @@
 	 -->
 	<aop:config>
 		<aop:aspect ref="logAspect">
-<!-- 			<aop:pointcut expression="execution(* com.joinway.admin.*..*(..))" id="adminLogger"/>
-			<aop:around pointcut-ref="adminLogger" method="doAround"/> -->
-			
 			<aop:pointcut expression="execution(* com.joinway.mobile.*..*(..))" id="mobileLogger"/>
 			<aop:around pointcut-ref="mobileLogger" method="doAround"/>
 		</aop:aspect>
@@ -66,9 +63,9 @@
 	<bean id="auditAspect" class="com.joinway.web.audit.AuditInterceptor">
 		<property name="processors">
 			<list>
-				<!-- 在这里添加所有audit的处理 -->
-				<!-- <bean class="com.joinway.web.audit.processor.AuditFileLogProcessor"/> -->
-				<bean class="com.joinway.appx.service.AuditService"/>
+				<bean class="com.joinway.appx.service.AuditService">
+					<property name="loginNameColumn" value="USER_NAME"/>
+				</bean>
 			</list>
 		</property>
 	</bean>
