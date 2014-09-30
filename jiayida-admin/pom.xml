@@ -35,12 +35,11 @@
 			<groupId>com.joinway</groupId>
 			<artifactId>net</artifactId>
 			<version>1.1.8-SNAPSHOT</version>
-			<exclusions>
-				<exclusion>
-					<groupId>cn.jpush.api</groupId>
-					<artifactId>jpush-client</artifactId>
-				</exclusion>
-			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.joinway</groupId>
+			<artifactId>appx</artifactId>
+			<version>1.1.8-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.joinway</groupId>
