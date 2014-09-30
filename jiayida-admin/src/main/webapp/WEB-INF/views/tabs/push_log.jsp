@@ -164,6 +164,10 @@ function showPushDetail(){
 	} 
 
 }
+
+function showPreviewNotice(){
+	
+}
 </script>
 <table id="pushlog_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#pushlog_toolbar'">
     <thead>
@@ -201,6 +205,7 @@ function showPushDetail(){
   		<td style="width: 230px;">
   			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchPushlog()">查询</a>
 	        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#pushlog_toolbar')">清除</a>
+	        <a href="#" class="easyui-linkbutton" iconCls="icon-large-picture" onclick="showPreviewNotice()">预览</a>
 	        <a href="#" class="easyui-linkbutton" iconCls="icon-redo" onclick="showPushDetail()">查看</a>
   		</td>
   	 </tr>
