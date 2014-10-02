@@ -33,7 +33,7 @@
       			<enabled>true</enabled>
       			<updatePolicy>always</updatePolicy>
       		</releases>
-      		<url>http://115.28.198.131:9000/nexus/content/repositories/releases</url>
+      		<url>http://115.28.198.131:8001/nexus/content/repositories/releases</url>
       	</repository>
       	<repository>
       		<id>joinway-thirdparty</id>
@@ -42,7 +42,7 @@
       			<enabled>true</enabled>
       			<updatePolicy>always</updatePolicy>
       		</releases>
-      		<url>http://115.28.198.131:9000/nexus/content/repositories/thirdparty</url>
+      		<url>http://115.28.198.131:8001/nexus/content/repositories/thirdparty</url>
       	</repository>
 		<repository>
 			<id>central</id>
@@ -51,7 +51,7 @@
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>
 			</releases>
-			<url>http://115.28.198.131:9000/nexus/content/repositories/central</url>
+			<url>http://115.28.198.131:8001/nexus/content/repositories/central</url>
 		</repository>
       	<repository>
       		<id>joinway-framework-snapshots</id>
@@ -60,7 +60,7 @@
       			<enabled>true</enabled>
       			<updatePolicy>always</updatePolicy>
       		</snapshots>
-      		<url>http://115.28.198.131:9000/nexus/content/repositories/snapshots</url>
+      		<url>http://115.28.198.131:8001/nexus/content/repositories/snapshots</url>
       	</repository>
       </repositories>
     </profile>

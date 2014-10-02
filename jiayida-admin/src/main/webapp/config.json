@@ -51,7 +51,7 @@
     "videoFieldName": "upfile", /* 提交的视频表单名�?*/
     "videoPathFormat": "/video/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格�?*/
     "videoUrlPrefix": "/upload/jiayida-admin", /* 视频访问路径前缀 */
-    "videoMaxSize": 102400000, /* 上传大小限制，单位B，默�?00MB */
+    "videoMaxSize": 102400000, /* 上传大小限制，单位B，默 认100MB */
     "videoAllowFiles": [
         ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
         ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid"], /* 上传视频格式显示 */
@@ -74,14 +74,14 @@
     "imageManagerActionName": "listimage", /* 执行图片管理的action名称 */
     "imageManagerListPath": "/image/", /* 指定要列出图片的目录 */
     "imageManagerListSize": 20, /* 每次列出文件数量 */
-    "imageManagerUrlPrefix": "", /* 图片访问路径前缀 */
+    "imageManagerUrlPrefix": "/upload/jiayida-admin", /* 图片访问路径前缀 */
     "imageManagerInsertAlign": "none", /* 插入的图片浮动方�?*/
     "imageManagerAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], /* 列出的文件类�?*/
 
     /* 列出指定目录下的文件 */
     "fileManagerActionName": "listfile", /* 执行文件管理的action名称 */
     "fileManagerListPath": "/file/", /* 指定要列出文件的目录 */
-    "fileManagerUrlPrefix": "", /* 文件访问路径前缀 */
+    "fileManagerUrlPrefix": "/upload/jiayida-admin", /* 文件访问路径前缀 */
     "fileManagerListSize": 20, /* 每次列出文件数量 */
     "fileManagerAllowFiles": [
         ".png", ".jpg", ".jpeg", ".gif", ".bmp",
