@@ -37,7 +37,7 @@ function renderAuditLog(flag) {
 			            type: 'column'
 			        },
 			        title: {
-			            text: $('#apiStatCat option:selected').text() + '性能�?��'
+			            text: $('#apiStatCat option:selected').text() + '性能查看'
 			        },
 			        subtitle: {
 			            text: subtitle
