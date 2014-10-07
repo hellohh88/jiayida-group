@@ -20,7 +20,7 @@ width: 80px;
 var usernoticeTable = 'push_log_detail_vt';
 
 $(function() {
-	initDataGrid('#${noticeId}_grid', appName + 'search/' + usernoticeTable + '.json?pageName=' + UC.resendPage);
+	initDataGrid('#${noticeId}_grid', appName + 'search/' + usernoticeTable + '.json?pageId=' + UC.resendPage);
 });
 
 /**
@@ -68,7 +68,7 @@ function doResend(){
         var form = new Object();
         form.senderId = UC.userId;
         form.toUserIds = userIds;
-        form.pageName = UC.resendPage;
+        form.pageId = UC.resendPage;
         
         console.log(form);
         
