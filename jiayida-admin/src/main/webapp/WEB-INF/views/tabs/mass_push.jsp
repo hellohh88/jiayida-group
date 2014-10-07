@@ -19,6 +19,7 @@ width: 80px;
 <script type="text/javascript">
 var massPushTable = 'LOGIN_USER';
 var massPushQuery;
+var massEditor;
 
 $(function() {
 	// need order, uncomment here
@@ -28,6 +29,17 @@ $(function() {
 	// no need order
 	initDataGrid('#massPush_grid', 'search/' + massPushTable + '.json');
 	massPushQuery = '';
+	
+	if(massEditor){
+		massEditor.destroy();
+	}
+	
+	massEditor = UE.getEditor('mass_push_content', {
+		serverUrl: 'ueditor.do',
+		initialFrameWidth: 800,
+		initialFrameHeight: 500,
+		enableAutoSave: false
+	});
 });
 
 /**
@@ -77,8 +89,9 @@ function showPushUserMessageDialog(){
 function doPushUserMessage(jcntId){
 	var form = new Object();
 	form.title = $('#mass_push_title').val();
-	form.text = $('#mass_push_content').val();
-	form.senderId = UC.userId;	
+	form.text = massEditor.getContentTxt();
+	form.senderId = UC.userId;
+	form.html = massEditor.getContent();
 	
 	var rows = $('#massPush_grid').datagrid('getSelections');
    	var ids = '';
@@ -91,8 +104,6 @@ function doPushUserMessage(jcntId){
    	console.log(form);
    	
    	checkAndPush(form, 'push/mass.json');
-   	
-   	//closeDialog('#mass_push_dlg');
 }
 </script>
 <table id="massPush_grid" style="width:700px;height:250px" data-options="toolbar:'#massPush_toolbar'">
@@ -148,17 +159,8 @@ function doPushUserMessage(jcntId){
 
 <div id="mass_push_dlg" class="easyui-dialog" style="width:900px;height:750px;padding:10px 20px" closed="true">
 	<input id="mass_push_title" type="text" placeholder="标题" size="92"/><br/>
-	<!-- <textarea id="mass_push_content" rows=10 cols=93></textarea><br/> -->
 	<div id="mass_push_content"></div>
 	<input type="button" value="发送" onclick="doPushUserMessage()">
-	<input type="button" value="清空" onclick="clearInput('#mass_push_content')">
-	<input type="button" value="关闭" onclick="clearInput('#mass_push_content');$('#mass_push_dlg').dialog('close');">
+	<input type="button" value="清空" onclick="massEditor.execCommand('cleardoc')">
+	<input type="button" value="关闭" onclick="massEditor.execCommand('cleardoc');$('#mass_push_dlg').dialog('close');">
 </div>
-
-<script type="text/javascript">
-	var massEditor = UE.getEditor('mass_push_content', {
-		serverUrl: 'ueditor.jspx',
-		initialFrameWidth: 800,
-		initialFrameHeight: 500
-	});
-</script>
