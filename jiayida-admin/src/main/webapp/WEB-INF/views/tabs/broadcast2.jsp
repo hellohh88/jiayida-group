@@ -10,11 +10,12 @@ $(function() {
 	}
 	
 	bcEditor = UE.getEditor('broadcast2_content', {
-		serverUrl: '/jiayida-admin/ueditor.do',
+		serverUrl: 'ueditor.do',
 		initialFrameWidth: 1000,
 		initialFrameHeight: 500,
 		autoHeightEnabled: false,
-		autoFloatEnabled: false
+		autoFloatEnabled: false,
+		enableAutoSave: false
 	});
 });
 
