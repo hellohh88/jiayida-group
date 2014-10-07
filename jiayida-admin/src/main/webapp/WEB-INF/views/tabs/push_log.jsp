@@ -144,10 +144,9 @@ function showPushDetail(){
 	}else if(rows[0].target == 'B'){
 		showInformationMessage('不能查看广播明细');
 	}else{
-		var pageName = rows[0].pageName;
-		console.log(pageName);
-		
-		UC.resendPage = pageName;
+		var pageId = rows[0].pageId;
+		//console.log(pageId);
+		UC.resendPage = pageId;
 		
 		var title = '通知' + rows[0].id + ' - ' + rows[0].title;
 		
@@ -166,7 +165,14 @@ function showPushDetail(){
 }
 
 function showPreviewNotice(){
-	
+	var rows = $('#pushlog_grid').datagrid('getSelections');
+	if(!rows || rows.length == 0){
+		showWarningMessage('请�?�择要预览的�?');
+	}else if(rows.length > 1){
+		showWarningMessage('只能选择�?行预�?');
+	}else{
+		window.open(rows[0].url);
+	}
 }
 </script>
 <table id="pushlog_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#pushlog_toolbar'">
@@ -175,7 +181,7 @@ function showPreviewNotice(){
         <th data-options="field:'ck'" checkbox="true"></th>
             <th data-options="field:'id'">编号</th>
             <th data-options="field:'title'">标题</th>
-            <th data-options="field:'text',width:800">内容</th>
+            <th data-options="field:'text',width:600">内容</th>
             <th data-options="field:'target',formatter:formatPushTarget">类型</th>
             <th data-options="field:'pushStatus',formatter:formatPushStatus">发送状态</th>
             <th data-options="field:'sendTime'">发送时间</th>
@@ -183,7 +189,8 @@ function showPreviewNotice(){
             <th data-options="field:'readCount',align:'center'">阅读次数</th>
             <!-- <th data-options="field:'unAcceptCount',formatter:formatUnAcceptCount,rowStyler:formatUnAcceptCountRowStyle,align:'center'">未查看人数</th> -->
             <th data-options="field:'unAcceptCount',formatter:formatUnAcceptCount,align:'center'">未查看人数</th>
-            <th data-options="field:'pageName',hidden:'true'"></th>
+            <th data-options="field:'pageId',hidden:'true'"></th>
+            <th data-options="field:'url',hidden:'true'"></th>
         </tr>
     </thead>
 </table>
