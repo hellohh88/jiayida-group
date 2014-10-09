@@ -69,7 +69,7 @@
 	</beans>
 
 	<beans profile="dev">
-		<bean id="dataSource" destroy-method="close" class="com.alibaba.druid.pool.DruidDataSource">
+		<bean id="dataSource" parent="druidDataSource">
 			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		    <property name="url" value="jdbc:mysql://115.28.198.131:3306/jiayida?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
 		    <property name="username" value="jiayida" />
@@ -78,7 +78,7 @@
 	</beans>
 	
 	<beans profile="prod">
-		<bean id="dataSource" destroy-method="close" class="com.alibaba.druid.pool.DruidDataSource">
+		<bean id="dataSource" parent="druidDataSource">
 			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		    <property name="url" value="jdbc:mysql://localhost:3306/jiayida?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
 		    <property name="username" value="jiayida" />
