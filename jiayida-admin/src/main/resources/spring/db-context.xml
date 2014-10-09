@@ -21,18 +21,55 @@
 		<property name="basePackage" value="com.joinway.admin.mapper,com.joinway.appx.mapper" />
 	</bean>
 
+	<bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close" abstract="true">
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="1" />
+		<property name="minIdle" value="1" />
+		<property name="maxActive" value="20" />
+	
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+	
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+	
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+	
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+	
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="false" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+	
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="config,	wall,stat" /> 
+		<property name="connectionProperties" value="config.decrypt=true" />
+		
+		<property name="proxyFilters">
+			<list>
+				<bean class="com.alibaba.druid.filter.stat.StatFilter">
+					<property name="mergeSql" value="true" />
+				</bean>
+			</list>
+		</property>
+   	</bean>
+	
 	<!-- app环境配置，通过JVM参数传入，默认为web.xml中spring.profiles.default参数值 -->
 	<beans profile="local">
-		<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+		<bean id="dataSource" parent="druidDataSource">
 			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		    <property name="url" value="jdbc:mysql://localhost:3306/jiayida?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
 		    <property name="username" value="jiayida" />
-		    <property name="password" value="group123" />
+		    <property name="password" value="K/8AyQhxn3SkFFLUYfkRrGmQlB1kv6JEPKMsJxJVCnZmTLYBN+pfj333FRqE5+W1u+2A1zCJwWA0Dd4Ci+tNCg==" />
 		</bean>
 	</beans>
 
 	<beans profile="dev">
-		<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+		<bean id="dataSource" destroy-method="close" class="com.alibaba.druid.pool.DruidDataSource">
 			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		    <property name="url" value="jdbc:mysql://115.28.198.131:3306/jiayida?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
 		    <property name="username" value="jiayida" />
@@ -41,7 +78,7 @@
 	</beans>
 	
 	<beans profile="prod">
-		<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+		<bean id="dataSource" destroy-method="close" class="com.alibaba.druid.pool.DruidDataSource">
 			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		    <property name="url" value="jdbc:mysql://localhost:3306/jiayida?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
 		    <property name="username" value="jiayida" />

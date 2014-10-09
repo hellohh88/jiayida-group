@@ -10,7 +10,7 @@ $(function() {
 	}
 	
 	bcEditor = UE.getEditor('broadcast2_content', {
-		serverUrl: 'ueditor.do',
+		serverUrl: '/jiayida-admin/ueditor.do',
 		initialFrameWidth: 1000,
 		initialFrameHeight: 500,
 		autoHeightEnabled: false,
@@ -33,4 +33,4 @@ function doBroadcast(jcntId){
 <div id="broadcast2_content"></div>
 
 <input type="button" value="发送" onclick="doBroadcast('#broadcast2_content')">
-<input type="button" value="清空" onclick="clearInput('#broadcast2_content')">
+<input type="button" value="清空" onclick="bcEditor.execCommand('cleardoc')">

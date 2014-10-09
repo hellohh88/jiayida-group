@@ -22,6 +22,11 @@
  		<servlet-class>com.joinway.admin.servlet.UEditorServlet</servlet-class>
  	</servlet>
  	
+ 	<servlet>
+ 		<servlet-name>DruidStatView</servlet-name>
+ 		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+ 	</servlet>
+ 	
     <servlet-mapping>
         <servlet-name>jiayida-admin</servlet-name>
         <url-pattern>*.json</url-pattern>
@@ -31,6 +36,11 @@
     <servlet-mapping>
     	<servlet-name>ueditor-servlet</servlet-name>
     	<url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+    	<servlet-name>DruidStatView</servlet-name>
+    	<url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
     
 	<filter>
