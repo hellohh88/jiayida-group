@@ -35,7 +35,7 @@ $(function() {
 	}
 	
 	massEditor = UE.getEditor('mass_push_content', {
-		serverUrl: 'ueditor.do',
+		serverUrl: '${contextRoot}' + 'ueditor.do',
 		initialFrameWidth: 800,
 		initialFrameHeight: 500,
 		enableAutoSave: false

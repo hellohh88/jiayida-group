@@ -10,7 +10,7 @@ $(function() {
 	}
 	
 	bcEditor = UE.getEditor('broadcast2_content', {
-		serverUrl: '/jiayida-admin/ueditor.do',
+		serverUrl: '${contextRoot}' + 'ueditor.do',
 		initialFrameWidth: 1000,
 		initialFrameHeight: 500,
 		autoHeightEnabled: false,

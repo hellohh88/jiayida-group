@@ -36,7 +36,7 @@ function renderLoginUser(flag) {
 			            type: 'column'
 			        },
 			        title: {
-			            text: '用户登录注册统计'
+			            text: $('#userStatCat option:selected').text() + '用户登录/注册统计'
 			        },
 			        subtitle: {
 			            text: subTitle
@@ -88,18 +88,17 @@ function renderLoginUser(flag) {
  */
 function getQueryJson(flag){
 	var json;
-	var contextRoot = '/jiayida-admin';
 	
 	if(flag == 'init'){
 		json = {
 			from: getMonthFirstDate(),
-			contextRoot: contextRoot
+			contextRoot: $('#userStatCat').val()
 		};
 	}else{
 		json = {
 			from: $('#loginUserStat_from').datebox("getValue"),
 			to: $('#loginUserStat_to').datebox("getValue"),
-			contextRoot: contextRoot
+			contextRoot: $('#userStatCat').val()
 		};
 	}
 	
@@ -110,6 +109,10 @@ function getQueryJson(flag){
 <div id="loginUserStat_toolbar" style="padding:5px;height:auto">
 	日期范围：从<input id="loginUserStat_from" class="easyui-datebox" style="width:100px">
 			<input id="loginUserStat_to" class="easyui-datebox" style="width:100px">
+	<select id="userStatCat">
+		<option value="/jiayida-admin">管理后台</option>
+		<option value="/jiayida-mobile" selected="selected">手机后台</option>
+	</select>			
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="renderLoginUser()">查询</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#loginUserStat_toolbar')">清除</a>
 </div>

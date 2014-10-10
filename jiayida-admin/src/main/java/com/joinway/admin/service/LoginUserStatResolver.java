@@ -2,6 +2,8 @@ package com.joinway.admin.service;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import com.joinway.admin.service.highcharts.ChartConstants;
 import com.joinway.appx.bean.view.ChartView;
 import com.joinway.appx.service.charts.ChartResolver;
 import com.joinway.appx.utils.RequestUtils;
+import com.joinway.web.utils.FrameworkHelper;
 
 @Service
 public class LoginUserStatResolver implements ChartResolver {
@@ -28,7 +31,13 @@ public class LoginUserStatResolver implements ChartResolver {
 		LoginUserCountView view = new LoginUserCountView();
 		
 		int loginCount = repository.findLoginCount(CountType.Login, from, to, contextRoot);
-		int registerCount = repository.findRegisterCount(CountType.Regiser, from, to);
+		
+		HttpServletRequest request = FrameworkHelper.getHttpServletRequest();
+		int registerCount = 0;
+		if(!contextRoot.equals(request.getContextPath())){
+			// there's no register in admin app
+			registerCount = repository.findRegisterCount(CountType.Regiser, from, to);
+		}
 		
 		view.setLoginCount(loginCount);
 		view.setRegisterCount(registerCount);
