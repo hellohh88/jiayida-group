@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.joinway.admin.bean.view.LoginUserCountView;
 import com.joinway.admin.repository.CountType;
-import com.joinway.admin.repository.JiayidaAdminRepository;
+import com.joinway.admin.repository.AppRepository;
 import com.joinway.admin.service.highcharts.ChartConstants;
 import com.joinway.appx.bean.view.ChartView;
 import com.joinway.appx.service.charts.ChartResolver;
@@ -20,7 +20,7 @@ import com.joinway.web.utils.FrameworkHelper;
 @Service
 public class LoginUserStatResolver implements ChartResolver {
 
-	@Autowired JiayidaAdminRepository repository;
+	@Autowired AppRepository repository;
 	
 	@Override
 	public ChartView render(Map<String, String[]> params) {

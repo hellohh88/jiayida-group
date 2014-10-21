@@ -4,12 +4,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.joinway.admin.mapper.JiayidaAdminMapper;
+import com.joinway.admin.mapper.AppMapper;
 
 @Repository
-public class JiayidaAdminRepository {
+public class AppRepository {
 
-	@Autowired JiayidaAdminMapper mapper;
+	@Autowired AppMapper mapper;
 	
 	public int findLoginCount(CountType type, String from, String to, String contextRoot){
 		String f = StringUtils.trimToNull(from);
