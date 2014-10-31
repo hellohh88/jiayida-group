@@ -58,7 +58,7 @@
 		</property>
    	</bean>
 	
-	<!-- app环境配置，通过JVM参数传入，默认为web.xml中spring.profiles.default参数值 -->
+	<!-- app环境配置，通过JVM参数传入spring.profiles.active会覆盖web.xml中默认spring.profiles.default参数值 -->
 	<beans profile="local">
 		<bean id="dataSource" parent="druidDataSource">
 			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
