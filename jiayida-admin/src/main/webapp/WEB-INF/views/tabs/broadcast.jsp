@@ -7,6 +7,7 @@ var bcEditor;
 $(function() {
 	if(bcEditor){
 		bcEditor.destroy();
+		console.log('destroyed');
 	}
 	
 	bcEditor = UE.getEditor('broadcast2_content', {
