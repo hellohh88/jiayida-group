@@ -6,7 +6,11 @@
 var bcEditor;
 $(function() {
 	if(bcEditor){
-		bcEditor.destroy();
+		//try{
+			bcEditor.destroy();
+		//}catch(e){
+		//	console.log(e.message);
+		//}
 		console.log('destroyed');
 	}
 	
