@@ -70,9 +70,9 @@ public class MobileController extends ExceptionController {
 	@InputLog
 	@OutputLog
 	public LoginView register(
-			@RequestParam("name") @LoginName @ApiParam(name="loginId", description="用户�?", paramType=ApiParamType.QUERY) @LogMask String name
+			@RequestParam("name") @LoginName @ApiParam(name="name", description="用户名", paramType=ApiParamType.QUERY) @LogMask String name
 			, @RequestParam("password") @Password @ApiParam(name="password", description="密码", paramType=ApiParamType.QUERY) @LogIgnore String password
-			, @RequestParam("cellPhone") @CellPhone @ApiParam(name="cellPhone", description="手机�?", paramType=ApiParamType.QUERY) @LogMask String cellPhone
+			, @RequestParam("cellPhone") @CellPhone @ApiParam(name="cellPhone", description="手机号", paramType=ApiParamType.QUERY) @LogMask String cellPhone
 	) throws Exception {
 		LoginView view = service.register(name, password, cellPhone);
 		
