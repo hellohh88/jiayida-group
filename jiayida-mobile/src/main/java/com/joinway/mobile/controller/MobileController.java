@@ -7,7 +7,9 @@ import org.jsondoc.core.annotation.ApiBodyObject;
 import org.jsondoc.core.annotation.ApiError;
 import org.jsondoc.core.annotation.ApiErrors;
 import org.jsondoc.core.annotation.ApiMethod;
+import org.jsondoc.core.annotation.ApiParam;
 import org.jsondoc.core.annotation.ApiResponseObject;
+import org.jsondoc.core.pojo.ApiParamType;
 import org.jsondoc.core.pojo.ApiVerb;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,19 +20,25 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.joinway.bean.constant.ErrorCodeConstants;
 import com.joinway.bean.logging.annotation.InputLog;
+import com.joinway.bean.logging.annotation.LogIgnore;
+import com.joinway.bean.logging.annotation.LogMask;
 import com.joinway.bean.logging.annotation.OutputLog;
+import com.joinway.bean.validation.constraints.CellPhone;
+import com.joinway.common.bean.annotation.LoginName;
+import com.joinway.common.bean.annotation.Password;
 import com.joinway.mobile.bean.form.LoginForm;
 import com.joinway.mobile.bean.form.LogoutForm;
 import com.joinway.mobile.bean.form.PasswordForm;
-import com.joinway.mobile.bean.form.RegisterForm;
 import com.joinway.mobile.bean.view.LoginView;
 import com.joinway.mobile.bean.view.LogoutView;
 import com.joinway.mobile.bean.view.PasswordView;
 import com.joinway.mobile.bean.view.VersionView;
+import com.joinway.mobile.exception.MobileErrorConstants;
 import com.joinway.mobile.service.MobileService;
 import com.joinway.web.audit.ExceptionController;
 import com.joinway.web.audit.annotation.Audit;
@@ -47,20 +55,26 @@ public class MobileController extends ExceptionController {
 	
 	@Autowired MobileService service;
 	
-	@ApiMethod(path="register", verb=ApiVerb.POST, description="用户注册", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiMethod(path="register", verb=ApiVerb.GET, description="用户注册", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
-			@ApiError(code=ErrorCodeConstants.DUPLICATE_DATA, description="用户已注册")
+			@ApiError(code=MobileErrorConstants.RepeatRegister.Code, description=MobileErrorConstants.RepeatRegister.Description)
+			, @ApiError(code=ErrorCodeConstants.INTERNAL_ERROR, description=ErrorCodeConstants.INTERNAL_ERROR_DESC)
+			, @ApiError(code=ErrorCodeConstants.INVALID_INPUT, description=ErrorCodeConstants.INVALID_INPUT_DESC)
 		}
 	)
-	@RequestMapping(value="register", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="register", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Login
 	@Audit
 	@InputLog
 	@OutputLog
-	public LoginView register(@ApiBodyObject @Valid @RequestBody RegisterForm form) throws Exception {
-		LoginView view = service.register(form);
+	public LoginView register(
+			@RequestParam("name") @LoginName @ApiParam(name="loginId", description="用户�?", paramType=ApiParamType.QUERY) @LogMask String name
+			, @RequestParam("password") @Password @ApiParam(name="password", description="密码", paramType=ApiParamType.QUERY) @LogIgnore String password
+			, @RequestParam("cellPhone") @CellPhone @ApiParam(name="cellPhone", description="手机�?", paramType=ApiParamType.QUERY) @LogMask String cellPhone
+	) throws Exception {
+		LoginView view = service.register(name, password, cellPhone);
 		
 		return view;
 	}

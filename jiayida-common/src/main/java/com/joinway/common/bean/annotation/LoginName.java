@@ -11,14 +11,14 @@ import javax.validation.Payload;
 
 import com.joinway.common.bean.validator.LoginNameValidator;
 
-@Target(ElementType.FIELD)
+@Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = LoginNameValidator.class)
 public @interface LoginName {
 
 //	String message() default "{com.joinway.bean.validation.constraints.CellPhone.message}";
-	String message() default "登录名必须为3-20个字符";
+	String message() default "用户名必须为6位字符";
 	
 	Class<?>[] groups() default { };
 

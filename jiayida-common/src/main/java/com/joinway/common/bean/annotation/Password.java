@@ -11,7 +11,7 @@ import javax.validation.Payload;
 
 import com.joinway.common.bean.validator.PasswordValidator;
 
-@Target(ElementType.FIELD)
+@Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = PasswordValidator.class)

@@ -9,17 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.joinway.appx.repository.SystemRepository;
 import com.joinway.appx.repository.TableRepository;
-import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.common.bean.domain.LoginUser;
 import com.joinway.mobile.bean.form.LoginForm;
 import com.joinway.mobile.bean.form.LogoutForm;
 import com.joinway.mobile.bean.form.PasswordForm;
-import com.joinway.mobile.bean.form.RegisterForm;
 import com.joinway.mobile.bean.view.LoginView;
 import com.joinway.mobile.bean.view.LogoutView;
 import com.joinway.mobile.bean.view.PasswordView;
 import com.joinway.mobile.bean.view.VersionView;
+import com.joinway.mobile.exception.MobileErrorConstants;
+import com.joinway.mobile.exception.MobileException;
 import com.joinway.mobile.repository.MobileRepository;
 import com.joinway.utils.CipherUtils;
 
@@ -33,11 +33,10 @@ public class MobileService {
 	@Autowired SystemRepository systemRepository;
 	
 	@Transactional(rollbackFor=Throwable.class)
-	public LoginView register(RegisterForm form) throws Exception {
-		// TODO 查看php端注册用户名数据库里是否区分大小写
-		LoginUser loginUser = mobileRepository.findLoginUser(form.getName().toLowerCase());
+	public LoginView register(String name, String password, String cellPhone) throws Exception {
+		LoginUser loginUser = mobileRepository.findLoginUser(name);
 		if(loginUser != null){
-			throw new DuplicateDataException("用户已注册");
+			throw new MobileException(MobileErrorConstants.RepeatRegister.Code, MobileErrorConstants.RepeatRegister.Description);
 		}
 		
 		Date today = Calendar.getInstance().getTime();
@@ -46,7 +45,7 @@ public class MobileService {
 		 * 保存用户注册信息
 		 */
 		loginUser = new LoginUser();
-		loginUser.setUserName(form.getName());
+		loginUser.setUserName(name.toLowerCase());
 		// TODO set encrypted password here
 //		loginUser.setPassword();
 		loginUser.setVisitCount(0);

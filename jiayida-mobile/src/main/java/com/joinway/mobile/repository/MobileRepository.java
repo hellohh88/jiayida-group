@@ -1,5 +1,6 @@
 package com.joinway.mobile.repository;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class MobileRepository {
 //	}
 	
 	public LoginUser findLoginUser(String name){
-		return mapper.selectLoginUser(name, null);
+		return mapper.selectLoginUser(name.toLowerCase(), null);
 	}
 
 }
