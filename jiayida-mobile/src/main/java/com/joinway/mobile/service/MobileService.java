@@ -45,13 +45,9 @@ public class MobileService {
 		 * 保存用户注册信息
 		 */
 		loginUser = new LoginUser();
-		loginUser.setUserName(name.toLowerCase());
-		// TODO set encrypted password here
-//		loginUser.setPassword();
-		loginUser.setVisitCount(0);
-		// TODO 设置注册时间
-//		loginUser.setRegTime();
-		
+		loginUser.setLoginName(name.toLowerCase());
+		loginUser.setPassword(CipherUtils.secureEncrypt(password, name)); 
+		loginUser.setLoginCount(1);
 		tableRepository.save(loginUser);
 		
 		LoginView view = new LoginView();
