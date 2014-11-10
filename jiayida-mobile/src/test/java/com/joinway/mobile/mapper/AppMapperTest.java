@@ -39,7 +39,7 @@ public class AppMapperTest extends BaseTest {
 	
 	LoginUser createLoginUser(){
 		LoginUser user = new LoginUser();
-		user.setUserName("a");
+//		user.setUserName("a");
 		user.setPassword("b");
 //		user.setLastLoginTime(new Date());
 		

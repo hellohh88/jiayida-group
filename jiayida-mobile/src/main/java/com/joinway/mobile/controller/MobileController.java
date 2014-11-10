@@ -31,7 +31,6 @@ import com.joinway.bean.logging.annotation.OutputLog;
 import com.joinway.bean.validation.constraints.CellPhone;
 import com.joinway.common.bean.annotation.LoginName;
 import com.joinway.common.bean.annotation.Password;
-import com.joinway.mobile.bean.form.LoginForm;
 import com.joinway.mobile.bean.form.LogoutForm;
 import com.joinway.mobile.bean.form.PasswordForm;
 import com.joinway.mobile.bean.view.LoginView;
@@ -55,7 +54,7 @@ public class MobileController extends ExceptionController {
 	
 	@Autowired MobileService service;
 	
-	@ApiMethod(path="register", verb=ApiVerb.GET, description="用户注册", produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiMethod(path="register", verb=ApiVerb.POST, description="用户注册", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
 			@ApiError(code=MobileErrorConstants.RepeatRegister.Code, description=MobileErrorConstants.RepeatRegister.Description)
@@ -63,18 +62,20 @@ public class MobileController extends ExceptionController {
 			, @ApiError(code=ErrorCodeConstants.INVALID_INPUT, description=ErrorCodeConstants.INVALID_INPUT_DESC)
 		}
 	)
-	@RequestMapping(value="register", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Login
 	@Audit
 	@InputLog
 	@OutputLog
 	public LoginView register(
-			@RequestParam("name") @LoginName @ApiParam(name="name", description="用户名", paramType=ApiParamType.QUERY) @LogMask String name
-			, @RequestParam("password") @Password @ApiParam(name="password", description="密码", paramType=ApiParamType.QUERY) @LogIgnore String password
-			, @RequestParam("cellPhone") @CellPhone @ApiParam(name="cellPhone", description="手机号", paramType=ApiParamType.QUERY) @LogMask String cellPhone
+			@LoginName @RequestParam("name") @ApiParam(name="name", description="用户名", paramType=ApiParamType.QUERY) @LogMask String name
+			, @Password @RequestParam("password") @ApiParam(name="password", description="密码", paramType=ApiParamType.QUERY) @LogIgnore String password
+			, @CellPhone @RequestParam("cellPhone") @ApiParam(name="cellPhone", description="手机号", paramType=ApiParamType.QUERY) @LogMask String cellPhone
+			, @RequestParam("cellPhoneType") @ApiParam(name="cellPhoneType", description="手机类型", paramType=ApiParamType.QUERY) String cellPhoneType
+			, @RequestParam("imId") @ApiParam(name="imId", description="推送用用手机唯一标识符", paramType=ApiParamType.QUERY) String imId
 	) throws Exception {
-		LoginView view = service.register(name, password, cellPhone);
+		LoginView view = service.register(name, password, cellPhone, cellPhoneType, imId);
 		
 		return view;
 	}
@@ -82,17 +83,24 @@ public class MobileController extends ExceptionController {
 	@ApiMethod(path="login", verb=ApiVerb.POST, description="用户登录", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
-			@ApiError(code=ErrorCodeConstants.INVALID, description="用户不存在")
+			@ApiError(code=MobileErrorConstants.UserNotExists.Code, description=MobileErrorConstants.UserNotExists.Description)
+			, @ApiError(code=ErrorCodeConstants.INTERNAL_ERROR, description=ErrorCodeConstants.INTERNAL_ERROR_DESC)
+			, @ApiError(code=ErrorCodeConstants.INVALID_INPUT, description=ErrorCodeConstants.INVALID_INPUT_DESC)
 		}
 	)
-	@RequestMapping(value="login", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="login", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Login
 	@Audit
 	@InputLog
 	@OutputLog
-	public LoginView login(@ApiBodyObject @Valid @RequestBody LoginForm form) throws Exception {
-		return service.login(form);
+	public LoginView login(
+			@LoginName @RequestParam("name") @ApiParam(name="name", description="用户名", paramType=ApiParamType.QUERY) @LogMask String name
+			, @Password @RequestParam("password") @ApiParam(name="password", description="密码", paramType=ApiParamType.QUERY) @LogIgnore String password
+			, @RequestParam("cellPhoneType") @ApiParam(name="cellPhoneType", description="手机类型", paramType=ApiParamType.QUERY) String cellPhoneType
+			, @RequestParam("imId") @ApiParam(name="imId", description="推送用用手机唯一标识符", paramType=ApiParamType.QUERY) String imId
+	) throws Exception {
+		return service.login(name, password, cellPhoneType, imId);
 	}
 
 	@ApiMethod(path="logout", verb=ApiVerb.POST, description="用户注销", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)

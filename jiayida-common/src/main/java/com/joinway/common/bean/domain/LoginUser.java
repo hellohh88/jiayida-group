@@ -22,6 +22,9 @@ public class LoginUser extends DomainEntity {
 	@LogIgnore
 	String password;
 	
+	@LogMask
+	int cellPhone;
+	
 	@DomainField(CaseFormat.Upper)
 	String cellPhoneType;
 	
@@ -29,9 +32,9 @@ public class LoginUser extends DomainEntity {
 	
 	int loginCount;
 	
-	String enableStatus = DBValueConstants.YES;
+	String status = DBValueConstants.YES;
 	
-	String loginStatus = DBValueConstants.NO;
+//	String loginStatus = DBValueConstants.NO;
 	
 	Date lastLoginTime;
 	
@@ -77,21 +80,13 @@ public class LoginUser extends DomainEntity {
 		this.loginCount = loginCount;
 	}
 
-	public String getEnableStatus() {
-		return enableStatus;
-	}
-
-	public void setEnableStatus(String enableStatus) {
-		this.enableStatus = enableStatus;
-	}
-
-	public String getLoginStatus() {
-		return loginStatus;
-	}
-
-	public void setLoginStatus(String loginStatus) {
-		this.loginStatus = loginStatus;
-	}
+//	public String getLoginStatus() {
+//		return loginStatus;
+//	}
+//
+//	public void setLoginStatus(String loginStatus) {
+//		this.loginStatus = loginStatus;
+//	}
 
 	public Date getLastLoginTime() {
 		return lastLoginTime;
@@ -107,5 +102,21 @@ public class LoginUser extends DomainEntity {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public int getCellPhone() {
+		return cellPhone;
+	}
+
+	public void setCellPhone(int cellPhone) {
+		this.cellPhone = cellPhone;
 	}
 }

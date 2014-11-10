@@ -21,7 +21,7 @@ public class UserService {
 		}
 		
 		UserView view = new UserView();
-		view.setCellPhone(user.getMobilePhone());
+		view.setCellPhone(user.getCellPhone());
 		
 		return view;
 	}

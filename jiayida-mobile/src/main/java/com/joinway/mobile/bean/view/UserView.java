@@ -14,13 +14,13 @@ public class UserView extends View {
 	private static final long serialVersionUID = -5697166039571340724L;
 
 	@ApiObjectField(description = "手机号码")
-	String cellPhone;
+	int cellPhone;
 
-	public String getCellPhone() {
+	public int getCellPhone() {
 		return cellPhone;
 	}
 
-	public void setCellPhone(String cellPhone) {
+	public void setCellPhone(int cellPhone) {
 		this.cellPhone = cellPhone;
 	}
 	

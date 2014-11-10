@@ -8,6 +8,7 @@ import org.jsondoc.core.annotation.ApiObjectField;
 
 import com.joinway.bean.logging.annotation.LogMask;
 
+@Deprecated
 @ApiObject(name = "LoginForm", description = "用户登录信息")
 public class LoginForm extends AuthForm {
 

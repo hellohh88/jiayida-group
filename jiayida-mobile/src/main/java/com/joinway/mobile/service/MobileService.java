@@ -3,6 +3,9 @@ package com.joinway.mobile.service;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +29,8 @@ import com.joinway.utils.CipherUtils;
 @Service
 public class MobileService {
 
+	private final static Logger log = LoggerFactory.getLogger(MobileService.class);
+	
 	@Autowired MobileRepository mobileRepository;
 	
 	@Autowired TableRepository tableRepository;
@@ -33,8 +38,8 @@ public class MobileService {
 	@Autowired SystemRepository systemRepository;
 	
 	@Transactional(rollbackFor=Throwable.class)
-	public LoginView register(String name, String password, String cellPhone) throws Exception {
-		LoginUser loginUser = mobileRepository.findLoginUser(name);
+	public LoginView register(String name, String password, String cellPhone, String cellPhoneType, String imId) throws Exception {
+		LoginUser loginUser = mobileRepository.findLoginUser(name.toLowerCase());
 		if(loginUser != null){
 			throw new MobileException(MobileErrorConstants.RepeatRegister.Code, MobileErrorConstants.RepeatRegister.Description);
 		}
@@ -46,10 +51,24 @@ public class MobileService {
 		 */
 		loginUser = new LoginUser();
 		loginUser.setLoginName(name.toLowerCase());
-		loginUser.setPassword(CipherUtils.secureEncrypt(password, name)); 
+		loginUser.setPassword(CipherUtils.secureEncrypt(password, name));
+		loginUser.setImId(imId);
+		loginUser.setCellPhone(Integer.valueOf(cellPhone));
+		loginUser.setCellPhoneType(cellPhoneType);
 		loginUser.setLoginCount(1);
+		loginUser.setLastLoginTime(today);
+		loginUser.setCreateTime(today);
+		
 		tableRepository.save(loginUser);
 		
+		if(StringUtils.isBlank(cellPhoneType)){
+			log.warn("got empty cellPhoneType for user id {}", loginUser.getId());
+		}
+
+		if(StringUtils.isBlank(imId)){
+			log.warn("got empty imid for user id {}", loginUser.getId());
+		}
+
 		LoginView view = new LoginView();
 		
 		view.setUserId(loginUser.getId());
@@ -58,30 +77,31 @@ public class MobileService {
 	}
 	
 	@Transactional(rollbackFor=Throwable.class)
-	public LoginView login(LoginForm form) throws Exception {
-		//TODO 修改密码加密方法，java里查询的sql不区分大小写，确认需要做修改
-//		LoginUser loginUser = mobileRepository.findLoginUser(form.getName(), CipherUtils.encrypt(form.getPassword()));
-		LoginUser loginUser = mobileRepository.findLoginUser(form.getName(), form.getPassword());
+	public LoginView login(String name, String password, String cellPhoneType, String imId) throws Exception {
+		LoginUser loginUser = mobileRepository.findLoginUser(name.toLowerCase(), CipherUtils.secureEncrypt(password, name));
 		if(loginUser == null){
-			throw new ValidationException("用户名或密码错误");
+			throw new MobileException(MobileErrorConstants.UserNotExists.Code, MobileErrorConstants.UserNotExists.Description);
 		}
 		
 		/*
 		 * 更新用户登录信息
 		 */
-		int count = loginUser.getVisitCount();
 		Date today = Calendar.getInstance().getTime();
+		if(StringUtils.isNotBlank(imId)){
+			loginUser.setImId(imId);
+		}
+		loginUser.setCellPhoneType(cellPhoneType);
 		
-		loginUser.setVisitCount(count + 1);
-		// TODO 设置最后登录时间
-//		loginUser.setLastLogin();
-		loginUser.setImId(form.getImId());
-		loginUser.setCellPhoneType(form.getMobileType());
+		int count = loginUser.getLoginCount();
+		loginUser.setLoginCount(count + 1);
+		
+		loginUser.setLastLoginTime(today);
+		
 		tableRepository.save(loginUser);
 		
 		LoginView view = new LoginView();
 		
-		view.setUserId(loginUser.getUserId());
+		view.setUserId(loginUser.getId());
 		
 		return view;
 	}
@@ -112,5 +132,6 @@ public class MobileService {
 		
 		return new PasswordView();
 	}
+	
 }
 
