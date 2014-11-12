@@ -48,5 +48,5 @@
 		<session-timeout>1440</session-timeout>
 	</session-config>
   
- 	<display-name>Spring Driving Mobile Service</display-name>
+ 	<display-name>Jiayida Mobile Service</display-name>
 </web-app>

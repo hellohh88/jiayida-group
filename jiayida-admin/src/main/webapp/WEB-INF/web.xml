@@ -71,5 +71,5 @@
   	<welcome-file-list>
   		<welcome-file>login.html</welcome-file>
   	</welcome-file-list>
- 	<display-name>Spring Driving Admin</display-name>
+ 	<display-name>Jiayida Admin</display-name>
 </web-app>

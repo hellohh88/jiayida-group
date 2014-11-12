@@ -57,6 +57,11 @@
 			<aop:pointcut expression="execution(* com.joinway.*.controller.*.*(..))" id="audit"/>
 			<aop:around pointcut-ref="audit" method="doAround"/>
 		</aop:aspect>
+		
+		<aop:aspect ref="inputAspect">
+			<aop:pointcut expression="execution(* com.joinway.mobile..*(..))" id="input"/>
+			<aop:around pointcut-ref="input" method="doAround"/>
+		</aop:aspect>
 	</aop:config>
 	
 	<bean id="logAspect" class="com.joinway.web.logging.LoggingInterceptor"/>
@@ -77,6 +82,7 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="inputAspect" class="com.joinway.web.input.InputInterceptor"/>
 	<!--  -->
 	
 	<mvc:annotation-driven>

@@ -20,9 +20,9 @@ public class AdminServiceTest extends BaseTest {
 	
 	@Test public void testLogin() throws Exception {
 		LoginForm form = new LoginForm();
-		form.setName("lee");
-		form.setPassword("123");
-		service.login(form);
+//		form.setName("lee");
+//		form.setPassword("123");
+		service.login("lee", "123");
 	}
 	
 	@Test public void test(){
