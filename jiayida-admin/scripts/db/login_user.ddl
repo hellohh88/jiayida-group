@@ -1,4 +1,4 @@
-CREATE TABLE `login_user` ( 
+CREATE TABLE `LOGIN_USER` ( 
   `ID` int(11) NOT NULL AUTO_INCREMENT, 
   `LOGIN_NAME` varchar(40) COLLATE utf8_bin NOT NULL, 
   `PASSWORD` varchar(40) COLLATE utf8_bin NOT NULL, 
