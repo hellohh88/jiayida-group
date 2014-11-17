@@ -2,7 +2,6 @@ package com.joinway.admin.client;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,7 +19,7 @@ import com.joinway.common.bean.domain.LoginUser;
 @ContextConfiguration(locations = { "classpath:spring/cobot-servlet-test.xml" })
 public class CobotClient extends AbstractJUnit4SpringContextTests {
 	
-	@Autowired Cobot cobot;
+	Cobot cobot = new Cobot();
 	
 	@Test public void test1() throws Exception {
 		Class<? extends DomainEntity> type = AuditLog.class;
@@ -46,7 +45,7 @@ public class CobotClient extends AbstractJUnit4SpringContextTests {
 		config.setOutputFileType("xml");
 		
 		MyBatisConfig myBatisConfig = new MyBatisConfig();
-		myBatisConfig.setMapperPackage("com.joinway.admin.mapper");
+		myBatisConfig.setMapperPackage("com.joinway.mobile.mapper");
 		
 		cobot.produceMyBatisMapper(type, config, myBatisConfig);
 		
@@ -63,7 +62,7 @@ public class CobotClient extends AbstractJUnit4SpringContextTests {
 		dc.setDdl("C:\\" + ddl);
 		dc.setAppName("app");
 		
-		cobot.productDomainBean(config, dc);
+		cobot.produceDomainBean(config, dc);
 		
 		System.out.println("produce domain done!");
 	}

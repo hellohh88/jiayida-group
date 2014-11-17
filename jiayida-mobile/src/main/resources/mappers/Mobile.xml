@@ -3,43 +3,18 @@
 <mapper namespace="com.joinway.mobile.mapper.MobileMapper">
 
 	<resultMap id="LoginUser" type="com.joinway.common.bean.domain.LoginUser">
-		<id column="USER_ID" property="userId"/>
-		<result column="QUESTION" property="question"/>
-		<result column="CREDIT_LINE" property="creditLine"/>
-		<result column="VISIT_COUNT" property="visitCount"/>
-		<result column="USER_NAME" property="userName"/>
-		<result column="QQ" property="qq"/>
-		<result column="USER_RANK" property="userRank"/>
-		<result column="CELL_PHONE_TYPE" property="cellPhoneType"/>
-		<result column="PARENT_ID" property="parentId"/>
+		<id column="ID" property="id"/>
 		<result column="IM_ID" property="imId"/>
-		<result column="ADDRESS_ID" property="addressId"/>
+		<result column="LOGIN_COUNT" property="loginCount"/>
+		<result column="STATUS" property="status"/>
+		<result column="CELL_PHONE" property="cellPhone"/>
+		<result column="LOGIN_NAME" property="loginName"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="CELL_PHONE_TYPE" property="cellPhoneType"/>
 		<result column="PASSWORD" property="password"/>
-		<result column="HOME_PHONE" property="homePhone"/>
-		<result column="SEX" property="sex"/>
-		<result column="BIRTHDAY" property="birthday"/>
-		<result column="EC_SALT" property="ecSalt"/>
-		<result column="IS_VALIDATED" property="isValidated"/>
-		<result column="SALT" property="salt"/>
-		<result column="FROZEN_MONEY" property="frozenMoney"/>
-		<result column="LAST_LOGIN" property="lastLogin"/>
-		<result column="FLAG" property="flag"/>
-		<result column="RANK_POINTS" property="rankPoints"/>
-		<result column="LAST_IP" property="lastIp"/>
-		<result column="MOBILE_PHONE" property="mobilePhone"/>
-		<result column="EMAIL" property="email"/>
-		<result column="IS_SPECIAL" property="isSpecial"/>
-		<result column="ANSWER" property="answer"/>
-		<result column="LAST_TIME" property="lastTime"/>
-		<result column="PASSWD_QUESTION" property="passwdQuestion"/>
-		<result column="USER_MONEY" property="userMoney"/>
-		<result column="PASSWD_ANSWER" property="passwdAnswer"/>
-		<result column="PAY_POINTS" property="payPoints"/>
-		<result column="OFFICE_PHONE" property="officePhone"/>
-		<result column="MSN" property="msn"/>
-		<result column="REG_TIME" property="regTime"/>
-		<result column="ALIAS" property="alias"/>
+		<result column="LAST_LOGIN_TIME" property="lastLoginTime"/>
 	</resultMap>
+
 
 	<select id="selectLoginUser" resultMap="LoginUser">
 		SELECT * FROM LOGIN_USER 
