@@ -71,7 +71,7 @@
 	<beans profile="dev">
 		<bean id="dataSource" parent="druidDataSource">
 			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		    <property name="url" value="jdbc:mysql://106.186.31.59:3306/jiayidaadmin?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
+		    <property name="url" value="jdbc:mysql://106.186.31.59:3306/jiayidaapp?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
 		    <property name="username" value="jiayida" />
 		    <property name="password" value="K/8AyQhxn3SkFFLUYfkRrGmQlB1kv6JEPKMsJxJVCnZmTLYBN+pfj333FRqE5+W1u+2A1zCJwWA0Dd4Ci+tNCg==" />
 		</bean>
@@ -80,9 +80,9 @@
 	<beans profile="prod">
 		<bean id="dataSource" parent="druidDataSource">
 			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		    <property name="url" value="jdbc:mysql://localhost:3306/jiayida?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
+		    <property name="url" value="jdbc:mysql://localhost:3306/jiayidaapp?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
 		    <property name="username" value="jiayida" />
-		    <property name="password" value="group123" />
+		    <property name="password" value="K/8AyQhxn3SkFFLUYfkRrGmQlB1kv6JEPKMsJxJVCnZmTLYBN+pfj333FRqE5+W1u+2A1zCJwWA0Dd4Ci+tNCg==" />
 		</bean>
 	</beans>
 	<!--  -->

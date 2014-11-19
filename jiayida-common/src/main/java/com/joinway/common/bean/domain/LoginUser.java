@@ -22,6 +22,9 @@ public class LoginUser extends DomainEntity {
 	@LogIgnore
 	String password;
 	
+	@LogIgnore
+	String salt;
+	
 	@LogMask
 	int cellPhone;
 	
@@ -118,5 +121,13 @@ public class LoginUser extends DomainEntity {
 
 	public void setCellPhone(int cellPhone) {
 		this.cellPhone = cellPhone;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 }

@@ -2,6 +2,7 @@ package com.joinway.mobile.service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -12,11 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.joinway.appx.repository.SystemRepository;
 import com.joinway.appx.repository.TableRepository;
-import com.joinway.bean.exception.ValidationException;
 import com.joinway.common.bean.domain.LoginUser;
-import com.joinway.mobile.bean.form.LoginForm;
-import com.joinway.mobile.bean.form.LogoutForm;
-import com.joinway.mobile.bean.form.PasswordForm;
 import com.joinway.mobile.bean.view.LoginView;
 import com.joinway.mobile.bean.view.LogoutView;
 import com.joinway.mobile.bean.view.PasswordView;
@@ -39,7 +36,7 @@ public class MobileService {
 	
 	@Transactional(rollbackFor=Throwable.class)
 	public LoginView register(String name, String password, String cellPhone, String cellPhoneType, String imId) throws Exception {
-		LoginUser loginUser = mobileRepository.findLoginUser(name.toLowerCase());
+		LoginUser loginUser = mobileRepository.findLoginUser(name);
 		if(loginUser != null){
 			throw new MobileException(MobileErrorConstants.RepeatRegister.Code, MobileErrorConstants.RepeatRegister.Description);
 		}
@@ -49,9 +46,11 @@ public class MobileService {
 		/*
 		 * 保存用户注册信息
 		 */
+		String salt = StringUtils.split(UUID.randomUUID().toString(), "-")[0];
 		loginUser = new LoginUser();
 		loginUser.setLoginName(name.toLowerCase());
-		loginUser.setPassword(CipherUtils.secureEncrypt(password, name));
+		loginUser.setPassword(CipherUtils.secureEncrypt(password, salt));
+		loginUser.setSalt(salt);
 		loginUser.setImId(imId);
 		loginUser.setCellPhone(Integer.valueOf(cellPhone));
 		loginUser.setCellPhoneType(cellPhoneType);
@@ -61,9 +60,9 @@ public class MobileService {
 		
 		tableRepository.save(loginUser);
 		
-		if(StringUtils.isBlank(cellPhoneType)){
-			log.warn("got empty cellPhoneType for user id {}", loginUser.getId());
-		}
+//		if(StringUtils.isBlank(cellPhoneType)){
+//			log.warn("got empty cellPhoneType for user id {}", loginUser.getId());
+//		}
 
 		if(StringUtils.isBlank(imId)){
 			log.warn("got empty imid for user id {}", loginUser.getId());
@@ -78,7 +77,12 @@ public class MobileService {
 	
 	@Transactional(rollbackFor=Throwable.class)
 	public LoginView login(String name, String password, String cellPhoneType, String imId) throws Exception {
-		LoginUser loginUser = mobileRepository.findLoginUser(name.toLowerCase(), CipherUtils.secureEncrypt(password, name));
+		LoginUser loginUser = mobileRepository.findLoginUser(name.toLowerCase());
+		if(loginUser == null){
+			throw new MobileException(MobileErrorConstants.UserNotExists.Code, MobileErrorConstants.UserNotExists.Description);
+		}
+		
+		loginUser = mobileRepository.findLoginUser(name, CipherUtils.secureEncrypt(password, loginUser.getSalt()));
 		if(loginUser == null){
 			throw new MobileException(MobileErrorConstants.UserNotExists.Code, MobileErrorConstants.UserNotExists.Description);
 		}
@@ -107,7 +111,7 @@ public class MobileService {
 	}
 	
 	@Transactional(rollbackFor=Throwable.class)
-	public LogoutView logout(LogoutForm form) throws Exception{
+	public LogoutView logout(int userId) throws Exception{
 		return new LogoutView();
 	}
 	
@@ -119,15 +123,18 @@ public class MobileService {
 		return view;
 	}
 	
-	public PasswordView changePassword(PasswordForm form) throws Exception {
-		// TODO 修改密码加密方式以及用户名大小写敏感
-		LoginUser loginUser = mobileRepository.findLoginUser(form.getName().toLowerCase(), CipherUtils.encrypt(form.getOldPassword()));
-		
+	public PasswordView changePassword(String name, String oldPassword, String newPassword) throws Exception {
+		LoginUser loginUser = mobileRepository.findLoginUser(name.toLowerCase());
 		if(loginUser == null){
-			throw new ValidationException("密码错误");
+			throw new MobileException(MobileErrorConstants.UserNotExists.Code, MobileErrorConstants.UserNotExists.Description);
 		}
 		
-		loginUser.setPassword(CipherUtils.encrypt(form.getNewPassword()));
+		loginUser = mobileRepository.findLoginUser(name, CipherUtils.secureEncrypt(oldPassword, loginUser.getSalt()));
+		if(loginUser == null){
+			throw new MobileException(MobileErrorConstants.UserNotExists.Code, MobileErrorConstants.UserNotExists.Description);
+		}
+		
+		loginUser.setPassword(CipherUtils.secureEncrypt(newPassword, loginUser.getSalt()));
 		tableRepository.save(loginUser);
 		
 		return new PasswordView();

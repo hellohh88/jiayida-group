@@ -62,7 +62,7 @@ public class CobotClient extends AbstractJUnit4SpringContextTests {
 		dc.setDdl("C:\\" + ddl);
 		dc.setAppName("app");
 		
-		cobot.produceDomainBean(config, dc);
+//		cobot.produceDomainBean(config, dc);
 		
 		System.out.println("produce domain done!");
 	}

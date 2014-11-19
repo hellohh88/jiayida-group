@@ -16,6 +16,8 @@
 
 	<context:component-scan base-package="com.joinway"/>
 
+	<mvc:resources location="/resources/" mapping="/resources/**"/>
+
 	<!-- 缓存配置 -->
 	<cache:annotation-driven/>
 	<import resource="cache-context.xml"/>
@@ -35,8 +37,6 @@
 		p:defaultEncoding="UTF-8"
 		p:maxUploadSize="5242880"
 	/>
-	
-	<mvc:resources location="/resources/" mapping="/resources/**"/>
 	
 	<!-- -->
 	<mvc:interceptors>

@@ -12,6 +12,7 @@
 		<result column="CREATE_TIME" property="createTime"/>
 		<result column="CELL_PHONE_TYPE" property="cellPhoneType"/>
 		<result column="PASSWORD" property="password"/>
+		<result column="SALT" property="salt"/>
 		<result column="LAST_LOGIN_TIME" property="lastLoginTime"/>
 	</resultMap>
 
