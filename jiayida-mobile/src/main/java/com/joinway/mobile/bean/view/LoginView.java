@@ -14,13 +14,13 @@ public class LoginView extends View {
 	private static final long serialVersionUID = -5495595369853018268L;
 
 	@ApiObjectField(description = "用户id")
-	int userId;
+	String userId;
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	

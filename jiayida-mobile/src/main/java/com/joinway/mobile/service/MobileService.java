@@ -70,7 +70,7 @@ public class MobileService {
 
 		LoginView view = new LoginView();
 		
-		view.setUserId(loginUser.getId());
+		view.setUserId(String.valueOf(loginUser.getId()));
 		
 		return view;
 	}
@@ -79,12 +79,12 @@ public class MobileService {
 	public LoginView login(String name, String password, String cellPhoneType, String imId) throws Exception {
 		LoginUser loginUser = mobileRepository.findLoginUser(name.toLowerCase());
 		if(loginUser == null){
-			throw new MobileException(MobileErrorConstants.UserNotExists.Code, MobileErrorConstants.UserNotExists.Description);
+			throw new MobileException(MobileErrorConstants.InvalidUserNameOrPassword.Code, MobileErrorConstants.InvalidUserNameOrPassword.Description);
 		}
 		
 		loginUser = mobileRepository.findLoginUser(name, CipherUtils.secureEncrypt(password, loginUser.getSalt()));
 		if(loginUser == null){
-			throw new MobileException(MobileErrorConstants.UserNotExists.Code, MobileErrorConstants.UserNotExists.Description);
+			throw new MobileException(MobileErrorConstants.InvalidUserNameOrPassword.Code, MobileErrorConstants.InvalidUserNameOrPassword.Description);
 		}
 		
 		/*
@@ -105,7 +105,7 @@ public class MobileService {
 		
 		LoginView view = new LoginView();
 		
-		view.setUserId(loginUser.getId());
+		view.setUserId(String.valueOf(loginUser.getId()));
 		
 		return view;
 	}
@@ -126,12 +126,12 @@ public class MobileService {
 	public PasswordView changePassword(String name, String oldPassword, String newPassword) throws Exception {
 		LoginUser loginUser = mobileRepository.findLoginUser(name.toLowerCase());
 		if(loginUser == null){
-			throw new MobileException(MobileErrorConstants.UserNotExists.Code, MobileErrorConstants.UserNotExists.Description);
+			throw new MobileException(MobileErrorConstants.InvalidUserNameOrPassword.Code, MobileErrorConstants.InvalidUserNameOrPassword.Description);
 		}
 		
 		loginUser = mobileRepository.findLoginUser(name, CipherUtils.secureEncrypt(oldPassword, loginUser.getSalt()));
 		if(loginUser == null){
-			throw new MobileException(MobileErrorConstants.UserNotExists.Code, MobileErrorConstants.UserNotExists.Description);
+			throw new MobileException(MobileErrorConstants.InvalidUserNameOrPassword.Code, MobileErrorConstants.InvalidUserNameOrPassword.Description);
 		}
 		
 		loginUser.setPassword(CipherUtils.secureEncrypt(newPassword, loginUser.getSalt()));

@@ -13,15 +13,14 @@ public class UserService {
 
 	@Autowired TableRepository repository;
 	
-	public UserView getUser(int userId) throws Exception {
+	public UserView getUserProfile(int userId) throws Exception {
 		LoginUser user = repository.find(userId, LoginUser.class);
 		
-		if(user == null){
-			throw new ValidationException("用户不存在");
-		}
-		
 		UserView view = new UserView();
-		view.setCellPhone(user.getCellPhone());
+		
+		if(user != null){
+//			view.setCellPhone(user.getCellPhone());
+		}
 		
 		return view;
 	}
