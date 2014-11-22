@@ -47,7 +47,7 @@ public class CobotClient extends AbstractJUnit4SpringContextTests {
 		MyBatisConfig myBatisConfig = new MyBatisConfig();
 		myBatisConfig.setMapperPackage("com.joinway.mobile.mapper");
 		
-		cobot.produceMyBatisMapper(type, config, myBatisConfig);
+//		cobot.produceMyBatisMapper(type, config, myBatisConfig);
 		
 		System.out.println("produce mapper done!");
 	}

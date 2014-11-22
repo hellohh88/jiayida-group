@@ -32,6 +32,19 @@ public class LoginUser extends DomainEntity {
 	String cellPhoneType;
 	
 	String imId;
+
+	String name;
+	
+	String gender;
+	
+	String address;
+	
+	int postalCode;
+	
+	@DomainField(CaseFormat.Lower)
+	String email;
+	
+	String qq;
 	
 	int loginCount;
 	
@@ -129,5 +142,53 @@ public class LoginUser extends DomainEntity {
 
 	public void setSalt(String salt) {
 		this.salt = salt;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(int postalCode) {
+		this.postalCode = postalCode;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
 	}
 }
