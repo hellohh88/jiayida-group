@@ -26,7 +26,7 @@ public class LoginUser extends DomainEntity {
 	String salt;
 	
 	@LogMask
-	int cellPhone;
+	String cellPhone;
 	
 	@DomainField(CaseFormat.Upper)
 	String cellPhoneType;
@@ -128,11 +128,11 @@ public class LoginUser extends DomainEntity {
 		this.status = status;
 	}
 
-	public int getCellPhone() {
+	public String getCellPhone() {
 		return cellPhone;
 	}
 
-	public void setCellPhone(int cellPhone) {
+	public void setCellPhone(String cellPhone) {
 		this.cellPhone = cellPhone;
 	}
 

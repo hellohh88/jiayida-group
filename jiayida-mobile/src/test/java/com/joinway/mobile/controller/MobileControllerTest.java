@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.joinway.bean.view.View;
 import com.joinway.mobile.ControllerTest;
-import com.joinway.mobile.bean.form.LoginForm;
-import com.joinway.mobile.bean.form.RegisterForm;
-import com.joinway.mobile.bean.view.LoginView;
 import com.joinway.utils.json.JsonConverter;
 
 /**
@@ -29,32 +26,32 @@ public class MobileControllerTest extends ControllerTest {
 	}
 
 	@Test public void testRegister() throws Exception {
-	    RegisterForm form = new RegisterForm();
-	    
-	    form.setName("lee");
-	    form.setCellPhone("12345678901");
-	    form.setPassword("123456789");
-	    
-	    String output = "";
-	    output = postRequest(form, "/register");
-	    
-	    LoginView view = JsonConverter.jsonToObject(output, new TypeReference<LoginView>(){});
-	    
-		out.println(view);
+//	    RegisterForm form = new RegisterForm();
+//	    
+//	    form.setName("lee");
+//	    form.setCellPhone("12345678901");
+//	    form.setPassword("123456789");
+//	    
+//	    String output = "";
+//	    output = postRequest(form, "/register");
+//	    
+//	    LoginView view = JsonConverter.jsonToObject(output, new TypeReference<LoginView>(){});
+//	    
+//		out.println(view);
 	}
 	
 	@Test public void testLogin() throws Exception {
-	    LoginForm form = new LoginForm();
-	    
-	    form.setName("13998420000");
-	    form.setPassword("123456");
-	    
-	    String output = "";
-	    output = postRequest(form, "/login");
-	    
-	    LoginView view = JsonConverter.jsonToObject(output, new TypeReference<LoginView>(){});
-	    
-		out.println(view);
+//	    LoginForm form = new LoginForm();
+//	    
+//	    form.setName("13998420000");
+//	    form.setPassword("123456");
+//	    
+//	    String output = "";
+//	    output = postRequest(form, "/login");
+//	    
+//	    LoginView view = JsonConverter.jsonToObject(output, new TypeReference<LoginView>(){});
+//	    
+//		out.println(view);
 	}
 
 	@Test public void testLogout() throws Exception {

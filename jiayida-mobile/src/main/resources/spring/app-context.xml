@@ -48,11 +48,6 @@
 			<aop:around pointcut-ref="mobileLogger" method="doAround"/>
 		</aop:aspect>
 
-		<aop:aspect ref="securityAspect">
-			<aop:pointcut expression="execution(* com.joinway.*.controller.*.*(..))" id="security"/>
-			<aop:around pointcut-ref="security" method="doAround"/>
-		</aop:aspect>
-
 		<aop:aspect ref="auditAspect">
 			<aop:pointcut expression="execution(* com.joinway.*.controller.*.*(..))" id="audit"/>
 			<aop:around pointcut-ref="audit" method="doAround"/>
@@ -68,17 +63,7 @@
 	<bean id="auditAspect" class="com.joinway.web.audit.AuditInterceptor">
 		<property name="processors">
 			<list>
-				<bean class="com.joinway.appx.service.AuditService">
-					<property name="loginNameColumn" value="USER_NAME"/>
-				</bean>
-			</list>
-		</property>
-	</bean>
-	<bean id="securityAspect" class="com.joinway.web.security.SecurityInterceptor">
-		<property name="validators">
-			<list>
-				<bean class="com.joinway.web.security.validator.SessionValidator"/>
-				<bean class="com.joinway.web.security.validator.SingleSignOnValidator"/>
+				<bean class="com.joinway.appx.service.AuditService"/>
 			</list>
 		</property>
 	</bean>

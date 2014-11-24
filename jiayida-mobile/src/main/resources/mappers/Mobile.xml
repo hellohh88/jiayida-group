@@ -25,7 +25,7 @@
 
 	<select id="selectLoginUser" resultMap="LoginUser">
 		SELECT * FROM LOGIN_USER 
-			WHERE USER_NAME = #{name}
+			WHERE LOGIN_NAME = #{name}
 		<if test="password != null">
 			AND PASSWORD = #{password}
 		</if>

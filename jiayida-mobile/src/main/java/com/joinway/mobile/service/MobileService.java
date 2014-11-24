@@ -52,7 +52,7 @@ public class MobileService {
 		loginUser.setPassword(CipherUtils.secureEncrypt(password, salt));
 		loginUser.setSalt(salt);
 		loginUser.setImId(imId);
-		loginUser.setCellPhone(Integer.valueOf(cellPhone));
+		loginUser.setCellPhone(cellPhone);
 		loginUser.setCellPhoneType(cellPhoneType);
 		loginUser.setLoginCount(1);
 		loginUser.setLastLoginTime(today);
@@ -60,14 +60,6 @@ public class MobileService {
 		
 		tableRepository.save(loginUser);
 		
-//		if(StringUtils.isBlank(cellPhoneType)){
-//			log.warn("got empty cellPhoneType for user id {}", loginUser.getId());
-//		}
-
-		if(StringUtils.isBlank(imId)){
-			log.warn("got empty imid for user id {}", loginUser.getId());
-		}
-
 		LoginView view = new LoginView();
 		
 		view.setUserId(String.valueOf(loginUser.getId()));

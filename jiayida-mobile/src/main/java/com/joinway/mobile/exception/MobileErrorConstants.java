@@ -1,8 +1,7 @@
 package com.joinway.mobile.exception;
 
-import org.jsondoc.core.annotation.ApiObject;
 
-@ApiObject(name = "MobileErrorConstants", description = "错误�?")
+//@ApiObject(name = "MobileErrorConstants", description = "错误�?")
 public final class MobileErrorConstants {
 
 	public final static class RepeatRegister{

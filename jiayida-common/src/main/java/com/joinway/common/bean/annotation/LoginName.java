@@ -18,7 +18,7 @@ import com.joinway.common.bean.validator.LoginNameValidator;
 public @interface LoginName {
 
 //	String message() default "{com.joinway.bean.validation.constraints.CellPhone.message}";
-	String message() default "用户名必须为6位字符";
+	String message() default "用户名必须为" + LoginNameValidator.MIN_LEN + "到" + LoginNameValidator.MAX_LEN + "位字符";
 	
 	Class<?>[] groups() default { };
 
