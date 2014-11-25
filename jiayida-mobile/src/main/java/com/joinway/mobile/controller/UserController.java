@@ -78,8 +78,7 @@ public class UserController extends ExceptionController {
 			, @RequestParam(value="postalCode",required=false,defaultValue="") @Render @ApiParam(name="postalCode", description="邮政编码", paramType = ApiParamType.QUERY) String postalCode
 			, @RequestParam(value="email",required=false,defaultValue="") @Render @ApiParam(name="email", description="电子邮箱", paramType = ApiParamType.QUERY) String email
 			, @RequestParam(value="qq",required=false,defaultValue="") @Render @ApiParam(name="qq", description="qq号码", paramType = ApiParamType.QUERY) String qq
-			, @CellPhone @RequestParam("cellPhone") @Render @ApiParam(name="cellPhone", description="手机号码", paramType = ApiParamType.QUERY) String cellPhone
 	){
-		return null;
+		return new View();
 	}
 }
