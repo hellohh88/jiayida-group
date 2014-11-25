@@ -39,14 +39,14 @@ public class LoginUser extends DomainEntity {
 	
 	String address;
 	
-	int postalCode;
+	String postalCode;
 	
 	@DomainField(CaseFormat.Lower)
 	String email;
 	
 	String qq;
 	
-	int loginCount;
+	long loginCount;
 	
 	String status = DBValueConstants.YES;
 	
@@ -88,11 +88,11 @@ public class LoginUser extends DomainEntity {
 		this.imId = imId;
 	}
 
-	public int getLoginCount() {
+	public long getLoginCount() {
 		return loginCount;
 	}
 
-	public void setLoginCount(int loginCount) {
+	public void setLoginCount(long loginCount) {
 		this.loginCount = loginCount;
 	}
 
@@ -168,11 +168,11 @@ public class LoginUser extends DomainEntity {
 		this.address = address;
 	}
 
-	public int getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
 
-	public void setPostalCode(int postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 
