@@ -56,7 +56,7 @@ public class UserController extends ExceptionController {
 		return service.getUserProfile(DataUtils.convertToInt(userId));
 	}
 
-	@ApiMethod(path="profile?userId={userId}&name={name}&gender={gender}&address={address}&postalCode={postalCode}&email={email}&qq={qq}&cellPhone={cellPhone}"
+	@ApiMethod(path="profile?userId={userId}&name={name}&gender={gender}&address={address}&postalCode={postalCode}&email={email}&qq={qq}"
 				, verb=ApiVerb.POST, description="更新用户信息", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
