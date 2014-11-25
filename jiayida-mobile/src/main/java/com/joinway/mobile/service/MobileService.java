@@ -88,7 +88,7 @@ public class MobileService {
 		}
 		loginUser.setCellPhoneType(cellPhoneType);
 		
-		long count = loginUser.getLoginCount();
+		int count = loginUser.getLoginCount();
 		loginUser.setLoginCount(count + 1);
 		
 		loginUser.setLastLoginTime(today);

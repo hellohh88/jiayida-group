@@ -46,7 +46,7 @@ public class LoginUser extends DomainEntity {
 	
 	String qq;
 	
-	long loginCount;
+	int loginCount;
 	
 	String status = DBValueConstants.YES;
 	
@@ -88,11 +88,11 @@ public class LoginUser extends DomainEntity {
 		this.imId = imId;
 	}
 
-	public long getLoginCount() {
+	public int getLoginCount() {
 		return loginCount;
 	}
 
-	public void setLoginCount(long loginCount) {
+	public void setLoginCount(int loginCount) {
 		this.loginCount = loginCount;
 	}
 
