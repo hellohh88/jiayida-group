@@ -13,10 +13,10 @@ public class VersionView extends View {
 	 */
 	private static final long serialVersionUID = -1943074176986474964L;
 
-	@ApiObjectField(description = "")
+	@ApiObjectField(description = "最新程序的版本")
 	String version;
 	
-	@ApiObjectField(description = "")
+	@ApiObjectField(description = "下载地址")
 	String url;
 
 	public String getVersion() {
