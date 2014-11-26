@@ -1,21 +1,28 @@
 package com.joinway.mobile.client;
 
+import static java.lang.System.out;
+
+import java.util.Arrays;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import com.joinway.net.http.HttpClientAdaptor;
 
 public class AppClient {
 
 	static final HttpClientAdaptor client = new HttpClientAdaptor();
 	
-	static final String BASE_URL = "http://localhost:8080/spring-mobile";
+	static final String BASE_URL = "http://localhost:8080/jiayida-mobile";
 //	static final String BASE_URL = "http://115.28.198.131:8000/spring-mobile";
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-//		login();
+		login();
 //		register();
-		changePassword();
+//		changePassword();
 //		logout();
 //		Object o = null;
 //		Object oo = (Object)o;
@@ -35,18 +42,15 @@ public class AppClient {
 	}
 
 	static void login() throws Exception {
-//		LoginForm form = new LoginForm();
-////		form.setName("lee1235");
-////		form.setPassword("123456");
-////		form.setMobileType("A");
-////		form.setImId("123");
-//		
-//		form.setName("lee1232");
-//		form.setPassword("654321");
-//		form.setMobileType("A");
-//		form.setImId("123");
-//
-//		client.post(BASE_URL + "/login", form);
+		String json = client.post(BASE_URL + "/login", Arrays.asList(
+				new NameValuePair[]{
+						new BasicNameValuePair("loginName", "lee123")
+						, new BasicNameValuePair("password", "654321")
+						, new BasicNameValuePair("cellPhoneType", "A")
+				})
+		);
+		
+		out.println(json);
 	}
 
 	static void logout() throws Exception {
