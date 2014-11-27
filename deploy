@@ -7,5 +7,8 @@ then
   TARGET=jiayida-admin
 fi
 
+SRC=$HOME/code/jiayida-group
+TOMCAT_HOME=$HOME/tomcat
+
 echo deploy $TARGET
-#cd $HOME/code/jiayida-group && git pull && mvn -Dmaven.test.skip=true clean package && $HOME/tomcat/bin/shutdown.sh && rm -rf $HOME/tomcat/webapps/jiayida-mobile* && find . -name "jiayida-mobile.war" -exec cp {} $HOME/tomcat/webapps \; && $HOME/tomcat/bin/startup.sh && cd $HOME/logs && tail -0f `ls jiayida_mobile.* | tail -1`
+echo cd $SR && git pull && mvn -Dmaven.test.skip=true clean package && $TOMCAT_HOME/bin/shutdown.sh && rm -rf $TOMCAT_HOME/webapps/${TARGET}* && find . -name "${TARGET}.war" -exec cp {} $TOMCAT_HOME/webapps \; && $TOMCAT_HOME/bin/startup.sh && cd $HOME/logs && tail -0f `ls ${TARGET}.* | tail -1`
