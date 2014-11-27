@@ -1,3 +1,11 @@
 #!/bin/sh
 
-cd $HOME/code/jiayida-group && git pull && mvn -Dmaven.test.skip=true clean package && $HOME/tomcat/bin/shutdown.sh && rm -rf $HOME/tomcat/webapps/jiayida-mobile* && find . -name "jiayida-mobile.war" -exec cp {} $HOME/tomcat/webapps \; && $HOME/tomcat/bin/startup.sh && cd $HOME/logs && tail -0f `ls jiayida_mobile.* | tail -1`
+TARGET=jiayida-mobile
+
+if [ "$1" == "admin" ]
+then
+  TARGET=jiayida-admin
+fi
+
+echo deploy $TARGET
+#cd $HOME/code/jiayida-group && git pull && mvn -Dmaven.test.skip=true clean package && $HOME/tomcat/bin/shutdown.sh && rm -rf $HOME/tomcat/webapps/jiayida-mobile* && find . -name "jiayida-mobile.war" -exec cp {} $HOME/tomcat/webapps \; && $HOME/tomcat/bin/startup.sh && cd $HOME/logs && tail -0f `ls jiayida_mobile.* | tail -1`
