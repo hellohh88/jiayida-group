@@ -1,14 +1,16 @@
 #!/bin/sh
 
 TARGET=jiayida-mobile
+LOG=jiayida_mobile
 
 if [ "$1" == "admin" ]
 then
   TARGET=jiayida-admin
+  LOG=jiayida_admin
 fi
 
 SRC=$HOME/code/jiayida-group
 TOMCAT_HOME=$HOME/tomcat
 
 echo deploy $TARGET
-cd $SRC && git pull && mvn -Dmaven.test.skip=true clean package && $TOMCAT_HOME/bin/shutdown.sh && rm -rf $TOMCAT_HOME/webapps/${TARGET}* && find . -name "${TARGET}.war" -exec cp {} $TOMCAT_HOME/webapps \; && $TOMCAT_HOME/bin/startup.sh && cd $HOME/logs && tail -0f `ls ${TARGET}.* | tail -1`
+cd $SRC && git pull && mvn -Dmaven.test.skip=true clean package && $TOMCAT_HOME/bin/shutdown.sh && rm -rf $TOMCAT_HOME/webapps/${TARGET}* && find . -name "${TARGET}.war" -exec cp {} $TOMCAT_HOME/webapps \; && $TOMCAT_HOME/bin/startup.sh && cd $HOME/logs && tail -0f `ls ${LOG}.*`
