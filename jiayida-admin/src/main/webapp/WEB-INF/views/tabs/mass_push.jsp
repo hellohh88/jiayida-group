@@ -96,7 +96,7 @@ function doPushUserMessage(jcntId){
 	var rows = $('#massPush_grid').datagrid('getSelections');
    	var ids = '';
    	for(var i = 0; i < rows.length; i++){
-   		ids += rows[i].userId + ',';
+   		ids += rows[i].id + ',';
    	}
    	ids = ids.substring(0, ids.length - 1);
    	
@@ -110,14 +110,13 @@ function doPushUserMessage(jcntId){
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-        <th data-options="field:'ck'" checkbox="true"></th>
 		<th data-options="field:'id'">用户 编号</th>
 		<th data-options="field:'loginName'">用户名</th>
+		<th data-options="field:'name'">真实姓名</th>
 		<th data-options="field:'gender'">性别</th>
 		<th data-options="field:'cellPhone'">手机号</th>
 		<th data-options="field:'email'">电子邮箱</th>
 		<th data-options="field:'qq'">QQ</th>
-		<th data-options="field:'msn'">MSN</th>
 		<th data-options="field:'lastLoginTime'">上次登录时间</th>
 		<th data-options="field:'loginCount'">登录次数</th>
 		<th data-options="field:'createTime'">注册时间</th>

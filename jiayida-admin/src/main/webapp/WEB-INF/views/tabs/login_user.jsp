@@ -120,11 +120,11 @@ function exportLoginUserQuery(){
         <th data-options="field:'ck'" checkbox="true"></th>
 		<th data-options="field:'id'">用户 编号</th>
 		<th data-options="field:'loginName'">用户名</th>
+		<th data-options="field:'name'">真实姓名</th>
 		<th data-options="field:'gender'">性别</th>
 		<th data-options="field:'cellPhone'">手机号</th>
 		<th data-options="field:'email'">电子邮箱</th>
 		<th data-options="field:'qq'">QQ</th>
-		<th data-options="field:'msn'">MSN</th>
 		<th data-options="field:'lastLoginTime'">上次登录时间</th>
 		<th data-options="field:'loginCount'">登录次数</th>
 		<th data-options="field:'createTime'">注册时间</th>
@@ -183,7 +183,7 @@ function exportLoginUserQuery(){
 
 <div id="loginUser_dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px" closed="true" buttons="#loginUser_dlg_buttons">
      <form id="loginUser_form" method="post" novalidate>
-     	<input id="loginUser_userId_input" name="userId" type="hidden">
+     	<input id="loginUser_userId_input" name="id" type="hidden">
 		<div class="loginUser_item">
 			<label>用户名</label>
 			<input id="loginUser_userName_input" name="loginName">

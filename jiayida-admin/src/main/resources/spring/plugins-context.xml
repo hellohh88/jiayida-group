@@ -3,9 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean class="com.joinway.admin.plugin.bean.LoginUserMap">
+<!-- 	<bean class="com.joinway.admin.plugin.bean.LoginUserMap">
 		<property name="idColumn" value="USER_ID"/>
-	</bean>
+	</bean> -->
 	
 	<!-- <bean class="com.joinway.admin.service.HighChartsService"/> -->
 </beans>
