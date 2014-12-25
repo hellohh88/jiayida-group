@@ -110,42 +110,17 @@ function doPushUserMessage(jcntId){
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-		<th data-options="field:'userId'">用户 编号</th>
-		<th data-options="field:'userName'">用户名</th>
-		<th data-options="field:'sex'">性别</th>
-		<th data-options="field:'birthday'">生日</th>
-		<th data-options="field:'userRank'">等级</th>
-		<th data-options="field:'mobilePhone'">手机号</th>
-		<!-- <th data-options="field:'homePhone'">家庭电话</th>
-		<th data-options="field:'officePhone'">工作电话</th> -->
+        <th data-options="field:'ck'" checkbox="true"></th>
+		<th data-options="field:'id'">用户 编号</th>
+		<th data-options="field:'loginName'">用户名</th>
+		<th data-options="field:'gender'">性别</th>
+		<th data-options="field:'cellPhone'">手机号</th>
 		<th data-options="field:'email'">电子邮箱</th>
 		<th data-options="field:'qq'">QQ</th>
-		<!-- <th data-options="field:'msn'">MSN</th> -->
-		<th data-options="field:'lastLogin'">上次登录时间</th>
-		<th data-options="field:'visitCount'">登录次数</th>
-		<th data-options="field:'regTime'">注册时间</th>
-<!-- 		<th data-options="field:'question'">question</th>
-		<th data-options="field:'creditLine'">creditLine</th>
-		<th data-options="field:'cellPhoneType'">cellPhoneType</th>
-		<th data-options="field:'imId'">imId</th>
-		<th data-options="field:'parentId'">parentId</th>
-		<th data-options="field:'addressId'">addressId</th>
-		<th data-options="field:'password'">password</th>
-		<th data-options="field:'isValidated'">isValidated</th>
-		<th data-options="field:'ecSalt'">ecSalt</th>
-		<th data-options="field:'salt'">salt</th>
-		<th data-options="field:'frozenMoney'">frozenMoney</th>
-		<th data-options="field:'flag'">flag</th>
-		<th data-options="field:'rankPoints'">rankPoints</th>
-		<th data-options="field:'lastIp'">lastIp</th>
-		<th data-options="field:'isSpecial'">isSpecial</th>
-		<th data-options="field:'answer'">answer</th>
-		<th data-options="field:'lastTime'">lastTime</th>
-		<th data-options="field:'passwdQuestion'">passwdQuestion</th>
-		<th data-options="field:'userMoney'">userMoney</th>
-		<th data-options="field:'passwdAnswer'">passwdAnswer</th>
-		<th data-options="field:'payPoints'">payPoints</th>
-		<th data-options="field:'alias'">alias</th> -->
+		<th data-options="field:'msn'">MSN</th>
+		<th data-options="field:'lastLoginTime'">上次登录时间</th>
+		<th data-options="field:'loginCount'">登录次数</th>
+		<th data-options="field:'createTime'">注册时间</th>
     </thead>
 </table>
 
