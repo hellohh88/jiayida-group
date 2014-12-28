@@ -35,12 +35,12 @@
 			<groupId>com.joinway</groupId>
 			<artifactId>net</artifactId>
 			<version>${framework.version}</version>
-			<exclusions>
+<!-- 			<exclusions>
 				<exclusion>
 					<artifactId>jpush-client</artifactId>
 					<groupId>cn.jpush.api</groupId>
 				</exclusion>
-			</exclusions>
+			</exclusions> -->
 		</dependency>
 		<dependency>
 			<groupId>com.joinway</groupId>
