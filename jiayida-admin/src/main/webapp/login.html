@@ -11,45 +11,78 @@
 		<meta name="description" content="">
 		<meta name="author" content="Administrator">
 
-		<link rel="stylesheet" type="text/css" href="/static/jquery-easyui/themes/metro-red/easyui.css">
-    	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="/static/jquery-easyui/1.4.1/themes/default/easyui.css">
+    	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui/1.4.1/themes/icon.css">
+    	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui/1.4.1/themes/color.css">
+    	<link rel="stylesheet" type="text/css" href="/static/css/admin.css">
+    	<link rel="stylesheet" type="text/css" href="/static/css/icon.css">
    		<link rel="stylesheet" type="text/css" href="resources/css/login.css"/>
    		
-   		<script type="text/javascript" src="/static/jquery/jquery.min.js"></script>
-   		<!-- <script type="text/javascript" src="/static/jquery-easyui/jquery.min.js"></script> -->
-		<script type="text/javascript" src="/static/jquery-easyui/jquery.easyui.min.js"></script>
-		<script type="text/javascript" src="/static/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+   		<script type="text/javascript" src="/static/jquery/2.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="/static/jquery-easyui/1.4.1/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="/static/jquery-easyui/1.4.1/locale/easyui-lang-zh_CN.js"></script>
+   		<script type="text/javascript" src="/static/jquery/plugins/jquery.blockUI-2.7.js"></script>
 		<script type="text/javascript" src="/static/commons/admin.js"></script>
 <script type="text/javascript">
 $(function() {
-	$('#name').select();
-	
-	$('#name').keyup(function(){
-		if(event.keyCode == 13){
-			$('#password').select();
+	$('#name').textbox({
+		width: 340,
+		height: 40,
+		icons: [{
+			iconCls: 'icon-clear',
+			handler: function(e){
+				$(e.data.target).textbox('clear');
+			}
+		}],
+		buttonAlign: 'left',
+		buttonIcon: 'icon-man'
+	});
+	$('#name').textbox('textbox').bind('keydown', function(e){
+		//console.log(e.keyCode);
+		if (e.keyCode == 13){
+			$('#password').textbox('textbox').focus();
 		}
 	});
-
-	$('#password').keyup(function(){
-		if(event.keyCode == 13){
+	
+	$('#password').textbox({
+		width: 340,
+		height: 40,
+		icons: [{
+			iconCls: 'icon-clear',
+			handler: function(e){
+				$(e.data.target).textbox('clear');
+			}
+		}],
+		buttonAlign: 'left',
+		buttonIcon: 'icon-lock'
+	});
+	
+	$('#password').textbox('textbox').bind('keydown', function(e){
+		//console.log(e.keyCode);
+		if (e.keyCode == 13){
 			login();
 		}
 	});
+	
+	$('#password').textbox('button').bind('focus', function(e){
+		$('#password').textbox('textbox').focus();
+	});
+	
+	$('#name').textbox('textbox').focus();
 });
 	
 function login(){
 	var form = new Object();
 	form.name = $('#name').val();
 	form.password = $('#password').val();
-	//form.age = 10;
 	
-	console.log(form);
-	
+	blockUI('正在登录...');
 	$.ajax({
 		type : "post",
 		url : 'login.json',
 		data : form,
 		success : function(data) {
+			unblockUI(200);
 			if(data.code == 0){
 				//console.log(data.userId);
 				window.location.href = 'main.html';
@@ -58,6 +91,7 @@ function login(){
 			}
 		},
 		error: function(){
+			unblockUI(200);
 			showErrorMessage('网络连接错误');
 		}
 	});
@@ -73,12 +107,12 @@ function login(){
 					<div class="formT">
 						<form id="login_form" method="get">
 							<div class="form1">
-								<h3>账号</h3>
-								<input id="name" name="name" type="text" class="input1" onclick="$('#name').select();"/>
+								<!-- <h3>账号</h3> -->
+								<input id="name" name="name" type="text" class="easyui-textbox"/>
 						    </div>
 							<div class="form1">
-								<h3>密码</h3>
-								<input id="password" name="password" type="password" class="input1" onclick="$('#password').select();"/>
+								<!-- <h3>密码</h3> -->
+								<input id="password" name="password" type="password" class="easyui-textbox"/>
 							</div>
 						</form>
 					</div> 

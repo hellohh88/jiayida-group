@@ -1,6 +1,17 @@
 <script type="text/javascript">
 $(function(){
 	$('#welcome').load('tabs/welcome.html');
+	$(jtabId).tabs({
+		onSelect: function(title, index){
+			$(this).children().find('[id$="_querybar"]').each(function(){
+				// the invoke interval is an workaround due to can't get center panel width immediately
+				var _this = $(this);
+				setTimeout(function(){
+					_this.panel('resize');
+				}, 0);
+			});
+		}
+	});
 });
 </script>
 <div id="tab" class="easyui-tabs" data-options="fit:true" style="width:700px;height:250px">

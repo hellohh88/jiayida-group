@@ -1,47 +1,25 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
 </style>
-<script type="text/javascript" src="/static/commons/admin.js"></script>
+<!-- <script type="text/javascript" src="/static/commons/admin.js"></script> -->
 <script>
 var bcEditor;
 $(function() {
-	console.log('${contextRoot}');
-/*	
-    bcEditor = UE.getEditor('broadcast2_content', {
-    	serverUrl: '${contextRoot}' + 'ueditor.do',
-		initialFrameWidth: 1000,
-		initialFrameHeight: 500,
-		autoHeightEnabled: false,
-		autoFloatEnabled: false,
-		enableAutoSave: false
-    });
-
-    $('#bc_send').click(function(){
-    	bcEditor.sync();
-    	doBroadcast('#broadcast2_content');
-        //$('#bc_form').submit();
-    });
-*/    
-
-/*
 	if(bcEditor){
-		//try{
-			bcEditor.destroy();
-		//}catch(e){
-		//	console.log(e.message);
-		//}
-		console.log('destroyed');
+		UE.delEditor('broadcast2_content');
 	}
-*/	
+	
 	bcEditor = UE.getEditor('broadcast2_content', {
 		serverUrl: '<%=request.getContextPath()%>' + '/ueditor.do',
 		initialFrameWidth: 1000,
 		initialFrameHeight: 500,
 		autoHeightEnabled: false,
 		autoFloatEnabled: false,
-		enableAutoSave: false
+		//enableAutoSave: false,
+		saveInterval: 1000 * 60 * 60 * 24,
+		toolbars: ue_toolbars
 	});
-
+	
 });
 
 function doBroadcast(jcntId){
@@ -57,10 +35,9 @@ function doBroadcast(jcntId){
 }
 
 </script>
+<div>
 <input id="broadcast2_title" type="text" placeholder="标题" size="92"/><br/>
-<!-- <form id="bc_form" method="post" target="_blank"> -->
-	<div id="broadcast2_content"></div>
-	<input id="bc_send" type="button" value="发送" onclick="doBroadcast('#broadcast2_content');">
-	<input type="button" value="清空" onclick="bcEditor.execCommand('cleardoc')">
-<!-- </form> -->
-
+<div id="broadcast2_content"></div>
+<input id="bc_send" type="button" value="发送" onclick="doBroadcast('#broadcast2_content');">
+<input type="button" value="清空" onclick="bcEditor.execCommand('cleardoc')">
+</div>

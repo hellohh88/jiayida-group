@@ -31,14 +31,16 @@ $(function() {
 	massPushQuery = '';
 	
 	if(massEditor){
-		massEditor.destroy();
+		UE.delEditor('mass_push_content');
 	}
 	
 	massEditor = UE.getEditor('mass_push_content', {
 		serverUrl: '${contextRoot}' + 'ueditor.do',
-		initialFrameWidth: 800,
-		initialFrameHeight: 500,
-		enableAutoSave: false
+		initialFrameWidth: '100%',
+		initialFrameHeight: 300,
+		//enableAutoSave: false
+		saveInterval: 1000 * 60 * 60 * 24,
+		toolbars: ue_massbars
 	});
 });
 
@@ -131,10 +133,10 @@ function doPushUserMessage(jcntId){
         <a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" onclick="showPushUserMessageDialog()">发送</a></td>
 </div>
 
-<div id="mass_push_dlg" class="easyui-dialog" style="width:900px;height:750px;padding:10px 20px" closed="true">
+<div id="mass_push_dlg" class="easyui-dialog" style="width:50%;height:540px;padding:10px 20px" data-options="shadow:false,resizable:true,closed:true">
 	<input id="mass_push_title" type="text" placeholder="标题" size="92"/><br/>
 	<div id="mass_push_content"></div>
 	<input type="button" value="发送" onclick="doPushUserMessage()">
 	<input type="button" value="清空" onclick="massEditor.execCommand('cleardoc')">
-	<input type="button" value="关闭" onclick="massEditor.execCommand('cleardoc');$('#mass_push_dlg').dialog('close');">
+	<!-- <input type="button" value="关闭" onclick="massEditor.execCommand('cleardoc');$('#mass_push_dlg').dialog('close');"> -->
 </div>
