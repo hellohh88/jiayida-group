@@ -10,6 +10,9 @@ $(function(){
 					_this.panel('resize');
 				}, 0);
 			});
+			$(this).children().find('[id$="_grid"]').each(function(){
+				$(this).datagrid('resize'); 
+			});
 		}
 	});
 });
