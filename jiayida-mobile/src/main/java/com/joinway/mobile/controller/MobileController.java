@@ -108,13 +108,13 @@ public class MobileController extends ExceptionController {
 			@ApiError(code=ErrorCodeConstants.INTERNAL_ERROR, description=ErrorCodeConstants.INTERNAL_ERROR_DESC)
 		}
 	)
-	@RequestMapping(value="logout?userId={userId}", produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="logout", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Logout
 	@Audit
 	@InputLog
 	@OutputLog
-	public LogoutView logout(@RequestParam(value="userId", required=false, defaultValue="") @ApiParam(name="name", description="用户id", required=false, paramType=ApiParamType.QUERY) String userId) throws Exception {
+	public LogoutView logout(@RequestParam(value="userId", required=false, defaultValue="") @ApiParam(name="userId", description="用户id", required=false, paramType=ApiParamType.QUERY) String userId) throws Exception {
 		return service.logout(DataUtils.convertToInt(userId));
 	}
 
