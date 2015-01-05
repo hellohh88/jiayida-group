@@ -13,6 +13,32 @@ margin-bottom: 5px;
 display: inline-block;
 width: 80px;
 }
+
+#demoTable_dlg{
+	padding:10px 20px;
+}
+#demoTable_form table{
+	width:100%;
+	border-collapse:collapse;
+	border-right:1px solid #A9A9A9;
+}
+#demoTable_form th{
+	border-left:1px solid #A9A9A9;
+	border-top:1px solid #A9A9A9;
+	border-bottom:1px solid #A9A9A9;
+	border-right:1px solid #D3D3D3;
+	padding-left:10px;
+	padding-right:10px;
+	text-align:right;
+}
+#demoTable_form td{
+	border-top:1px solid #A9A9A9;
+	border-bottom:1px solid #A9A9A9;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:5px;
+	text-align:left;
+}
 </style>
 
 <script type="text/javascript" src="/static/commons/admin.js"></script>
@@ -156,7 +182,7 @@ function showPushDetail(){
 		}else{
 			tab.tabs('add', {
 				title: title,
-				href: 'tabs/push_log/detail.jspx?noticeId=' + rows[0].id,
+				href: 'push_log/detail.jspx?noticeId=' + rows[0].id,
 				closable: true
 			});
 		}
