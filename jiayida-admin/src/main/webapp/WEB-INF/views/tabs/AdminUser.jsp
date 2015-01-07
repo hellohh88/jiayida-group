@@ -28,7 +28,7 @@
 </style>
 
 <script type="text/javascript">
-var adminUserTable = 'ADMIN_USER_VT';
+var adminUserTable = 'ADMIN_USER';
 var adminUserQuery;
 var wysiwye = false;	// what you see is what you export
 

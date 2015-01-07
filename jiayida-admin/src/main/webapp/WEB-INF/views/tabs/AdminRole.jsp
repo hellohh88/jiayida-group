@@ -27,7 +27,6 @@
 
 <script type="text/javascript">
 var adminRoleTable = 'ADMIN_ROLE';
-var adminRoleVtTable = 'ADMIN_ROLE_VT';
 var adminRoleQuery;
 
 $(function() {
@@ -98,7 +97,7 @@ function addAdminRoleItem(){
 	 	var valid = checkExistence(adminRoleTable, 'roleName', $('#adminRole_roleName_input').val(), '权限已存在');
 	 	
 	 	if(valid){
-	 		saveItem('#adminRole_grid', '#adminRole_form', '#adminRole_dlg', adminRoleVtTable);
+	 		saveItem('#adminRole_grid', '#adminRole_form', '#adminRole_dlg', adminRoleTable);
 	 	}
  	});
 }
@@ -143,7 +142,7 @@ function editAdminRoleItem(){
 		
 	 	$('#adminRole_save').unbind('click');
 		$('#adminRole_save').click(function(){
-			saveItem('#adminRole_grid', '#adminRole_form', '#adminRole_dlg', adminRoleVtTable);
+			saveItem('#adminRole_grid', '#adminRole_form', '#adminRole_dlg', adminRoleTable);
 		});
 	}
 }
@@ -183,7 +182,7 @@ function copyAdminRoleItem(){
 		$('#adminRole_save').click(function(){
 			var valid = checkExistence(adminRoleTable, 'roleName', $('#adminRole_roleName_input').val(), '权限已存在');
 			if(valid){
-				saveItem('#adminRole_grid', '#adminRole_form', '#adminRole_dlg', adminRoleVtTable);
+				saveItem('#adminRole_grid', '#adminRole_form', '#adminRole_dlg', adminRoleTable);
 			}
 		});
 	}
