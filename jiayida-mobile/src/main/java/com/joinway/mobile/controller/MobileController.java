@@ -53,7 +53,7 @@ public class MobileController extends ExceptionController {
 	
 	@Autowired MobileService service;
 	
-	@ApiMethod(path="register?loginName={loginName}&password={password}&cellPhone={cellPhone}&cellPhoneType={cellPhoneType}&imId={imId}"
+	@ApiMethod(path="register.json?loginName={loginName}&password={password}&cellPhone={cellPhone}&cellPhoneType={cellPhoneType}&imId={imId}"
 				, verb=ApiVerb.POST, description="用户注册", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
@@ -78,7 +78,7 @@ public class MobileController extends ExceptionController {
 		return service.register(loginName, password, cellPhone, cellPhoneType, imId);
 	}
 
-	@ApiMethod(path="login?loginName={loginName}&password={password}&cellPhoneType={cellPhoneType}&imId={imId}"
+	@ApiMethod(path="login.json?loginName={loginName}&password={password}&cellPhoneType={cellPhoneType}&imId={imId}"
 				, verb=ApiVerb.POST, description="用户登录", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
@@ -102,7 +102,7 @@ public class MobileController extends ExceptionController {
 		return service.login(loginName, password, cellPhoneType, imId);
 	}
 
-	@ApiMethod(path="logout?userId={userId}", verb=ApiVerb.GET, description="用户注销", produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiMethod(path="logout.json?userId={userId}", verb=ApiVerb.GET, description="用户注销", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
 			@ApiError(code=ErrorCodeConstants.INTERNAL_ERROR, description=ErrorCodeConstants.INTERNAL_ERROR_DESC)
@@ -118,7 +118,7 @@ public class MobileController extends ExceptionController {
 		return service.logout(DataUtils.convertToInt(userId));
 	}
 
-	@ApiMethod(path="version", verb=ApiVerb.GET, description="查看最新版本", produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiMethod(path="version.json", verb=ApiVerb.GET, description="查看最新版本", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
 			@ApiError(code=ErrorCodeConstants.INTERNAL_ERROR, description=ErrorCodeConstants.INTERNAL_ERROR_DESC)
@@ -133,7 +133,7 @@ public class MobileController extends ExceptionController {
 		return service.getLatestVersion();
 	}
 
-	@ApiMethod(path="password?loginName={loginName}&oldPassword={oldPassword}&newPassword={newPassword}", verb=ApiVerb.POST, description="修改密码", produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiMethod(path="password.json?loginName={loginName}&oldPassword={oldPassword}&newPassword={newPassword}", verb=ApiVerb.POST, description="修改密码", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
 			@ApiError(code=MobileErrorConstants.InvalidUserNameOrPassword.Code, description=MobileErrorConstants.InvalidUserNameOrPassword.Description)

@@ -23,7 +23,8 @@ $(function(){
 				tab.tabs('add', {
 					title: node.text,
 					href: node.attribute.url,
-					closable: true
+					closable: true,
+					iconCls: node.iconCls
 				});
 			}
 		}

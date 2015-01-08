@@ -24,9 +24,9 @@
 
     <servlet-mapping>
         <servlet-name>jiayida-mobile</servlet-name>
-<!--         <url-pattern>*.json</url-pattern>
-        <url-pattern>*.jspx</url-pattern> -->
-        <url-pattern>/</url-pattern>
+        <url-pattern>*.json</url-pattern>
+        <url-pattern>*.jspx</url-pattern>
+        <!-- <url-pattern>/</url-pattern> -->
     </servlet-mapping>
     
     <servlet-mapping>

@@ -39,7 +39,7 @@ public class UserController extends ExceptionController {
 
 	@Autowired UserService service;
 	
-	@ApiMethod(path="user/profile?userId={userId}", verb=ApiVerb.GET, description="获得用户信息", produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiMethod(path="user/profile.json?userId={userId}", verb=ApiVerb.GET, description="获得用户信息", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
 			@ApiError(code=ErrorCodeConstants.INTERNAL_ERROR, description=ErrorCodeConstants.INTERNAL_ERROR_DESC)
@@ -56,7 +56,7 @@ public class UserController extends ExceptionController {
 		return service.getUserProfile(DataUtils.convertToInt(userId));
 	}
 
-	@ApiMethod(path="user/profile?userId={userId}&name={name}&gender={gender}&address={address}&postalCode={postalCode}&email={email}&qq={qq}"
+	@ApiMethod(path="user/profile.json?userId={userId}&name={name}&gender={gender}&address={address}&postalCode={postalCode}&email={email}&qq={qq}"
 				, verb=ApiVerb.POST, description="更新用户信息", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@ApiErrors(apierrors={
