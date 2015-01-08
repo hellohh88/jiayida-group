@@ -14,15 +14,12 @@ display: inline-block;
 width: 80px;
 }
 
-#demoTable_dlg{
-	padding:10px 20px;
-}
-#demoTable_form table{
+#pushlog_form table{
 	width:100%;
 	border-collapse:collapse;
 	border-right:1px solid #A9A9A9;
 }
-#demoTable_form th{
+#pushlog_form th{
 	border-left:1px solid #A9A9A9;
 	border-top:1px solid #A9A9A9;
 	border-bottom:1px solid #A9A9A9;
@@ -31,7 +28,7 @@ width: 80px;
 	padding-right:10px;
 	text-align:right;
 }
-#demoTable_form td{
+#pushlog_form td{
 	border-top:1px solid #A9A9A9;
 	border-bottom:1px solid #A9A9A9;
 	padding-top:5px;
@@ -193,15 +190,19 @@ function showPushDetail(){
 function showPreviewNotice(){
 	var rows = $('#pushlog_grid').datagrid('getSelections');
 	if(!rows || rows.length == 0){
-		showWarningMessage('请�?�择要预览的�?');
+		showWarningMessage('请选择要预览的条目');
 	}else if(rows.length > 1){
-		showWarningMessage('只能选择�?行预�?');
+		showWarningMessage('只能选择1条预览');
 	}else{
 		window.open(rows[0].url);
 	}
 }
+
+function resizePushLog(){
+	$('#massPush_grid').datagrid('resize');
+}
 </script>
-<table id="pushlog_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#pushlog_toolbar'">
+<table id="pushlog_grid" class="easyui-datagrid" data-options="toolbar:'#pushlog_toolbar'">
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
@@ -209,7 +210,7 @@ function showPreviewNotice(){
             <th data-options="field:'title'">标题</th>
             <th data-options="field:'text',width:600">内容</th>
             <th data-options="field:'target',formatter:formatPushTarget">类型</th>
-            <th data-options="field:'pushStatus',formatter:formatPushStatus">发送状态</th>
+            <!-- <th data-options="field:'pushStatus',formatter:formatPushStatus">发送状态</th> -->
             <th data-options="field:'sendTime'">发送时间</th>
             <th data-options="field:'sendBy'">发送者</th>
             <th data-options="field:'readCount',align:'center'">阅读次数</th>
@@ -220,7 +221,17 @@ function showPreviewNotice(){
         </tr>
     </thead>
 </table>
-<div id="pushlog_toolbar" style="padding:5px;height:auto">
+<div id="pushlog_toolbar">
+	<div id="pushlog_querybar" title="查询条件" class="easyui-panel" data-options="collapsible:true,border:false,onCollapse:resizePushLog,onExpand:resizePushLog">
+		<table>
+			<tr>
+				<td style="text-align:right;"><strong>标题</strong></td>
+				<td style="text-align:left;padding-left:0px;padding-right:10px;">
+					<input id="massPush_loginName" style="width:100%" type="text"/>
+				</td>
+			</tr>
+		</table>
+	</div>
   <!-- 添加查询条件  -->      
   <table style="width: 900px" border="0">
   	<tr>

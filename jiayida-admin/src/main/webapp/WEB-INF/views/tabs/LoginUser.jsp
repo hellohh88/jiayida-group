@@ -359,7 +359,7 @@ function resizeLoginUser(){
 				<th style="">
 					登录名
 				</th>
-				<td><input id="loginUser_loginName_input" style="width:95%" name="loginName" class="easyui-validatebox" data-options="required:true"></td>
+				<td><input id="loginUser_loginName_input" style="width:95%" name="loginName" class="easyui-validatebox" data-options="required:true,validType:'length[6,20]'"></td>
 				<td><span class="hint"></span></td>
 		</tr>
 					
@@ -367,7 +367,7 @@ function resizeLoginUser(){
 				<th style="">
 					PASSWORD
 				</th>
-				<td><input id="loginUser_password_input" style="width:95%" name="password" class="easyui-validatebox" data-options="required:false,value:123456"></td>
+				<td><input id="loginUser_password_input" style="width:95%" name="password" class="easyui-validatebox" data-options="required:false,validType:'length[6,20]'"></td>
 				<td><span class="hint"></span></td>
 		</tr>
 						

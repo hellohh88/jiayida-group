@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui/1.4.1/themes/color.css">
     <link rel="stylesheet" type="text/css" href="/static/css/admin.css">
-    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/common.css">
     
     <script type="text/javascript" src="/static/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/static/jquery-easyui/1.4.1/jquery.easyui.min.js"></script>
@@ -21,7 +21,7 @@
     <script type="text/javascript" src="/static/commons/jquery.validatebox.extend.js"></script>
     <script type="text/javascript" src="/static/jquery/plugins/jquery.blockUI-2.7.js"></script>
     <script type="text/javascript" src="/static/commons/admin.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="resources/js/common.js"></script>
     
 <script type="text/javascript">
 function collapseWestRegion(){

@@ -28,9 +28,9 @@ function doBroadcast(jcntId){
 	var form = new Object();
 	form.title = $('#broadcast2_title').val();
 	form.text = bcEditor.getContentTxt();
-	form.senderId = UC.userId;	
+	//form.senderId = UC.userId;	
 	form.html = bcEditor.getContent();
-	//form.senderId = ${userId};
+	form.senderId = ${userId};
 	checkAndPush(form, 'push/broadcast.json');
 }
 
