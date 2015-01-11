@@ -44,14 +44,14 @@ $(function() {
  * 查询
  */
 function searchTreeMenu() {
-	treeMenuQuery = getQueryJson();
+	treeMenuQuery = getTreeMenuQueryJson();
 	searchDataGrid('#treeMenu_grid', treeMenuQuery);
 }
 
 /**
  * 查询条件
  */
-function getQueryJson(){
+function getTreeMenuQueryJson(){
 	var json = {
 		text : $('#treeMenu_text').val(),
 		status : $('#treeMenu_status').val(),

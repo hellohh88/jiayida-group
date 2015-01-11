@@ -45,14 +45,14 @@ $(function() {
  * 查询
  */
 function searchLoginUser() {
-	loginUserQuery = getQueryJson();
+	loginUserQuery = getLoginUserQueryJson();
 	searchDataGrid('#loginUser_grid', loginUserQuery);
 }
 
 /**
  * 查询条件
  */
-function getQueryJson(){
+function getLoginUserQueryJson(){
 	var json = {
 		loginName : $('#loginUser_loginName').val(),
 		cellPhone : $('#loginUser_cellPhone').val(),

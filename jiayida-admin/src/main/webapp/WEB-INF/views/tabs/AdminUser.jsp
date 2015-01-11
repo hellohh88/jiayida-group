@@ -44,14 +44,14 @@ $(function() {
  * 查询
  */
 function searchAdminUser() {
-	adminUserQuery = getQueryJson();
+	adminUserQuery = getAdminUserQueryJson();
 	searchDataGrid('#adminUser_grid', adminUserQuery);
 }
 
 /**
  * 查询条件
  */
-function getQueryJson(){
+function getAdminUserQueryJson(){
 	var json = {
 		loginName : $('#adminUser_loginName').val(),
 		status : $('#adminUser_status').val(),

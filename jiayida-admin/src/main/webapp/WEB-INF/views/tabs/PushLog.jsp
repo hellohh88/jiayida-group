@@ -57,14 +57,14 @@ function getPushLogOrder(){
  * 查询
  */
 function searchPushLog() {
-	pushLogQuery = getQueryJson();
+	pushLogQuery = getPushLogQueryJson();
 	searchDataGrid('#pushLog_grid', pushLogQuery);
 }
 
 /**
  * 查询条件
  */
-function getQueryJson(){
+function getPushLogQueryJson(){
 	var json = {
 		title : $('#pushLog_title').val(),
 		text : $('#pushLog_text').val(),

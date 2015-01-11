@@ -47,14 +47,14 @@ $(function() {
  * 查询
  */
 function searchMassPush() {
-	massPushQuery = getQueryJson();
+	massPushQuery = getMassPushQueryJson();
 	searchDataGrid('#massPush_grid', massPushQuery);
 }
 
 /**
  * 查询条件
  */
-function getQueryJson(){
+function getMassPushQueryJson(){
 	// search from/to date demo
 	/*
 	var registerDateQuery = new Object();

@@ -39,14 +39,14 @@ $(function() {
  * 查询
  */
 function searchAdminRole() {
-	adminRoleQuery = getQueryJson();
+	adminRoleQuery = getAdminRoleQueryJson();
 	searchDataGrid('#adminRole_grid', adminRoleQuery);
 }
 
 /**
  * 查询条件
  */
-function getQueryJson(){
+function getAdminRoleQueryJson(){
 	var json = {
 		roleName : $('#adminRole_roleName').val(),
 		status : $('#adminRole_status').val(),
