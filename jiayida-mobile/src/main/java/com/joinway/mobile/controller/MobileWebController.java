@@ -26,4 +26,46 @@ public class MobileWebController {
 		
 		return mv;
 	}
+
+	@RequestMapping("alipay/index")
+	public ModelAndView alipayIndex(){
+		ModelAndView mv = new ModelAndView("alipay/index");
+		return mv;
+	}
+	
+	@RequestMapping("alipay/alipayapi")
+	public ModelAndView alipay(@RequestParam("uId") String uId,
+			@RequestParam("origin_str") String originStr){
+		ModelAndView mv = new ModelAndView("alipay/alipayapi");
+
+		// 购买类型
+		//String type_str = (String)request.getParameter("type");
+
+		// 产品ID 可以查询出价格 如 优惠课程ID
+		//String pId = (String)request.getParameter("pId");
+		
+		//user ID
+		String userinfo_id = uId;//(String)request.getParameter("uId");
+		
+		//数量
+		//String quantity_str = (String)request.getParameter("quantity_str");
+
+		//总款
+		String origin_str = originStr;//(String)request.getParameter("origin_str");
+		
+		// 业务生成订单
+		// @ TODO
+		// 商户订单号
+		String WIDout_trade_no = "1111111111111";
+		
+		// 订单名称
+		String WIDsubject = "苏氏牛奶草莓";
+		// 付款金额
+		String WIDtotal_fee = "0.01";
+		mv.addObject("WIDout_trade_no", WIDout_trade_no);
+		mv.addObject("WIDsubject", WIDsubject);
+		mv.addObject("WIDtotal_fee", WIDtotal_fee);
+		
+		return mv;
+	}
 }
