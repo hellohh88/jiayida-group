@@ -1,6 +1,5 @@
 package com.joinway.admin.alipay.util;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,8 +7,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.codec.digest.DigestUtils;
 
 import com.joinway.admin.alipay.config.AlipayConfig;
 
@@ -160,7 +157,7 @@ public class AlipayCore {
 	 *            摘要算法
 	 * @return 文件摘要结果
 	 */
-	public static String getAbstract(String strFilePath, String file_digest_type)
+	/*public static String getAbstract(String strFilePath, String file_digest_type)
 			throws IOException {
 		PartSource file = new FilePartSource(new File(strFilePath));
 		if (file_digest_type.equals("MD5")) {
@@ -171,5 +168,5 @@ public class AlipayCore {
 		} else {
 			return "";
 		}
-	}
+	}*/
 }

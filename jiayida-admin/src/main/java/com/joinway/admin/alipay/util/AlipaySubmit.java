@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -22,7 +23,6 @@ import com.joinway.admin.alipay.util.httpClient.HttpProtocolHandler;
 import com.joinway.admin.alipay.util.httpClient.HttpRequest;
 import com.joinway.admin.alipay.util.httpClient.HttpResponse;
 import com.joinway.admin.alipay.util.httpClient.HttpResultType;
-//import com.alipay.sign.MD5;
 
 /* *
  *类名：AlipaySubmit
@@ -232,7 +232,7 @@ public class AlipaySubmit {
 		NameValuePair[] nameValuePair = new NameValuePair[properties.size()];
 		int i = 0;
 		for (Map.Entry<String, String> entry : properties.entrySet()) {
-			nameValuePair[i++] = new NameValuePair(entry.getKey(),
+			nameValuePair[i++] = new BasicNameValuePair(entry.getKey(),
 					entry.getValue());
 		}
 

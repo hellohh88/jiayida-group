@@ -1,8 +1,5 @@
 package com.joinway.admin.alipay.config;
 
-import java.net.URLEncoder;
-
-import com.qiYang.util.TWDataUtil;
 
 /* *
  *类名：AlipayConfig
@@ -29,10 +26,10 @@ public class AlipayConfig {
 	//↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 	
 	//卖家支付宝账号
-	public static String seller_id="1852886290@qq.com";
+	public static String seller_id="18909855898";
 	
 	// 合作身份者ID，以2088开头由16位纯数字组成的字符串
-	public static String partner = "2088011144552964";
+	public static String partner = "2088102920468761";
 	
 	// 商户的私钥
 	//public static String private_key = "MIICXgIBAAKBgQCzplk2eqJD4gvho+DwqmlWsacPeTmnX/wOm8BW62+NVi7IXup7eJ12Vi0e8+zkP76N6MD1pKtz/mWVp1RYJRMF29IP0LAibcL7Fha1fTmPFNa/EEHQPdK+yD9DLPgj101RWaZt8Cen5FYBEPa1DR3d9QNYPFxc3KumCTiiIz43bwIDAQABAoGBAJjEUoTjT+0N4jCknPnKz/zq4TdlTMOp+buqcqr3VksICIxXOmp4rN4edgwmPUHzeuVOEhhRSYM/x761JiI2lK8twi6oIK8J6SJVzpuaG0sFuwa3N8V9xQvDP9Lt6YDvY/IZi3+f5kGsUOb2viPCKQju4oy9I93HToN03gCUz5xBAkEA74diZEpCbJMfx5dsDiWC3wT4Hn5DlkfeNxcIM85aBFIj4l2whTnpZB3cZUF2mkpUU5WaMuwas9wJTf79q1LLcQJBAMAA3a6fOZ0HHqTl5p9vdGWjaq08Eop7JqUv4eeyS9+U9rQkRU7Akqg6CgLhOs8d5xB1MeEMi8n/jBr+mWKPAN8CQAdWxpT8EXzyJQ8gfJcSXygmJtQIWlnIae6WLhIoSGnJen/9DuOGGriOkaooj1G65UqKUucshMTuAPr6zRrqtoECQQCmGtmtrVBRegxXyhD3k5uWJocucY70wM/RDpiYMtaTCbNYaxyOoej+op9wmFuhPRReV5UcRhdVXMBfxiz6aA7vAkEA7hF1v7zdmQZPUqujcknuMk/ZNYprAAENaNi8PSE3Z5qVHI7IYmRkTjLIUjA5qmxusXld3ZLYNzedid3ocLWF8Q==";
@@ -43,12 +40,12 @@ public class AlipayConfig {
 	public static String ali_public_key  = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB";
 
 	// 返回值
-	public static String notify_url  = new StringBuffer(TWDataUtil.getBaseUrl()).append("servlet/NotifyAction").toString();
+	public static String notify_url  = new StringBuffer("http://test.xiaozhang.net.cn/").append("servlet/NotifyAction").toString();
 	//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 	
 	// 交易安全检验码，由数字和字母组成的32位字符串
 	// 如果签名方式设置为“MD5”时，请设置该参数
-	public static String key = "fz38r5rmczqqtddfxfxeicn6t4s6qd1t";
+	public static String key = "39i1jj6zmdn6ahxkka0p7zvfxfzayv9p";
 
 	//接口名称
 	public static String service="mobile.securitypay.pay";
