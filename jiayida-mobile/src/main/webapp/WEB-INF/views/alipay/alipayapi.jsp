@@ -59,7 +59,7 @@
 		//String notify_url = "http://ws.xiaozhang.net.cn/alipay/notify_url.jsp";
 		
 		//localhost
-		String notify_url = "http://192.168.1.109:8080/qiyangs/alipay/notify_url.jsp";
+		String notify_url = "http://192.168.1.109:8080/jiayida-mobile/alipay/notify_url.jsp";
 		//需http://格式的完整路径，不能加?id=123这类自定义参数
 
 		//页面跳转同步通知页面路径
@@ -68,7 +68,7 @@
 		// 正式环境
 		//String call_back_url = "http://ws.xiaozhang.net.cn/alipay/call_back_url.jsp";
 		// localhost
-		String call_back_url = "http://192.168.1.109:8080/qiyangs/alipay/call_back_url.jsp";
+		String call_back_url = "http://192.168.1.109:8080/jiayida-mobile/alipay/call_back_url.jsp";
 		//需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
 		//操作中断返回地址
@@ -77,7 +77,7 @@
 		// 正式环境
 		//String merchant_url = "http://ws.xiaozhang.net.cn/alipay/index.jsp";
 		// localhost
-		String merchant_url = "http://192.168.1.109:8080/qiyangs/alipay/index.jsp";
+		String merchant_url = "http://192.168.1.109:8080/jiayida-mobile/alipay/index.jsp";
 		//用户付款中途退出返回商户的地址。需http://格式的完整路径，不允许加?id=123这类自定义参数
 
 		//卖家支付宝帐户
@@ -125,7 +125,7 @@
 		System.out.println("sHtmlTextToken:"+sHtmlTextToken);
 		//获取token
 		String request_token = AlipaySubmit.getRequestToken(sHtmlTextToken);
-		//out.println(request_token);
+		System.out.println(request_token);
 		
 		////////////////////////////////////根据授权码token调用交易接口alipay.wap.auth.authAndExecute//////////////////////////////////////
 		
