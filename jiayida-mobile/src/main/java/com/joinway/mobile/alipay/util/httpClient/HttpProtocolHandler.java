@@ -1,14 +1,18 @@
 package com.joinway.mobile.alipay.util.httpClient;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -102,17 +106,34 @@ public class HttpProtocolHandler {
         HttpResponse response = new HttpResponse();
         //get模式且不带上传文件
         if (request.getMethod().equals(HttpRequest.METHOD_GET)) {
-            HttpGet httpGet=new HttpGet(request.getUrl());
+            HttpGet httpGet=new HttpGet(request.getUrl()+"&"+toString(request.getParameters()));
             httpGet.setConfig(requestConfig);
-
         	CloseableHttpResponse closeableResponse = httpClient.execute(httpGet);//执行请求
         	entity = closeableResponse.getEntity();
+            response.setStringResult(EntityUtils.toString(entity)); 
+        //} else if(strParaFileName.equals("") && strFilePath.equals("")) {
         	
-        } else if(strParaFileName.equals("") && strFilePath.equals("")) {
         }
         else {
+        	 /* 建立HTTP Post连线 */  
+            HttpPost httpPost = new HttpPost(request.getUrl());  
+            try {  
+                // 发出HTTP request  
+            	httpPost.setConfig(requestConfig);
+                httpPost.setEntity(new UrlEncodedFormEntity(toList(request.getParameters()), "UTF-8"));  
+                // 取得HTTP response  
+                CloseableHttpResponse httpResponse = httpClient.execute(httpPost);  
+                // 若状态码为200 ok  
+                if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {  
+                    // 取出回应字串  
+                    response.setStringResult(EntityUtils.toString(httpResponse.getEntity())); 
+                } else {  
+                    System.out.println("doPost Error Response: " + httpResponse.getStatusLine().toString());  
+                }  
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            }  
         }
-        response.setStringResult(EntityUtils.toString(entity));
         return response;
     }
 
@@ -140,5 +161,19 @@ public class HttpProtocolHandler {
         }
 
         return buffer.toString();
+    }
+    
+    private List<NameValuePair> toList(NameValuePair[] nameValues) {
+    	if (nameValues == null || nameValues.length == 0) {
+            return null;
+        }
+
+    	List<NameValuePair> list = new ArrayList<NameValuePair>(); 
+        for (int i = 0; i < nameValues.length; i++) {
+            NameValuePair nameValue = nameValues[i];
+
+            	list.add(nameValue);
+        }
+        return list;
     }
 }
